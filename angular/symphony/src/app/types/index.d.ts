@@ -1,0 +1,3 @@
+interface paramRole {
+    role: number;
+}

@@ -5,16 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HompagesComponent } from './hompages/hompages.component';
+import { HomeComponent } from './pages/user/home/home.component';
 import { MatMenuModule} from '@angular/material/menu';
-
-
-
+import { HeaderComponent } from './components/user/layout/header/header.component';
+import { FooterComponent } from './components/user/layout/footer/footer.component';
+import { HomeAdminComponent } from './pages/admin/home/homeAdmin.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HompagesComponent,
-
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeAdminComponent,
   ],
   imports: [
     BrowserModule,
