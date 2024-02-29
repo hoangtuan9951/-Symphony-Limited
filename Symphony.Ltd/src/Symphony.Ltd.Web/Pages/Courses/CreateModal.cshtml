@@ -1,0 +1,51 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Symphony.Ltd.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@using Symphony.Ltd.Web.Pages.Courses
+@using Symphony.Ltd.Courses;
+@using System.Globalization
+@inject IHtmlLocalizer<LtdResource> L
+@model CreateModalModel
+@{
+    Layout = null;
+}
+
+
+<form data-ajaxForm="true" asp-page="/Courses/CreateModal" autocomplete="off">
+    <abp-modal id="CourseCreateModal">
+        <abp-modal-header title="@L["NewCourse"].Value"></abp-modal-header>
+
+        <abp-modal-body>
+
+                    
+                    
+
+            <abp-input asp-for="Course.Title"   />
+
+
+            <abp-input asp-for="Course.Description"   />
+
+
+            <abp-input asp-for="Course.TeacherId"   />
+
+
+            <abp-input asp-for="Course.Price"   />
+
+
+            <abp-input asp-for="Course.TopicId"   />
+
+
+            <abp-input asp-for="Course.LearnTime"   />
+
+                    
+                
+
+
+        </abp-modal-body>
+
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)">
+
+        </abp-modal-footer>
+    </abp-modal>
+</form>
