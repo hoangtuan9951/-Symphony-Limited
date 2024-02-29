@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Symphony.Ltd.Web.props" />
+</Project>

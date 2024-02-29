@@ -1,0 +1,67 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Symphony.Ltd.Web
+build_property.RootNamespace = Symphony.Ltd.Web
+build_property.ProjectDir = D:\Eproject3\-Symphony-Limited\Symphony.Ltd\src\Symphony.Ltd.Web\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
+build_property.MSBuildProjectDirectory = D:\Eproject3\-Symphony-Limited\Symphony.Ltd\src\Symphony.Ltd.Web
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/Eproject3/-Symphony-Limited/Symphony.Ltd/src/Symphony.Ltd.Web/Components/Toolbar/LoginLink/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUb29sYmFyXExvZ2luTGlua1xEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Eproject3/-Symphony-Limited/Symphony.Ltd/src/Symphony.Ltd.Web/Components/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Eproject3/-Symphony-Limited/Symphony.Ltd/src/Symphony.Ltd.Web/Pages/CookiePolicy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29va2llUG9saWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Eproject3/-Symphony-Limited/Symphony.Ltd/src/Symphony.Ltd.Web/Pages/HostDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9zdERhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Eproject3/-Symphony-Limited/Symphony.Ltd/src/Symphony.Ltd.Web/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Eproject3/-Symphony-Limited/Symphony.Ltd/src/Symphony.Ltd.Web/Pages/PrivacyPolicy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeVBvbGljeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Eproject3/-Symphony-Limited/Symphony.Ltd/src/Symphony.Ltd.Web/Pages/TenantDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVuYW50RGFzaGJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Eproject3/-Symphony-Limited/Symphony.Ltd/src/Symphony.Ltd.Web/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Eproject3/-Symphony-Limited/Symphony.Ltd/src/Symphony.Ltd.Web/Themes/LeptonX/Layouts/Account/_Footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = VGhlbWVzXExlcHRvblhcTGF5b3V0c1xBY2NvdW50XF9Gb290ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Eproject3/-Symphony-Limited/Symphony.Ltd/src/Symphony.Ltd.Web/Themes/LeptonX/Layouts/Application/_Footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = VGhlbWVzXExlcHRvblhcTGF5b3V0c1xBcHBsaWNhdGlvblxfRm9vdGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Eproject3/-Symphony-Limited/Symphony.Ltd/src/Symphony.Ltd.Web/Themes/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = VGhlbWVzXF9WaWV3SW1wb3J0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Eproject3/-Symphony-Limited/Symphony.Ltd/src/Symphony.Ltd.Web/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
