@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\Symphony.Ltd.Web.props" />
-</Project>
