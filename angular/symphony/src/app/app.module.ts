@@ -10,6 +10,9 @@ import { MatMenuModule} from '@angular/material/menu';
 import { HeaderComponent } from './components/user/layout/header/header.component';
 import { FooterComponent } from './components/user/layout/footer/footer.component';
 import { HomeAdminComponent } from './pages/admin/home/homeAdmin.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { AdmissionsComponent } from './pages/user/admissions/admissions.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,12 +20,15 @@ import { HomeAdminComponent } from './pages/admin/home/homeAdmin.component';
     HeaderComponent,
     FooterComponent,
     HomeAdminComponent,
+    AdmissionsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatSlideToggleModule,
-    MatMenuModule
+    MatMenuModule,
+    MatGridListModule,
+    FormsModule,
   ],
   providers: [
     provideAnimationsAsync()
