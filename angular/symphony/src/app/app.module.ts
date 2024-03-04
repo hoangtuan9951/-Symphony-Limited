@@ -10,10 +10,13 @@ import { MatMenuModule} from '@angular/material/menu';
 import { HeaderComponent } from './components/user/layout/header/header.component';
 import { FooterComponent } from './components/user/layout/footer/footer.component';
 import { HomeAdminComponent } from './pages/admin/home/homeAdmin.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { AdmissionsComponent } from './pages/user/admissions/admissions.component';
+import { ListCourseComponent } from './pages/user/homepages/list-course/list-course.component';
+import { FormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import { RegisterConsultationComponent } from './pages/user/homepages/register-consultation/register-consultation.component';
 import { ListCourseComponent } from './pages/user/homepages/list-course/list-course.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +25,7 @@ import { ListCourseComponent } from './pages/user/homepages/list-course/list-cou
     FooterComponent,
     HomeAdminComponent,
     ListCourseComponent,
+    AdmissionsComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +34,9 @@ import { ListCourseComponent } from './pages/user/homepages/list-course/list-cou
     MatMenuModule,
     MatButtonModule,
     RegisterConsultationComponent
+    MatMenuModule,
+    MatGridListModule,
+    FormsModule,
   ],
   providers: [
     provideAnimationsAsync()

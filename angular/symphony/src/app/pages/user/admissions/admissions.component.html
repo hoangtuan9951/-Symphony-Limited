@@ -1,0 +1,238 @@
+<div class="admissions__main">
+  <div class="admissions__main-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-8">
+          <div class="main__banner-image">
+            <img [src]="pathBanner" alt="Banner Admissions" />
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="main__banner-form">
+            <div class="banner__form-title">
+              <h2>Sẵn sàng trở thành</h2>
+              <p>Lập trình viên quốc tế</p>
+            </div>
+            <div class="banner__form-field">
+              <form
+                class="form__field-admissions"
+                (ngSubmit)="onSubmit()"
+                #heroForm="ngForm"
+              >
+                <div class="form-group">
+                  <!-- <label for="name">Name</label> -->
+                  <input
+                    class="form-control"
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    required
+                    [(ngModel)]="admissions.name"
+                    name="name"
+                    #name="ngModel"
+                    placeholder="Họ và tên"
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="text"
+                    class="form-control"
+                    id="email"
+                    required
+                    [(ngModel)]="admissions.email"
+                    name="email"
+                    #name="ngModel"
+                    placeholder="Email"
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    type="text"
+                    class="form-control"
+                    id="phone"
+                    required
+                    [(ngModel)]="admissions.phone"
+                    name="phone"
+                    #name="ngModel"
+                    placeholder="Số điện thoại"
+                  />
+                </div>
+                <div class="form-group">
+                  <select
+                    class="form-control"
+                    id="level"
+                    [(ngModel)]="admissions.level"
+                    name="level"
+                    #power="ngModel"
+                  >
+                    <option value="0" disabled selected>Trình độ</option>
+                    <option
+                      *ngFor="let level of level_admissions"
+                      [value]="level.id"
+                    >
+                      {{ level.name }}
+                    </option>
+                  </select>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                  Tư vấn ngay
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="admissions__main-achievements">
+    <div class="container">
+      <div class="main__achievements-top">
+        <div class="achievements__top-list">
+          <div class="row">
+            <div class="col-6 col-md-3" *ngFor="let top of top_admissions">
+              <div class="top__list-item">
+                <div class="top__item-icon">
+                  <img [src]="top.icon" alt="" />
+                </div>
+                <div class="top__item-text">
+                  <div class="item__text-title">
+                    {{ top.name }}
+                  </div>
+                  <div class="item__text-description">
+                    {{ top.description }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main__achievements-reason">
+        <div class="achievements__reason-title">
+          <h2>Lí do lập trình luôn là ngành hot</h2>
+        </div>
+        <div class="achievements__reason-list">
+          <div class="row">
+            <div
+              class="col-12 col-md-6"
+              *ngFor="let reason of reason_admissions"
+            >
+              <div
+                class="achievements__reason-item"
+                [style.background-color]="reason.backgroundColor"
+                [style.color]="reason.color"
+                [style.box-shadow]="reason.boxShadow"
+              >
+                <div class="reason__item-title">
+                  <span>{{ reason.name }}</span>
+                </div>
+                <div class="reason__item-description">
+                  <p>{{ reason.description }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main__module-course">
+        <div class="module__course-title">
+          <h3>Khóa học lập trình viên quốc tế Aptech</h3>
+        </div>
+        <div class="module__course-list">
+          <div class="row">
+            <div
+              class="col-12 col-sm-6 col-md-4"
+              *ngFor="let course of course_admissions"
+            >
+              <div class="module__course-item">
+                <div class="course__item-image">
+                  <img [src]="course.image" alt="" />
+                </div>
+                <div class="course__item-text">
+                  <div class="item__text-name">
+                    <h4>{{ course.name }}</h4>
+                  </div>
+                  <div class="item__text-description">
+                    <p>
+                      {{ course.description }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="admissions__main-passion">
+    <div class="main__passion">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-8">
+            <div class="main__passion-text">
+              <h4>
+                Bạn đam mê công nghệ & Yêu thích lập trình. Bạn muốn chinh phục
+                sự nghiệp "IT" với mức lương hấp dẫn?
+              </h4>
+              <p>
+                “We don’t keep up with technology. We stay ahead of it - Chúng
+                tôi không chạy theo công nghệ. Chúng tôi đón đầu công nghệ!"
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 btn__round">
+            <div class="main__passion-btn">
+              <button>Bắt đầu ngay</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="admissions__main-benefits">
+    <div class="main__benefit-title">
+      <h3>Quyền lợi học viên aptech</h3>
+    </div>
+    <div class="main__benefit-list">
+      <div class="container">
+        <div class="row">
+          <div class="col-6 col-md-4" *ngFor="let benefit of benefit_admissions">
+            <div class="main__benefit-item">
+              <div class="benefit__item-image">
+                <img [src]="benefit.image" alt="" />
+              </div>
+              <div class="benefit__item-text">
+                <div class="item__text-name"><h4>{{benefit.name}}</h4></div>
+                <div class="item__text-description">
+                  <p>{{benefit.description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="admissions__main-partner">
+    <div class="main__partner-title">
+       <h3> Đối tác tuyển dụng</h3>
+    </div>
+    <div class="main__partner-list">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-xs-4 col-md-2" *ngFor="let partner of partner_admissions">
+                    <div class="main__partner-item">
+                        <img [src]="partner.image" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+  </div>
+</div>
