@@ -10,6 +10,10 @@ import { MatMenuModule} from '@angular/material/menu';
 import { HeaderComponent } from './components/user/layout/header/header.component';
 import { FooterComponent } from './components/user/layout/footer/footer.component';
 import { HomeAdminComponent } from './pages/admin/home/homeAdmin.component';
+import {MatButtonModule} from '@angular/material/button';
+import { RegisterConsultationComponent } from './components/user/homepages/register-consultation/register-consultation.component';
+import { ListCourseComponent } from './components/user/homepages/list-course/list-course.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,12 +21,15 @@ import { HomeAdminComponent } from './pages/admin/home/homeAdmin.component';
     HeaderComponent,
     FooterComponent,
     HomeAdminComponent,
+    ListCourseComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatSlideToggleModule,
-    MatMenuModule
+    MatMenuModule,
+    MatButtonModule,
+    RegisterConsultationComponent
   ],
   providers: [
     provideAnimationsAsync()

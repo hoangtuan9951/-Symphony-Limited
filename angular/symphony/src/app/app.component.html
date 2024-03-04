@@ -1,5 +1,6 @@
 <div class="main">
     <app-header-user *ngIf="!isInAdminPage()"></app-header-user>
+    <app-register-consultation *ngIf="!isInAdminPage()"></app-register-consultation>
     <router-outlet />
     <app-footer-user *ngIf="!isInAdminPage()"></app-footer-user>
 </div>
