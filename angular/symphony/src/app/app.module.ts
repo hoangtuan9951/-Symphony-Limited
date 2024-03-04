@@ -11,8 +11,8 @@ import { HeaderComponent } from './components/user/layout/header/header.componen
 import { FooterComponent } from './components/user/layout/footer/footer.component';
 import { HomeAdminComponent } from './pages/admin/home/homeAdmin.component';
 import {MatButtonModule} from '@angular/material/button';
-import { RegisterConsultationComponent } from './components/user/homepages/register-consultation/register-consultation.component';
-import { ListCourseComponent } from './components/user/homepages/list-course/list-course.component';
+import { RegisterConsultationComponent } from './pages/user/homepages/register-consultation/register-consultation.component';
+import { ListCourseComponent } from './pages/user/homepages/list-course/list-course.component';
 
 @NgModule({
   declarations: [
