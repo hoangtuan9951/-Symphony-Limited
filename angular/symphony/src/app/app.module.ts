@@ -16,7 +16,6 @@ import { ListCourseComponent } from './pages/user/homepages/list-course/list-cou
 import { FormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import { RegisterConsultationComponent } from './pages/user/homepages/register-consultation/register-consultation.component';
-import { ListCourseComponent } from './pages/user/homepages/list-course/list-course.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,10 +32,9 @@ import { ListCourseComponent } from './pages/user/homepages/list-course/list-cou
     MatSlideToggleModule,
     MatMenuModule,
     MatButtonModule,
-    RegisterConsultationComponent
-    MatMenuModule,
-    MatGridListModule,
+    RegisterConsultationComponent,
     FormsModule,
+    MatGridListModule
   ],
   providers: [
     provideAnimationsAsync()
