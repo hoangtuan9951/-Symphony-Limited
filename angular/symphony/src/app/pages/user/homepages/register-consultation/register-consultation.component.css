@@ -44,4 +44,9 @@ mat-form-field {
 .div-populated{
   width: 100%;
 }
-
+.elementskit-section-subtitle  {
+  color: white;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 500;
+}
