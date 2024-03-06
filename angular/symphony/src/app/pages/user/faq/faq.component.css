@@ -1,0 +1,12 @@
+.title{
+    font-size: 25px;
+    font-weight: 700;
+}
+.main-content{
+    padding-top: 50px;
+}
+mat-tree-node{
+    font-size: 20px;
+    font-weight: 400;
+    padding: 10px;
+}
