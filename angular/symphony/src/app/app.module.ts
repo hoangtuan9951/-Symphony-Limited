@@ -25,6 +25,7 @@ import { RegisterConsultationComponent } from './pages/user/homepages/register-c
     HomeAdminComponent,
     ListCourseComponent,
     AdmissionsComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -32,9 +33,9 @@ import { RegisterConsultationComponent } from './pages/user/homepages/register-c
     MatSlideToggleModule,
     MatMenuModule,
     MatButtonModule,
-    RegisterConsultationComponent,
     FormsModule,
     MatGridListModule,
+    RegisterConsultationComponent
   ],
   providers: [
     provideAnimationsAsync()
