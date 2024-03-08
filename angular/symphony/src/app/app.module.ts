@@ -19,6 +19,7 @@ import { RegisterConsultationComponent } from './pages/user/homepages/register-c
 import { AboutUsComponent } from './pages/user/about-us/about-us.component';
 import { ContactUsComponent } from './pages/user/contact-us/contact-us.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { BenefitPartnerComponent } from './pages/user/benefit-partner/benefit-partner.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { LoginComponent } from './components/auth/login/login.component';
     AboutUsComponent,
     ContactUsComponent,
     LoginComponent,
-    AdmissionsComponent
+    AdmissionsComponent,
+    BenefitPartnerComponent
   ],
   imports: [
     BrowserModule,
