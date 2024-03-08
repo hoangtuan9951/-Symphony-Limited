@@ -1,0 +1,63 @@
+<div class="login__component">
+  <div class="login__component-container">
+    <div class="login__component-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <div class="login__content-image">
+              <img [src]="imageLogin" alt="Image Login" />
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="login__content-field">
+              <div class="content__field-title"><h2>Sing In</h2></div>
+              <div class="login__content-input">
+                <div class="content__input-field">
+                  <div class="input__field-wrapper">
+                    <div class="input__field-icon">
+                      <i class="bi bi-person"></i>
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="Your Email"
+                      [(ngModel)]="email"
+                      name="email"
+                      (input)="handleChange($event, 'email')"
+                    />
+                  </div>
+                  <div class="input__field-error" *ngIf="errorForm.email.type === TYPE_ERROR.REQUIRED">
+                   <p > email is required!</p>
+                  </div>
+                  <div class="input__field-error" *ngIf="errorForm.email.type === TYPE_ERROR.NOT_VALID">
+                    <p > email is not valid!</p>
+                   </div>
+                </div>
+
+                <div class="content__input-field">
+                  <div class="input__field-wrapper">
+                    <div class="input__field-icon">
+                      <i class="bi bi-lock"></i>
+                    </div>
+                    <input
+                      type="password"
+                      placeholder="Your Password"
+                      [(ngModel)]="password"
+                      name="password"
+                      (input)="handleChange($event, 'password')"
+                    />
+                  </div>
+                  <div class="input__field-error" *ngIf="errorForm.password.type === TYPE_ERROR.REQUIRED">
+                    <p > password is required!</p>
+                   </div>
+                </div>
+              </div>
+              <div class="login__content-btn">
+                <button type="button" (click)="onSubmit()">Login</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

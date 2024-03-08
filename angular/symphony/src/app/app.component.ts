@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ROUTE_NOT_IN_LAYOUT_USER } from './constant';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,8 +14,7 @@ export class AppComponent {
     
   }
 
-
   isInAdminPage(): boolean {
-    return this.router.url.startsWith('/admin');
+    return ROUTE_NOT_IN_LAYOUT_USER.some(path => this.router.url.startsWith(path));
   }
 }

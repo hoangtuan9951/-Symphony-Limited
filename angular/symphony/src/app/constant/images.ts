@@ -19,4 +19,5 @@ export const PATH_IMAGES = {
     partner_4: 'assets/images/partner_4.jpg.webp',
     partner_5: 'assets/images/partner_5.webp',
     partner_6: 'assets/images/partner_6.jpg.webp',
+    login: 'assets/images/login-image.jpg'
 }
