@@ -27,10 +27,10 @@ import { LoginComponent } from './components/auth/login/login.component';
     FooterComponent,
     HomeAdminComponent,
     ListCourseComponent,
-
     AboutUsComponent,
-    ContactUsComponent
+    ContactUsComponent,
     LoginComponent,
+    AdmissionsComponent
   ],
   imports: [
     BrowserModule,
