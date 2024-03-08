@@ -1,0 +1,106 @@
+.layout__admin {
+  width: 100%;
+  display: flex;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+
+  .layout__admin-navbar {
+    width: 200px;
+    background-color: #001529;
+    color: white;
+    min-height: 100vh;
+
+    .admin__navbar-user {
+      height: 45px;
+      margin: 16px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      gap: 10px;
+
+      .navbar__user-image {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .navbar__user-name {
+        color: white;
+        width: 100px;
+        p {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin: 0;
+        }
+      }
+    }
+
+    .admin__navbar-menu {
+      .navbar__menu-list {
+        .navbar__menu-item {
+          &.active {
+            background-color: #1677ff;
+            color: white;
+          }
+
+          display: flex;
+          gap: 10px;
+          margin: 4px;      
+          padding-left: 24px;
+          height: 40px;
+          line-height: 40px;
+          padding-inline: 16px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin-inline: 4px;
+          margin-block: 4px;
+          width: calc(100% - 8px);
+          border-radius: 8px;
+          color: rgba(255, 255, 255, 0.65);
+
+          .menu__item-icon {
+          }
+
+          .menu__item-text {
+            width: 135px;
+            max-width: 100%;
+
+            p {
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .layout__admin-content {
+    flex: 1;
+
+    header {
+      height: 64px;
+      background-color: white;
+    }
+
+    .admin__content-container {
+      margin: 24px 16px 0px; 
+
+      .content__container-wrapper {
+        padding: 24px;
+    min-height: 360px;
+    background: rgb(255, 255, 255);
+      }
+    }
+  }
+}

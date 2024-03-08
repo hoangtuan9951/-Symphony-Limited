@@ -17,6 +17,8 @@ import { FormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import { RegisterConsultationComponent } from './pages/user/homepages/register-consultation/register-consultation.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { LayoutAdminComponent } from './components/admin/layout/layout.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +29,7 @@ import { LoginComponent } from './components/auth/login/login.component';
     ListCourseComponent,
     AdmissionsComponent,
     LoginComponent,
+    LayoutAdminComponent,
   ],
   imports: [
     BrowserModule,
