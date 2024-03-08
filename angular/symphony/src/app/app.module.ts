@@ -18,6 +18,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { RegisterConsultationComponent } from './pages/user/homepages/register-consultation/register-consultation.component';
 import { AboutUsComponent } from './pages/user/about-us/about-us.component';
 import { ContactUsComponent } from './pages/user/contact-us/contact-us.component';
+import { LoginComponent } from './components/auth/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,10 +27,10 @@ import { ContactUsComponent } from './pages/user/contact-us/contact-us.component
     FooterComponent,
     HomeAdminComponent,
     ListCourseComponent,
-    AdmissionsComponent,
+
     AboutUsComponent,
     ContactUsComponent
-    
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

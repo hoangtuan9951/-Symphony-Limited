@@ -294,3 +294,8 @@ export const LIST_MENU = [
     ],
   },
 ];
+
+export const ROUTE_NOT_IN_LAYOUT_USER = [
+  '/admin',
+  '/login'
+]
