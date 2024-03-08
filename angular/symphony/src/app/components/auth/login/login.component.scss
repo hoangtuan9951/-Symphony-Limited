@@ -1,0 +1,109 @@
+.login__component {
+  width: 100%;
+  padding: 100px 0;
+
+  .login__component-container {
+    width: 1000px;
+    background: #fff;
+    margin: 0 auto;
+    border-radius: 20px;
+    max-width: 100%;
+    padding: 0 20px;
+
+    .login__component-content {
+      padding: 70px 0;
+      display: flex;
+      display: -webkit-flex;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+        rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+      border-radius: 20px;
+
+      .login__content-image {
+        // overflow: hidden;
+        width: 50%;
+        margin-left: 110px;
+        margin-right: 20px;
+        margin-top: 10px;
+      }
+
+      .login__content-field {
+        margin-right: 90px;
+        margin-left: 80px;
+
+        .content__field-title {
+          h2 {
+            font-family: sans-serif;
+            line-height: 1.66;
+            color: #222;
+            font-size: 36px;
+            margin-bottom: 33px;
+            font-weight: 900;
+          }
+        }
+
+        .login__content-input {
+          .content__input-field {
+            margin-bottom: 24px;
+
+            .input__field-wrapper {
+              border-radius: 0;
+              border-bottom: 1px solid;
+              border-color: #999;
+              border-width: 1px;
+              display: flex;
+              align-items: center;
+
+              .input__field-icon {
+                i {
+                  font-size: 18px;
+                }
+              }
+  
+              input {
+                padding: 6px 15px;
+                border: none;
+                outline: none;
+              }
+            
+            }
+
+           .input__field-error {
+            margin-top: 10px;
+            
+            p {
+              color: red;
+            }
+           }
+          }
+        }
+
+        .login__content-btn {
+            margin-top: 30px;
+          button {
+            display: inline-block;
+            background: #6dabe4;
+            color: #fff;
+            border: none;
+            padding: 15px 39px;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -o-border-radius: 5px;
+            -ms-border-radius: 5px;
+            align-items: center;
+            cursor: pointer;
+            justify-content: center;
+            display: flex;
+            height: 40px;
+            transition: all 0.3s ease-in-out;
+         
+
+            &:hover {
+              background: #4292dc;
+            }
+          }
+        }
+      }
+    }
+  }
+}
