@@ -307,3 +307,7 @@ export const ROUTE_NOT_IN_LAYOUT_USER = [
   '/admin',
   '/login'
 ]
+
+export const ROUTE_IN_LAYOUT_ADMIN = [
+  '/admin',
+]

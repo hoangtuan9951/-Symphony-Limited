@@ -1,6 +1,16 @@
 <div class="main">
-    <app-header-user *ngIf="!isInAdminPage()"></app-header-user>
-    <router-outlet />
-    <app-footer-user *ngIf="!isInAdminPage()"></app-footer-user>
-</div>
+    <ng-container *ngIf="!isInAdminPage(); else adminLayout">
+        <app-header-user></app-header-user>
+        <router-outlet></router-outlet>
+        <app-footer-user></app-footer-user>
+    </ng-container>
 
+    <ng-template #adminLayout>
+        <app-layout-admin *ngIf="isChildrenAdmin(); else adminLogin">
+            <router-outlet></router-outlet>
+        </app-layout-admin>
+        <ng-template #adminLogin>
+            <router-outlet></router-outlet>
+        </ng-template>
+    </ng-template>
+</div>
