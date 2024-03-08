@@ -16,6 +16,8 @@ import { ListCourseComponent } from './pages/user/homepages/list-course/list-cou
 import { FormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import { RegisterConsultationComponent } from './pages/user/homepages/register-consultation/register-consultation.component';
+import { AboutUsComponent } from './pages/user/about-us/about-us.component';
+import { ContactUsComponent } from './pages/user/contact-us/contact-us.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,9 @@ import { RegisterConsultationComponent } from './pages/user/homepages/register-c
     FooterComponent,
     HomeAdminComponent,
     ListCourseComponent,
-    AdmissionsComponent
+    AdmissionsComponent,
+    AboutUsComponent,
+    ContactUsComponent
     
   ],
   imports: [
