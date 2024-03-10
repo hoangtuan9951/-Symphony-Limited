@@ -1,0 +1,37 @@
+version: '3.4'
+
+networks:
+  backend:
+  frontend:
+
+services:
+  epro3db:
+    container_name: epro3-db
+    image: mysql:8.0.35
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    ports:
+      - 8002:3306
+    networks:
+      - backend
+  epro3:
+    container_name: epro3-api
+    image: ${DOCKER_REGISTRY-}epro3
+    volumes:
+      - epro3_volume:/app/volume/Resource
+    build:
+      context: .
+      dockerfile: Epro3/Dockerfile
+    networks:
+      - backend
+    ports:
+      - 2002:80
+    restart: always
+    environment:
+      - DB_HOST=epro3db
+      - DB_NAME=epro3
+      - DB_ROOT_PASSWORD=123456
+volumes:
+  epro3_volume:
+    driver: local
+    name: epro3_volume
