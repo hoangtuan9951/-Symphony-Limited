@@ -1,7 +1,7 @@
 // home.component.ts
 
 import { Component } from '@angular/core';
-import { PATH_IMAGES } from '../../../constant/images';
+import { PATH_IMAGES } from '../../../user/constant/images';
 
 @Component({
     selector: 'app-login-admin',

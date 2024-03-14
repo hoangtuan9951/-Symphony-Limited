@@ -1,9 +1,9 @@
 // home.component.ts
 
 import { Component } from '@angular/core';
-import { Admissions } from '../../../models/admissions';
-import { LEVEL_ADMISSIONS, TOP_ADMISSIONS, REASON_ADMISSIONS, COURSE_ADMISSIONS, BENEFIT_ADMISSIONS, PARTNER_ADMISSIONS } from '../../../constant/index';
-import { PATH_IMAGES } from '../../../constant/images';
+import { Admissions } from '../../models/admissions';
+import { PATH_IMAGES } from '../../constant/images';
+import { BENEFIT_ADMISSIONS, COURSE_ADMISSIONS, LEVEL_ADMISSIONS, PARTNER_ADMISSIONS, REASON_ADMISSIONS, TOP_ADMISSIONS } from '../../constant';
 
 @Component({
   selector: 'app-admissions',

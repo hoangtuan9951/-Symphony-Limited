@@ -1,7 +1,7 @@
 // home.component.ts
 
 import { Component } from '@angular/core';
-import { LIST_MENU } from '../../../../constant';
+import { LIST_MENU } from '../../../constant';
 
 @Component({
   selector: 'app-header-user',

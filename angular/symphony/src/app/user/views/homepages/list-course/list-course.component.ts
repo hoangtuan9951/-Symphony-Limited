@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LIST_COURSE } from '../../../../constant';
+import { LIST_COURSE } from '../../../constant';
 
 @Component({
   selector: 'app-list-course',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ROUTE_NOT_IN_LAYOUT_USER } from './constant';
+import { ROUTE_NOT_IN_LAYOUT_USER } from './user/constant';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

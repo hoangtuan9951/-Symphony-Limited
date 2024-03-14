@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BENEFIT_ADMISSIONS, PARTNER_ADMISSIONS } from '../../../constant';
+import { BENEFIT_ADMISSIONS, PARTNER_ADMISSIONS } from '../../constant';
 
 @Component({
   selector: 'app-benefit-partner',
