@@ -5,10 +5,11 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { HomeAdminComponent } from './views/home/homeAdmin.component';
 import { LoginComponent } from './views/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [HomeAdminComponent, LoginComponent],
-  imports: [BrowserModule, AdminRoutingModule, FormsModule],
+  imports: [CommonModule, AdminRoutingModule, FormsModule],
   providers: [provideAnimationsAsync()],
 })
 export class AdminModule {}
