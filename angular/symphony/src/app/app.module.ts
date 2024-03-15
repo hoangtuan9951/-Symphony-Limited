@@ -3,26 +3,29 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HomeComponent } from './pages/user/home/home.component';
-import { MatMenuModule} from '@angular/material/menu';
-import { HeaderComponent } from './components/user/layout/header/header.component';
-import { FooterComponent } from './components/user/layout/footer/footer.component';
-import { HomeAdminComponent } from './pages/admin/home/homeAdmin.component';
+import { CommonModule } from '@angular/common';
+import { AdminModule } from './admin/admin.module';
+import { UserModule } from './user/user.module';
+import { UserRoutingModule } from './user/user-routing.module';
+import { AdminRoutingModule } from './admin/admin-routing.module';
+import { AuthRoutingModule } from './auth/auth-routing.module';
+import { AuthModule } from './auth/auth.module';
+
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    HeaderComponent,
-    FooterComponent,
-    HomeAdminComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatSlideToggleModule,
-    MatMenuModule
+    CommonModule,
+    UserRoutingModule,
+    AdminRoutingModule,
+    AdminModule,
+    UserModule,
+    AuthRoutingModule,
+    AuthModule
   ],
   providers: [
     provideAnimationsAsync()

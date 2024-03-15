@@ -1,0 +1,326 @@
+header {
+  padding-bottom: 10px;
+
+}
+.main{
+  background-color: #ad1f1f;
+}
+.div-menu {
+  padding: 20px 0 10px 0;
+  text-align: center;
+}
+.btn-advise {
+  padding: 10px;
+  border-color: white;
+}
+.btn-advise:hover {
+  background-color: #ffe308 !important;
+  border-color: #ffe308;
+}
+.sub-menu > li {
+  border-left: 5px solid #ad1f1f;
+  border-bottom: 1px solid #9d9999;
+}
+.sub-menu > li > a {
+  font-size: 15px !important;
+  font-weight: 400 !important;
+}
+.elementor-animation-shrink {
+  width: 65%;
+}
+.elementor-element-b896070 {
+  text-align: right;
+}
+
+.eael-simple-menu-horizontal {
+  margin-bottom: 0;
+}
+
+
+.elementor-widget-eael-simple-menu.eael-hamburger--none
+  .eael-simple-menu-container
+  .eael-simple-menu.eael-simple-menu-horizontal
+  .eael-simple-menu-indicator,
+.elementor-widget-eael-simple-menu.eael-hamburger--not-responsive
+  .eael-simple-menu-container
+  .eael-simple-menu.eael-simple-menu-horizontal
+  .eael-simple-menu-indicator {
+  display: none;
+}
+
+.eael-simple-menu-container .eael-simple-menu-toggle-text {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  font-size: 14px;
+  line-height: 50px !important;
+  letter-spacing: 0 !important;
+  color: #fff;
+}
+
+.eael-simple-menu-container .eael-simple-menu a {
+  text-decoration: none;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.eael-simple-menu-container .eael-simple-menu li a {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 50px;
+  text-align: center;
+  color: #fff;
+  padding-left: 20px;
+  padding-right: 20px;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+}
+.eael-simple-menu-horizontal > li > a:hover {
+  color: #ffe308 !important;
+}
+
+.eael-simple-menu-container .eael-simple-menu li ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.eael-simple-menu-container .eael-simple-menu li ul li a {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 40px;
+  text-align: left;
+  color: #000;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.eael-simple-menu-container .eael-simple-menu li ul li:hover > a,
+.eael-simple-menu-container .eael-simple-menu li ul li.current-menu-item > a {
+  color: #ee355f;
+  background-color: #fff;
+}
+
+.eael-simple-menu-container .eael-simple-menu li:hover > a,
+.eael-simple-menu-container .eael-simple-menu li.current-menu-item > a {
+  color: #fff;
+}
+
+.eael-simple-menu-container .eael-simple-menu .eael-simple-menu-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.5019607843);
+  border-radius: 2px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.eael-simple-menu-container
+  .eael-simple-menu
+  .eael-simple-menu-indicator:before,
+.eael-simple-menu-container .eael-simple-menu .eael-simple-menu-indicator svg,
+.eael-simple-menu-container .eael-simple-menu .eael-simple-menu-indicator i {
+  display: block;
+  font-weight: 900;
+  line-height: 26px;
+  color: #fff;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+}
+
+.eael-simple-menu-container .eael-simple-menu.eael-simple-menu-horizontal li {
+  position: relative;
+  float: left;
+  display: inline-block;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+
+.eael-simple-menu-container
+  .eael-simple-menu.eael-simple-menu-horizontal
+  li
+  a
+  span {
+  position: relative;
+  margin-left: 5px;
+}
+
+.eael-simple-menu-container
+  .eael-simple-menu.eael-simple-menu-horizontal
+  li
+  ul {
+  position: absolute;
+  top: 100%;
+  left: auto;
+  width: 220px;
+  visibility: hidden;
+  opacity: 0;
+  background-color: #fff;
+  -webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1019607843);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1019607843);
+  z-index: 1;
+}
+
+.eael-simple-menu-container
+  .eael-simple-menu.eael-simple-menu-horizontal
+  li
+  ul
+  li {
+  position: relative;
+  float: none;
+  display: block;
+}
+
+.eael-simple-menu-container
+  .eael-simple-menu.eael-simple-menu-horizontal
+  li
+  ul
+  li
+  a {
+  display: block;
+}
+
+
+.eael-simple-menu-container
+  .eael-simple-menu.eael-simple-menu-horizontal
+  li
+  ul
+  li:last-child
+  > a {
+  border-bottom-width: 0;
+}
+
+.eael-simple-menu-container
+  .eael-simple-menu.eael-simple-menu-horizontal
+  li
+  ul
+  li
+  ul {
+  top: 0;
+  left: 100%;
+}
+
+.eael-simple-menu-container
+  .eael-simple-menu.eael-simple-menu-horizontal
+  li:hover
+  > ul {
+  visibility: visible;
+  opacity: 1;
+}
+
+.eael-simple-menu-container .eael-simple-menu.eael-simple-menu-vertical li {
+  position: relative;
+}
+
+.eael-simple-menu-container .eael-simple-menu.eael-simple-menu-vertical li a {
+  display: block;
+  text-align: left;
+}
+
+.eael-simple-menu-container .eael-simple-menu.eael-simple-menu-vertical li ul {
+  display: none;
+}
+
+.eael-simple-menu-container
+  .eael-simple-menu.eael-simple-menu-vertical
+  li
+  ul
+  li {
+  position: relative;
+  display: block;
+}
+
+
+.eael-simple-menu-container.preset-1 {
+  background-color: #ad1f1f;
+}
+
+.eael-simple-menu-container.preset-1 .eael-simple-menu li > a {
+  color: #fff;
+}
+
+.eael-simple-menu-container.preset-1
+  .eael-simple-menu
+  li.current-menu-ancestor
+  > a.eael-item-active,
+.eael-simple-menu-container.preset-1 .eael-simple-menu li:hover > a,
+.eael-simple-menu-container.preset-1
+  .eael-simple-menu
+  li.current-menu-item
+  > a.eael-item-active {
+  background-color: #ad1f1f;
+}
+
+.eael-simple-menu-container.preset-1 .eael-simple-menu li ul {
+  background-color: #fff;
+}
+
+.eael-simple-menu-container.preset-1
+  .eael-simple-menu
+  li
+  ul
+  li.current-menu-ancestor
+  > a.eael-item-active,
+.eael-simple-menu-container.preset-1 .eael-simple-menu li ul li:hover > a,
+.eael-simple-menu-container.preset-1
+  .eael-simple-menu
+  li
+  ul
+  li.current-menu-item
+  > a.eael-item-active {
+  background-color: #fff;
+}
+
+.eael-simple-menu-container.preset-3
+  .eael-simple-menu
+  li.current-menu-ancestor
+  > a.eael-item-active,
+.eael-simple-menu-container.preset-3 .eael-simple-menu li:hover > a,
+.eael-simple-menu-container.preset-3
+  .eael-simple-menu
+  li.current-menu-item
+  > a.eael-item-active {
+  color: #fff;
+  background-color: #f72c8a;
+}
+
+.eael-simple-menu-container.preset-3 .eael-simple-menu li ul {
+  background-color: #f72c8a;
+}
+
+.eael-simple-menu-container.preset-3 .eael-simple-menu li ul li > a {
+  color: #fff;
+  border-bottom: 1px solid #f72c8a;
+}
+
+.eael-simple-menu-container.preset-3
+  .eael-simple-menu
+  li
+  ul
+  li.current-menu-ancestor
+  > a.eael-item-active,
+.eael-simple-menu-container.preset-3 .eael-simple-menu li ul li:hover > a,
+.eael-simple-menu-container.preset-3
+  .eael-simple-menu
+  li
+  ul
+  li.current-menu-item
+  > a.eael-item-active {
+  background-color: #f30875;
+}
