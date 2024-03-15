@@ -6,7 +6,7 @@ import { FAQComponent } from './views/faq/faq.component';
 import { AboutUsComponent } from './views/about-us/about-us.component';
 import { ContactUsComponent } from './views/contact-us/contact-us.component';
 
-export const routes: Routes = [
+const routes: Routes = [
   {
     path: 'user',
     children: [

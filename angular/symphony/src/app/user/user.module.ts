@@ -40,5 +40,7 @@ import { CommonModule } from '@angular/common';
   providers: [
     provideAnimationsAsync()
   ],
+  exports: [HeaderComponent, FooterComponent],
+
 })
 export class UserModule { }

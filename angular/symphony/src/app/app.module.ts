@@ -7,6 +7,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { CommonModule } from '@angular/common';
 import { AdminModule } from './admin/admin.module';
 import { UserModule } from './user/user.module';
+import { UserRoutingModule } from './user/user-routing.module';
+import { AdminRoutingModule } from './admin/admin-routing.module';
+import { AuthRoutingModule } from './auth/auth-routing.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -16,8 +20,12 @@ import { UserModule } from './user/user.module';
     BrowserModule,
     AppRoutingModule,
     CommonModule,
+    UserRoutingModule,
+    AdminRoutingModule,
     AdminModule,
-    UserModule
+    UserModule,
+    AuthRoutingModule,
+    AuthModule
   ],
   providers: [
     provideAnimationsAsync()

@@ -1,3 +1,11 @@
 <div class="main">
+  <app-header-user></app-header-user>
+  <router-outlet> </router-outlet>
+  <app-footer-user></app-footer-user>
 </div>
-
+<ng-container *ngIf="isInAdminPage()">
+  <router-outlet></router-outlet>
+</ng-container>
+<!-- <ng-container *ngIf="isInAuthPage()">
+  <router-outlet></router-outlet>
+</ng-container> -->
