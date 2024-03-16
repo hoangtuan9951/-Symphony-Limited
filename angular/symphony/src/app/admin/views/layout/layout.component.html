@@ -1,0 +1,83 @@
+<div class="layout__admin">
+    <div class="layout__admin-navbar">
+      <div class="admin__navbar-user">
+          <div class="navbar__user-image">
+              <img [src]="avatar" alt="Image Login" />
+          </div>
+          <div class="navbar__user-name">
+             <p> David Harrison</p>
+          </div>
+     
+      </div>
+      <div class="admin__navbar-menu">
+          <div class="navbar__menu-list"  #myElement>
+            <div class="navbar__menu-item" *ngFor="let item of menu_admin" [class]="item.active ? 'active' : ''">
+                <div class="menu__item-icon"><i class={{item.icon}}></i></div>
+                <div class="menu__item-text">
+                    <p>{{item.name}}</p>
+                </div>
+            </div>
+              <!-- <div class="navbar__menu-item active">
+                  <div class="menu__item-icon"><i class="bi bi-person-lines-fill"></i></div>
+                  <div class="menu__item-text">
+                      <p>Manage Module</p>
+                  </div>
+              </div> -->
+              <!-- <div class="navbar__menu-item">
+                  <div class="menu__item-icon"><i class="bi bi-person-lines-fill"></i></div>
+                  <div class="menu__item-text">
+                      <p>Manage Course</p>
+                  </div>
+              </div>
+              <div class="navbar__menu-item">
+                  <div class="menu__item-icon"><i class="bi bi-person-lines-fill"></i></div>
+                  <div class="menu__item-text">
+                      <p>Manage Student</p>
+                  </div>
+              </div>
+              <div class="navbar__menu-item">
+                  <div class="menu__item-icon"><i class="bi bi-person-lines-fill"></i></div>
+                  <div class="menu__item-text">
+                      <p>Contact</p>
+                  </div>
+              </div>
+              <div class="navbar__menu-item">
+                  <div class="menu__item-icon"><i class="bi bi-person-lines-fill"></i></div>
+                  <div class="menu__item-text">
+                      <p>Manage classes</p>
+                  </div>
+              </div>
+              <div class="navbar__menu-item">
+                  <div class="menu__item-icon"><i class="bi bi-person-lines-fill"></i></div>
+                  <div class="menu__item-text">
+                      <p>About us</p>
+                  </div>
+              </div>
+              <div class="navbar__menu-item">
+                  <div class="menu__item-icon"><i class="bi bi-person-lines-fill"></i></div>
+                  <div class="menu__item-text">
+                      <p>FAQ</p>
+                  </div>
+              </div>
+              <div class="navbar__menu-item">
+                  <div class="menu__item-icon"><i class="bi bi-person-lines-fill"></i></div>
+                  <div class="menu__item-text">
+                      <p>Contact us</p>
+                  </div>
+              </div> -->
+          </div>
+      </div>
+    </div>
+    <div class="layout__admin-content">
+      <header>
+  
+      </header>
+      <div class="admin__content-container">
+          <div class="content__container-wrapper">
+              <ng-content></ng-content>
+          </div>
+         
+      </div>
+    
+    </div>
+  </div>
