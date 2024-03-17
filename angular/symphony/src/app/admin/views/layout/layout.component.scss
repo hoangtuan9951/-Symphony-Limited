@@ -73,11 +73,13 @@
               width: 135px;
               max-width: 100%;
   
-              p {
+              a {
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 margin: 0;
+                text-decoration: none;
+                color: white;
               }
             }
           }
