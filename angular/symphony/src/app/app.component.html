@@ -1,5 +1,8 @@
 <div class="main">
-    <app-header-user *ngIf="!isInAdminPage()"></app-header-user>
-    <router-outlet />
-    <app-footer-user *ngIf="!isInAdminPage()"></app-footer-user>
+  <app-header-user *ngIf="!isInAdminPage() && !isInAuthPage()"></app-header-user>
+  <router-outlet> </router-outlet>
+  <app-footer-user *ngIf="!isInAdminPage() && !isInAuthPage()"></app-footer-user>
 </div>
+<!-- <ng-container *ngIf="isInAuthPage()">
+  <router-outlet></router-outlet>
+</ng-container> -->
