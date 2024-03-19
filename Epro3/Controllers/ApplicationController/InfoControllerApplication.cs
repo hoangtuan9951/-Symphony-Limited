@@ -9,18 +9,18 @@ namespace Epro3.Controllers.ApplicationController
     [ApiController]
     public class InfoControllerApplication : ControllerBase
     {
-        private readonly ICourseServiceApplication _courseServiceApplication;
-        public InfoControllerApplication(ICourseServiceApplication courseServiceApplication)
+        private readonly IMediator _mediator;
+        public InfoControllerApplication(IMediator mediator)
         {
-            _courseServiceApplication = courseServiceApplication;
+            _mediator = mediator;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllCourse()
+        [HttpGet("faqs")]
+        public async Task<IActionResult> GetAllFaqs()
         {
             try
             {
-                var responseData = await _courseServiceApplication.GetAll();
+                var responseData = await _mediator.Call(new GetAllFaqs());
                 return Ok(responseData);
             }
             catch (Exception e)
@@ -29,12 +29,12 @@ namespace Epro3.Controllers.ApplicationController
             }
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetCourseDetail(int id)
+        [HttpGet("abouts")]
+        public async Task<IActionResult> GetAllAbout()
         {
             try
             {
-                var responseData = await _courseServiceApplication.GetDetail(id);
+                var responseData = await _mediator.Call(new GetAllAbouts());
                 return Ok(responseData);
             }
             catch (Exception e)
@@ -43,12 +43,26 @@ namespace Epro3.Controllers.ApplicationController
             }
         }
 
-        [HttpGet("latest-course")]
-        public async Task<IActionResult> GetSixLatestCourse()
+        [HttpPost("user-contact/create")]
+        public async Task<IActionResult> SaveUserContact()
         {
             try
             {
-                var responseData = await _courseServiceApplication.GetSixLatestCourse();
+                var responseData = await _mediator.Call(new SaveUserContact());
+                return Ok(responseData);
+            }
+            catch (Exception e)
+            {
+                return new ObjectResult(new { message = e.Message }) { StatusCode = 500 };
+            }
+        }
+
+        [HttpGet("detail-entrence-exam/{rollNumber}")]
+        public async Task<IActionResult> GetDetailEntrenceExam(string rollNumber)
+        {
+            try
+            {
+                var responseData = await _mediator.Call(new GetDetailEntrenceExam(rollNumber));
                 return Ok(responseData);
             }
             catch (Exception e)
