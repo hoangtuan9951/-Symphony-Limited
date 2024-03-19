@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.16" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.16">
@@ -23,7 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Epro3.Domain\Epro3.Domain.csproj" />
-    <ProjectReference Include="..\Epro3.Service\Epro3.Service.csproj" />
+    <ProjectReference Include="..\Epro3.Service\Epro3.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,14 +1,8 @@
-using Epro3;
-using Epro3.Domain.Helpers;
+using Epro3.Application.Helpers;
 using Epro3.Domain.Interfaces.IRepository;
-using Epro3.Domain.Interfaces.IService.IAdminService;
-using Epro3.Domain.Interfaces.IService.IApplicationService;
 using Epro3.Infrastructure.DBContext;
 using Epro3.Infrastructure.Repositories;
-using Epro3.Service.AdminService;
-using Epro3.Service.ApplicationService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
@@ -72,15 +66,6 @@ builder.Services.AddSwaggerGen(c =>
 //UnitOfWork Dependency Injection
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-//Service Dependency Injection
-builder.Services.AddScoped<ICourseServiceApplication, CourseServiceApplication>();
-
-//Admin Service Dependency Injection
-builder.Services.AddScoped<ICourseServiceAdmin, CourseServiceAdmin>();
-
-//Repository Dependency Injection
-builder.Services.AddScoped<ICourseRepository, CourseRepository>();
-
 //DbContext Denpendency Injection
 builder.Services.AddScoped<ApplicationDatabaseContext, ApplicationDatabaseContext>();
 
@@ -88,6 +73,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddCors(option =>
 {
     option.AddPolicy(name: "CorsPolicy",
@@ -117,8 +103,5 @@ app.UseCors("CorsPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-
-var startup = new Startup(builder.Configuration, app.Services);
-startup.Configure(app);
 
 app.Run();
