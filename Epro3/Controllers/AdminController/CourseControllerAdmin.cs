@@ -1,5 +1,6 @@
-﻿using Epro3.Domain.DTOs.AdminDTOs.Course;
-using Epro3.Domain.Interfaces.IService.IAdminService;
+﻿using Epro3.Application.Features.Commands.CourseCommand;
+using Epro3.Application.Features.Queries.CourseQuery;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,10 @@ namespace Epro3.Controllers.AdminController
     [ApiController]
     public class CourseControllerAdmin : ControllerBase
     {
-        private readonly ICourseServiceAdmin _courseServiceAdmin;
-        public CourseControllerAdmin(ICourseServiceAdmin courseServiceAdmin)
+        private readonly IMediator _mediator;
+        public CourseControllerAdmin(IMediator mediator)
         {
-            _courseServiceAdmin = courseServiceAdmin;
+            _mediator = mediator;
         }
 
         [HttpGet]
@@ -21,7 +22,7 @@ namespace Epro3.Controllers.AdminController
         {
             try
             {
-                var responseData = await _courseServiceAdmin.GetAll();
+                var responseData = await _mediator.Send(new GetAllCourseAdminQuery());
                 return Ok(responseData);
             }
             catch (Exception e)
@@ -35,7 +36,7 @@ namespace Epro3.Controllers.AdminController
         {
             try
             {
-                var responseData = await _courseServiceAdmin.GetDetail(id);
+                var responseData = await _mediator.Send(new GetCourseByIdAdminQuery { Id = id});
                 return Ok(responseData);
             }
             catch (Exception e)
@@ -45,11 +46,11 @@ namespace Epro3.Controllers.AdminController
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateCourseDTO createCourseDTO)
+        public async Task<IActionResult> Create(CreateCourseCommand command)
         {
             try
             {
-                await _courseServiceAdmin.Create(createCourseDTO);
+                await _mediator.Send(command);
                 return Ok();
             }
             catch (Exception e)
@@ -59,11 +60,11 @@ namespace Epro3.Controllers.AdminController
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, UpdateCourseDTO updateCourseDTO)
+        public async Task<IActionResult> Update(UpdateCourseCommand command)
         {
             try
             {
-                await _courseServiceAdmin.Update(id, updateCourseDTO);
+                await _mediator.Send(command);
                 return new ObjectResult(null) { StatusCode = StatusCodes.Status201Created };
             }
             catch (Exception e)
@@ -77,7 +78,7 @@ namespace Epro3.Controllers.AdminController
         {
             try
             {
-                await _courseServiceAdmin.Delete(id);
+                await _mediator.Send(new DeleteCourseCommand { Id = id});
                 return new ObjectResult(null) { StatusCode = StatusCodes.Status204NoContent };
             }
             catch (Exception e)
