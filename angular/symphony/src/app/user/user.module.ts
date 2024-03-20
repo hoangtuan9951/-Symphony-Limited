@@ -16,6 +16,7 @@ import { BenefitPartnerComponent } from './views/benefit-partner/benefit-partner
 import { UserRoutingModule } from './user-routing.module';
 import { RegisterConsultationComponent } from './views/homepages/register-consultation/register-consultation.component';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -35,7 +36,8 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     MatGridListModule,
     RegisterConsultationComponent,
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   providers: [
     provideAnimationsAsync()

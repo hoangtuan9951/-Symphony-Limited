@@ -1,5 +1,4 @@
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "axios";
-import { HEADER } from '../../constant/index';
 // Set up default config for http requests here
 
 const axiosService = axios.create({

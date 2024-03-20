@@ -4,6 +4,8 @@ import {MatTreeFlatDataSource, MatTreeFlattener, MatTreeModule} from '@angular/m
 import {BehaviorSubject, Observable} from 'rxjs';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { FAQService } from '../../services/faq.service';
+import { FAQModel } from '../../models/faq.model';
 const LOAD_MORE = 'LOAD_MORE';
 
 /** Nested node */
@@ -40,16 +42,27 @@ export class LoadmoreDatabase {
   batchNumber = 5;
   dataChange = new BehaviorSubject<LoadmoreNode[]>([]);
   nodeMap = new Map<string, LoadmoreNode>();
-
+  rootLevelNodes: string[] = []
+  constructor(private faqService: FAQService) { }
+  dataMap = new Map<string, string[]>([]);
   /** The data */
-  rootLevelNodes: string[] = ['How to join the course?', 'Why to join the institute?' , 'When will be Entrance Examinations Conducted?'];
-  dataMap = new Map<string, string[]>([
-    ['How to join the course?', ['babla']],
-    ['Why to join the institute?', ['babla']],
-    ['When will be Entrance Examinations Conducted?', ['babla']],
+  ngOnInit(): void {
+    this.faqService.getAllListData().subscribe(response => {
+      const data: FAQModel[] = response.data;
 
-  ]);
+      data.forEach(item => {
+        const question = item.question;
+        const answer = item.answer;
 
+        // Update rootLevelNodes
+        this.rootLevelNodes.push(question);
+
+        // Update dataMap
+        this.dataMap.set(question, [answer]);
+      });
+    });
+  }
+    
   initialize() {
     const data = this.rootLevelNodes.map(name => this._generateNode(name));
     this.dataChange.next(data);
@@ -85,6 +98,7 @@ export class LoadmoreDatabase {
     return result;
   }
 }
+
 @Component({
   selector: 'app-faq',
   templateUrl: './faq.component.html',
