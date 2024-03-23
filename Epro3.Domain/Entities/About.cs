@@ -9,10 +9,8 @@ namespace Epro3.Domain.Entities
     public class About
     {
         public int Id { get; set; }
-        public string UserName { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
-        public string Role { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public string ImageBackground { get; set; } = string.Empty;
         public DateTime CreatedDate { get; set; }
         public DateTime LastUpdatedDate { get; set;}
     }
