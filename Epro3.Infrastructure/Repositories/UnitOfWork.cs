@@ -13,12 +13,23 @@ namespace Epro3.Infrastructure.Repositories
     {
         private readonly ApplicationDatabaseContext _context;
         public ICourseRepository Courses { get; private set; }
+        public IEntrenceExamRepository EntrenceExam { get; private set; }
+        public IFaqRepository Faq { get; private set; }
+        public IAboutRepository About { get; private set; }
+        public IUsercontactRepository Usercontact { get; private set; }
 
         public UnitOfWork(ApplicationDatabaseContext context,
-                          ICourseRepository courseRepository)
+                          ICourseRepository courseRepository, IEntrenceExamRepository entrenceExamRepository,
+                          IFaqRepository faqRepository,
+                          IAboutRepository aboutRepository,
+                          IUsercontactRepository usercontactRepository)
         {
             _context = context;
             Courses = courseRepository;
+            EntrenceExam = entrenceExamRepository;
+            Faq = faqRepository;
+            About = aboutRepository;
+            Usercontact = usercontactRepository;
         }
         public async Task<int> Complete()
         {

@@ -9,18 +9,18 @@ namespace Epro3.Controllers.ApplicationController
     [ApiController]
     public class CourseControllerApplication : ControllerBase
     {
-        private readonly ICourseServiceApplication _courseServiceApplication;
-        public CourseControllerApplication(ICourseServiceApplication courseServiceApplication)
-        {
-            _courseServiceApplication = courseServiceApplication;
-        }
+        private readonly IMediator _mediator;
 
+        public CourseControllerApplication(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
         [HttpGet]
         public async Task<IActionResult> GetAllCourse()
         {
             try
             {
-                var responseData = await _courseServiceApplication.GetAll();
+                var responseData = await _mediator.Send(new GetAllCourseApplicationQuery());
                 return Ok(responseData);
             }
             catch (Exception e)
@@ -34,7 +34,7 @@ namespace Epro3.Controllers.ApplicationController
         {
             try
             {
-                var responseData = await _courseServiceApplication.GetDetail(id);
+                var responseData = await _mediator.Send(new GetCourseByIdApplicationQuery { Id = id});
                 return Ok(responseData);
             }
             catch (Exception e)
@@ -48,7 +48,7 @@ namespace Epro3.Controllers.ApplicationController
         {
             try
             {
-                var responseData = await _courseServiceApplication.GetSixLatestCourse();
+                var responseData = await _mediator.Send(new GetSixLatestCourse());
                 return Ok(responseData);
             }
             catch (Exception e)
