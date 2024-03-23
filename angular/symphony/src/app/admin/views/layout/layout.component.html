@@ -1,0 +1,35 @@
+<div class="layout__admin">
+  <div class="layout__admin-navbar">
+    <div class="admin__navbar-user">
+      <div class="navbar__user-image">
+        <img [src]="avatar" alt="Image Login" />
+      </div>
+      <div class="navbar__user-name">
+        <p>David Harrison</p>
+      </div>
+    </div>
+    <div class="admin__navbar-menu">
+      <div class="navbar__menu-list" #myElement>
+        <a
+        routerLink="{{item.href}}"
+          class="navbar__menu-item"
+          *ngFor="let item of menu_admin"
+          [class]="item.active ? 'active' : ''"
+        >
+          <div class="menu__item-icon"><i class="{{ item.icon }}"></i></div>
+          <div class="menu__item-text">
+            <p >{{ item.name }}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="layout__admin-content">
+    <header></header>
+    <div class="admin__content-container">
+      <div class="content__container-wrapper">
+        <router-outlet> </router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
