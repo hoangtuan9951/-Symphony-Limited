@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Epro3.Application.Features.Queries.CourseQuery
 {
-    public class GetAllAboutsClientQuery : IRequest<IEnumerable<AboutClientDTO>>
+    public class GetAllAboutClientQuery : IRequest<IEnumerable<AboutClientDTO>>
     {
         public class GetAllAboutClientQueryHandler : IRequestHandler<GetAllAboutClientQuery, IEnumerable<AboutClientDTO>>
         {

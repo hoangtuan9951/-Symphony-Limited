@@ -11,7 +11,7 @@ namespace Epro3.Controllers.ApplicationController
     {
         private readonly IMediator _mediator;
 
-         public CourseControllerApplication(IMediator mediator)
+        public CourseControllerApplication(IMediator mediator)
         {
             _mediator = mediator;
         }

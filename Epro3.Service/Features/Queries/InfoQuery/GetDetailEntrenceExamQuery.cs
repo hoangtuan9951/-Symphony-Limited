@@ -14,9 +14,9 @@ using System.Threading.Tasks;
 
 namespace Epro3.Application.Features.Queries.CourseQuery
 {
-    public class GetDetailEntrenceExamQuery : IRequest<IEnumerable<DetailEntrenceExamDTO>>
+    public class GetDetailEntrenceExamQuery : IRequest<IEnumerable<AboutClientDTO>>
     {
-        public class GetAllAboutClientQueryHandler : IRequestHandler<GetAllAboutClientQuery, IEnumerable<DetailEntrenceExamDTO>>
+        public class GetAllAboutClientQueryHandler : IRequestHandler<GetAllAboutClientQuery, IEnumerable<AboutClientDTO>>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -25,9 +25,9 @@ namespace Epro3.Application.Features.Queries.CourseQuery
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<IEnumerable<DetailEntrenceExamDTO>> Handle(GetAllAboutClientQuery command, CancellationToken cancellationToken)
+            public async Task<IEnumerable<AboutClientDTO>> Handle(GetAllAboutClientQuery command, CancellationToken cancellationToken)
             {
-                return _mapper.Map<IEnumerable<DetailEntrenceExamDTO>>(await _unitOfWork.DetailEntrenceExam.GetAll());
+                return _mapper.Map<IEnumerable<AboutClientDTO>>(await _unitOfWork.EntrenceExam.GetAll());
             }
         }
     }

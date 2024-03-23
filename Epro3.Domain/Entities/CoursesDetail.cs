@@ -13,7 +13,7 @@ namespace Epro3.Domain.Entities
         public string CourseSlug {  get; set; } = string.Empty;
         public string BackgroundImage { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public string CourseDetail { get; set; } = string.Empty;
+        public string DetailCourse { get; set; } = string.Empty;
         public DateTime CreatedDate { get; set; }
         public DateTime LastUpdatedDate { get; set;}
     }

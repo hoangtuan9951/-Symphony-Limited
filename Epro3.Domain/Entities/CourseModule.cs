@@ -11,8 +11,8 @@ namespace Epro3.Domain.Entities
         public int Id { get; set; }
         public int CourseId { get; set; }
         public string ModuleName {  get; set; } = string.Empty;
-        public int64 Amount { get; set; } = 0;
-        public bool Active { get; set; } = string.Empty;
+        public int Amount { get; set; } = 0;
+        public string Active { get; set; } = string.Empty;
         public DateTime CreatedDate { get; set; }
         public DateTime LastUpdatedDate { get; set;}
     }

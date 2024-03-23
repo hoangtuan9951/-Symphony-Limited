@@ -15,26 +15,22 @@ using System.Threading.Tasks;
 
 namespace Epro3.Application.Features.Commands.InfoCommand
 {
-    public class CreateUserContactCommand : IRequest<Unit>
+    public class CreateUsercontactCommand : IRequest<Unit>
     {
         public required string Name { get; set; }
-        public required string Code { get; set; }
-        public int Amount { get; set; }
-        public decimal Discount { get; set; }
-        public required string Description { get; set; }
-        public required string CourseDetail { get; set; }
-        public required IFormFile Thumbnail { get; set; }
-        public required IFormFile BackGroundImage { get; set; }
+        public required string PhoneNumber { get; set; }
+        public required string Email { get; set; }
+        public required string Message { get; set; }
+  
         public DateTime StartedDate { get; set; }
         public DateTime EndedDate { get; set; }
-        public bool Active { get; set; }
 
-        public class CreateUsercontactCommandHandler : IRequestHandler<CreateUserContactCommand, Unit>
+        public class CreateUsercontactCommandHandler : IRequestHandler<CreateUsercontactCommand, Unit>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
             private readonly IWebHostEnvironment _env;
-            public CreateCourseCommandHandler(IUnitOfWork unitOfWork,
+            public CreateUsercontactCommandHandler(IUnitOfWork unitOfWork,
                                       IMapper mapper,
                                       IWebHostEnvironment env)
             {
@@ -43,27 +39,17 @@ namespace Epro3.Application.Features.Commands.InfoCommand
                 _env = env;
             }
 
-            public async Task<Unit> Handle(CreateCourseCommand command, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(CreateUsercontactCommand command, CancellationToken cancellationToken)
             {
             
-                Usercontact userContact = new UserContact
+                Usercontact userContact = new Usercontact
                 {
                     Name = command.Name,
-                    Code = command.Code,
-                    Amount = command.Amount,
-                    Discount = command.Discount,
-                    Description = command.Description,
-                    CourseDetail = command.CourseDetail,
-                    Active = command.Active,
-                    CreatedDate = DateTime.Now,
-                    LastUpdatedDate = DateTime.Now,
-                    StartedDate = command.StartedDate,
-                    EndedDate = command.EndedDate,
-                    Thumbnail = FileHelper.CourseImageFileUri(thumbnailFileName),
-                    BackGroundImage = FileHelper.CourseImageFileUri(bgFileName),
-                    Slug = SlugHelper.CourseSlugGenerate(command.Name)
+                    Email = command.Email,
+                    PhoneNumber = command.PhoneNumber,
+                    Message = command.Message,
                 };
-                _unitOfWork.UserContact.Create(userContact);
+                _unitOfWork.Usercontact.Create(userContact);
                 await _unitOfWork.Complete();
                 return Unit.Value;
             }

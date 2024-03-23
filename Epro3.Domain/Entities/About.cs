@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Epro3.Domain.Entities
 {
-    public class EntrenceExam
+    public class About
     {
         public int Id { get; set; }
-        public int Name { get; set; }
-        public DateTime StartTime { get; set; }
+        public string UserName { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public string Role { get; set; } = string.Empty;
         public DateTime CreatedDate { get; set; }
         public DateTime LastUpdatedDate { get; set;}
     }
