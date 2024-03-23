@@ -46,6 +46,7 @@
       .admin__navbar-menu {
         .navbar__menu-list {
           .navbar__menu-item {
+            text-decoration: none;
             &.active {
               background-color: #1677ff;
               color: white;

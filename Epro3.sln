@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epro3", "Epro3\Epro3.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epro3.Domain", "Epro3.Domain\Epro3.Domain.csproj", "{E747FCAC-AA49-48FA-B20E-EA5E2AC673C0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epro3.Service", "Epro3.Service\Epro3.Service.csproj", "{13736F8E-564F-49EB-A17D-45136107631E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epro3.Application", "Epro3.Service\Epro3.Application.csproj", "{13736F8E-564F-49EB-A17D-45136107631E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Epro3.Infrastructure", "Epro3.Infrastructure\Epro3.Infrastructure.csproj", "{B38C5D0E-0CE2-48A3-9BE2-7B3F651F4201}"
 EndProject

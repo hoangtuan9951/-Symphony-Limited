@@ -44,25 +44,25 @@ export const TOP_ADMISSIONS = [
   {
     id: 1,
     name: 'TOP 1',
-    description: 'Về đạo tạo CNTT',
+    description: 'About IT training',
     icon: PATH_IMAGES.top_1,
   },
   {
     id: 2,
     name: '20+',
-    description: 'Năm kinh nghiệm',
+    description: 'Years of experience',
     icon: PATH_IMAGES.top_2,
   },
   {
     id: 3,
     name: '10.000+',
-    description: 'Học viện tốt nghiệp',
+    description: 'Graduation Academy',
     icon: PATH_IMAGES.top_3,
   },
   {
     id: 4,
     name: '100%',
-    description: 'Cam kết việc làm',
+    description: 'Employment commitment',
     icon: PATH_IMAGES.top_4,
   },
 ];
@@ -70,36 +70,36 @@ export const TOP_ADMISSIONS = [
 export const REASON_ADMISSIONS = [
   {
     id: 1,
-    name: 'Khát nhân lực',
+    name: 'Thirsty for manpower',
     description:
-      'Theo TopDev, dự đoán từ đến năm 2024, Việt Nam thiếu hụt 195.000 lập trình viên/kỹ sư hàng năm.',
+      'According to TopDev, it is predicted that by 2024, Vietnam will lack 195,000 programmers/engineers annually.',
     backgroundColor: '#9e1d1d',
     color: 'white',
     boxShadow: 'none',
   },
   {
     id: 2,
-    name: 'Thời đại số',
+    name: 'Digital age',
     description:
-      'Đến năm 2025, Việt Nam dự kiến có 70.000 công ty công nghệ số với 1.2 triệu nhân lực làm việc trong lĩnh vực này.',
+      'By 2025, Vietnam is expected to have 70,000 digital technology companies with 1.2 million people working in this field.',
     backgroundColor: 'white',
     color: 'black',
     boxShadow: '0px 10px 60px 0px rgba(0,0,0,.4)',
   },
   {
     id: 3,
-    name: 'Cơ hội phát triển',
+    name: 'Development opportunities',
     description:
-      'Việt Nam là một trong hai điểm đến gia công phần mềm hàng đầu ở Đông Nam Á. Hạng 6 về dịch vụ gia công phần mềm.',
+      'Vietnam is one of the top two software outsourcing destinations in Southeast Asia. Ranked 6th in software outsourcing services.',
     backgroundColor: '#E6E6E68A',
     color: 'black',
     boxShadow: '0px 10px 60px 0px rgba(0,0,0,.4)',
   },
   {
     id: 4,
-    name: 'MỨC LƯƠNG HẤP DẪN',
+    name: 'ATTRACTIVE SALARY',
     description:
-      'Vị trí Fresher dao động từ $342 đến dưới $1.161 cho Mid-Senior. Lương trung bình của lập trình viên Full-Stack 1359$ - 1683$.',
+      'Fresher positions range from $342 to just under $1,161 for Mid-Senior. Average salary of Full-Stack programmer 1359$ - 1683$.',
     backgroundColor: '#9e1d1d',
     color: 'white',
     boxShadow: 'none',
@@ -109,23 +109,23 @@ export const REASON_ADMISSIONS = [
 export const COURSE_ADMISSIONS = [
   {
     id: 1,
-    name: 'Học sinh THPT',
+    name: 'High school students',
     description:
-      'Học sinh từ lớp 10 đến lớp 12 yêu thích lập trình & công nghệ, có định hướng theo đuổi ngành Công nghệ thông tin trong tương lai.',
+      'Students from grades 10 to 12 love programming & technology and intend to pursue the Information Technology industry in the future.',
     image: PATH_IMAGES.course_1,
   },
   {
     id: 2,
-    name: 'Sinh viên',
+    name: 'Student',
     description:
-      'Sinh viên CNTT muốn bổ sung kiến thức & thực hành chuyên nghiệp hoặc sinh viên ngành khác muốn chuyển sang học lập trình.',
+      'IT students want to supplement their knowledge and professional practice or students in other fields want to switch to programming.',
     image: PATH_IMAGES.course_2,
   },
   {
     id: 3,
-    name: 'Người đi làm',
+    name: 'Worker',
     description:
-      'Muốn tìm hiểu về những ngôn ngữ lập trình, cập nhật công nghệ mới hoặc người mới muốn chuyển sang nghề lập trình.',
+      'Want to learn about programming languages, update new technology or new people want to switch to programming.',
     image: PATH_IMAGES.course_3,
   },
 ];
@@ -133,44 +133,44 @@ export const COURSE_ADMISSIONS = [
 export const BENEFIT_ADMISSIONS = [
   {
     id: 1,
-    name: 'Cam kết hỗ trợ việc làm',
+    name: 'Committed to supporting employment',
     description:
-      'Học viên được giới thiệu thực tập tại doanh nghiệp ngay sau 6 tháng học. Cam kết việc làm sau khi tốt nghiệp với lương khởi điểm 8 triệu.',
+      'Students are introduced to internships at businesses immediately after 6 months of study. Job commitment after graduation with starting salary of 8 million.',
     image: PATH_IMAGES.benefit_1,
   },
   {
     id: 2,
-    name: 'Song bằng Quốc Tế',
+    name: 'Dual International Degree',
     description:
-      'Nhận Bằng Advanced Diploma in Software Engineering có giá trị trên 40 quốc gia. Liên thông ĐH Quốc Tế nhận bằng Cử nhân Lập trình.',
+      'Get an Advanced Diploma in Software Engineering valid in over 40 countries. Connect with International University to receive a Bachelor of Programming degree.',
     image: PATH_IMAGES.benefit_2,
   },
   {
     id: 3,
-    name: 'Đảm bảo chất lượng đào tạo',
+    name: 'Ensuring training quality',
     description:
-      'Đảm bảo chất lượng đào tạo với sĩ số 24 bạn/lớp. Tăng cường tương tác giữa học viên và giảng viên. Bộ phận Đào tạo theo sát & hỗ trợ kịp thời.        ',
+      'Ensuring training quality with 24 students/class. Enhance interaction between students and lecturers. The Training Department closely follows and provides timely support.',
     image: PATH_IMAGES.benefit_3,
   },
   {
     id: 4,
-    name: 'Làm dự án thực tế',
+    name: 'Do real projects',
     description:
-      'Học viên được thực hiện 5 đồ án cùng các chuyên gia sau mỗi môn học. Tham gia các dự án thực tế theo năng lực tại doanh nghiệp thực tập.',
+      'Students can do 5 projects with experts after each subject. Participate in practical projects according to capacity at the internship company.',
     image: PATH_IMAGES.benefit_4,
   },
   {
     id: 5,
-    name: 'Chương trình học toàn diện',
+    name: 'Comprehensive curriculum',
     description:
-      'Kiến thức nên tảng chuyên sâu, tập trung thực hành. Được học và trải nghiệm các công nghệ lập trình mới nhất, bám sát nhu cầu tuyển dụng doanh nghiệp.        ',
+    'Knowledge should be in-depth, focused on practice. Learn and experience the latest programming technologies, closely following business recruitment needs. ',
     image: PATH_IMAGES.benefit_5,
   },
   {
     id: 6,
-    name: 'Bảo hành khóa học',
+    name: 'Course warranty',
     description:
-      'Để nắm chắc kiến thức, học viên được miễn phí tham gia dự thính các môn học theo chương trình. Các tiết học được bổ sung kịp thời nhằm củng cố kiến thức.',
+      'To firmly grasp the knowledge, students are free to participate in auditing subjects according to the program. Lessons are added promptly to consolidate knowledge.',
     image: PATH_IMAGES.benefit_6,
   },
 ];

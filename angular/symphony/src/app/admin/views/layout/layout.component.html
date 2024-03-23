@@ -10,16 +10,17 @@
     </div>
     <div class="admin__navbar-menu">
       <div class="navbar__menu-list" #myElement>
-        <div
+        <a
+        routerLink="{{item.href}}"
           class="navbar__menu-item"
           *ngFor="let item of menu_admin"
           [class]="item.active ? 'active' : ''"
         >
           <div class="menu__item-icon"><i class="{{ item.icon }}"></i></div>
           <div class="menu__item-text">
-            <a routerLink="{{item.href}}">{{ item.name }}</a>
+            <p >{{ item.name }}</p>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>

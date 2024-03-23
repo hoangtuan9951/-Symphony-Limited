@@ -27,19 +27,19 @@ export const MENU_ADMIN = [
         name: 'Contact',
         icon: 'bi bi-person-lines-fill',
         active: false,
-        href: 'manage-admin',
+        href: 'contact',
     },
     {
         name: 'Manage Classes',
         icon: 'bi bi-person-lines-fill',
         active: false,
-        href: 'manage-admin',
+        href: 'manage-class',
     },
     {
-        name: 'Manage About Us',
+        name: 'About Us',
         icon: 'bi bi-person-lines-fill',
         active: false,
-        href: 'manage-admin',
+        href: 'about-us',
     },
     {
         name: 'FAQ',
@@ -51,6 +51,14 @@ export const MENU_ADMIN = [
         name: 'Contact us',
         icon: 'bi bi-person-lines-fill',
         active: false,
-        href: 'contact-us',
+        href: 'manage-admin',
     },
 ]
+
+export const getBase64 = (file: File): Promise<string> =>
+    new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = (error) => reject(error);
+    });

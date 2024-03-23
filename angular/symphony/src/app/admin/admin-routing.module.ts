@@ -3,14 +3,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeAdminComponent } from './views/home/homeAdmin.component';
 import { LayoutAdminComponent } from './views/layout/layout.component';
 import { ManageAdminComponent } from './views/manageAdmin/manageAdmin.component';
-
+import { ManageClassComponent } from './views/manageClass/manageClass.component';
+import { UserContactComponent } from './views/userContact/userContact.component';
+import { AboutUsComponent } from './views/aboutUs/aboutUs.component';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutAdminComponent,
     children: [
-      { path: 'manage-admin', component: ManageAdminComponent}
+      { path: 'manage-admin', component: ManageAdminComponent},
+      { path: 'manage-class', component: ManageClassComponent},
+      { path: 'contact', component: UserContactComponent},
+      { path: 'about-us', component: AboutUsComponent}
     ]
   },
 ];
