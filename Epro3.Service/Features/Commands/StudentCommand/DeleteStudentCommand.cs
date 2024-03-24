@@ -13,17 +13,17 @@ namespace Epro3.Application.Features.Commands.StudentCommand
     public class DeleteStudentCommand : IRequest<Unit>
     {
         public int Id { get; set; }
-        public class DeleteClassCommandHandler : IRequestHandler<DeleteClassCommand, Unit>
+        public class DeleteStudentCommandHandler : IRequestHandler<DeleteStudentCommand, Unit>
         {
             private readonly IUnitOfWork _unitOfWork;
-            public DeleteClassCommandHandler(IUnitOfWork unitOfWork)
+            public DeleteStudentCommandHandler(IUnitOfWork unitOfWork)
             {
                 _unitOfWork = unitOfWork;
             }
-            public async Task<Unit> Handle(DeleteClassCommand command, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(DeleteStudentCommand command, CancellationToken cancellationToken)
             {
-                Class data = await _unitOfWork.Classes.GetById(command.Id);
-                _unitOfWork.Classes.Delete(data);
+                Student data = await _unitOfWork.Students.GetById(command.Id);
+                _unitOfWork.Students.Delete(data);
                 await _unitOfWork.Complete();
                 return Unit.Value;
             }

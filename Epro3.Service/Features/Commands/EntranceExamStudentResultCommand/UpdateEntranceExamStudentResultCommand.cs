@@ -13,25 +13,18 @@ namespace Epro3.Application.Features.Commands.EntranceExamStudentResultCommand
     public class UpdateEntranceExamStudentResultCommand : IRequest<Unit>
     {
         public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public int Amount { get; set; }
-        public DateTime StartTime { get; set; }
-        public class UpdateClassCommandHandler : IRequestHandler<UpdateClassCommand, Unit>
+        public int Grade { get; set; }
+        public class UpdateEntranceExamStudentResultCommandHandler : IRequestHandler<UpdateEntranceExamStudentResultCommand, Unit>
         {
             private readonly IUnitOfWork _unitOfWork;
-            public UpdateClassCommandHandler(IUnitOfWork unitOfWork)
+            public UpdateEntranceExamStudentResultCommandHandler(IUnitOfWork unitOfWork)
             {
                 _unitOfWork = unitOfWork;
             }
-            public async Task<Unit> Handle(UpdateClassCommand command, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(UpdateEntranceExamStudentResultCommand command, CancellationToken cancellationToken)
             {
-
-                Class data = await _unitOfWork.Classes.GetById(command.Id);
-
-                data.Name = command.Name;
-                data.LastUpdatedDate = DateTime.Now;
-                data.Amount = command.Amount;
-                data.StartTime = command.StartTime;
+                EntranceExamStudentResult data = await _unitOfWork.EntranceExamStudentResults.GetById(command.Id);
+                data.Grade = command.Grade;
 
                 await _unitOfWork.Complete();
                 return Unit.Value;

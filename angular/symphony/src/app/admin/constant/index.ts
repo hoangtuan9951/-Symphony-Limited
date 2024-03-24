@@ -9,7 +9,7 @@ export const MENU_ADMIN = [
         name: 'Manage Module',
         icon: 'bi bi-person-lines-fill',
         active: false,
-        href: 'manage-module',
+        href: 'manage-admin',
     },
     {
         name: 'Manage Course',
@@ -21,7 +21,7 @@ export const MENU_ADMIN = [
         name: 'Manage Student',
         icon: 'bi bi-person-lines-fill',
         active: false,
-        href: 'student',
+        href: 'manage-admin',
     },
     {
         name: 'Contact',
@@ -45,13 +45,13 @@ export const MENU_ADMIN = [
         name: 'FAQ',
         icon: 'bi bi-person-lines-fill',
         active: false,
-        href: 'manage-faq',
+        href: 'manage-admin',
     },
     {
         name: 'Contact us',
         icon: 'bi bi-person-lines-fill',
         active: false,
-        href: 'contact-us',
+        href: 'manage-admin',
     },
 ]
 

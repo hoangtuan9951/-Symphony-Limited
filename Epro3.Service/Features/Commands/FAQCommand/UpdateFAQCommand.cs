@@ -13,25 +13,23 @@ namespace Epro3.Application.Features.Commands.FAQCommand
     public class UpdateFAQCommand : IRequest<Unit>
     {
         public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public int Amount { get; set; }
-        public DateTime StartTime { get; set; }
-        public class UpdateClassCommandHandler : IRequestHandler<UpdateClassCommand, Unit>
+        public string Question { get; set; } = string.Empty;
+        public string Answer { get; set; } = string.Empty;
+        public bool Active { get; set; }
+        public class UpdateFAQCommandHandler : IRequestHandler<UpdateFAQCommand, Unit>
         {
             private readonly IUnitOfWork _unitOfWork;
-            public UpdateClassCommandHandler(IUnitOfWork unitOfWork)
+            public UpdateFAQCommandHandler(IUnitOfWork unitOfWork)
             {
                 _unitOfWork = unitOfWork;
             }
-            public async Task<Unit> Handle(UpdateClassCommand command, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(UpdateFAQCommand command, CancellationToken cancellationToken)
             {
-
-                Class data = await _unitOfWork.Classes.GetById(command.Id);
-
-                data.Name = command.Name;
+                FAQ data = await _unitOfWork.FAQs.GetById(command.Id);
+                data.Question = command.Question;
+                data.Answer = command.Answer;
+                data.Active = command.Active;
                 data.LastUpdatedDate = DateTime.Now;
-                data.Amount = command.Amount;
-                data.StartTime = command.StartTime;
 
                 await _unitOfWork.Complete();
                 return Unit.Value;

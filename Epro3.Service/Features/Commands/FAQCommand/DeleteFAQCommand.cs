@@ -13,17 +13,17 @@ namespace Epro3.Application.Features.Commands.FAQCommand
     public class DeleteFAQCommand : IRequest<Unit>
     {
         public int Id { get; set; }
-        public class DeleteClassCommandHandler : IRequestHandler<DeleteClassCommand, Unit>
+        public class DeleteFAQCommandHandler : IRequestHandler<DeleteFAQCommand, Unit>
         {
             private readonly IUnitOfWork _unitOfWork;
-            public DeleteClassCommandHandler(IUnitOfWork unitOfWork)
+            public DeleteFAQCommandHandler(IUnitOfWork unitOfWork)
             {
                 _unitOfWork = unitOfWork;
             }
-            public async Task<Unit> Handle(DeleteClassCommand command, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(DeleteFAQCommand command, CancellationToken cancellationToken)
             {
-                Class data = await _unitOfWork.Classes.GetById(command.Id);
-                _unitOfWork.Classes.Delete(data);
+                FAQ data = await _unitOfWork.FAQs.GetById(command.Id);
+                _unitOfWork.FAQs.Delete(data);
                 await _unitOfWork.Complete();
                 return Unit.Value;
             }

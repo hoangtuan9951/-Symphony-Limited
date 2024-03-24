@@ -10,6 +10,7 @@ namespace Epro3.Application.DTOs.AdminDTOs.Class
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
+        public string Course { get; set; } = string.Empty;
         public DateTime StartTime { get; set; }
     }
 }

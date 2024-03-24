@@ -13,28 +13,30 @@ namespace Epro3.Application.Features.Commands.StudentCommand
 {
     public class CreateStudentCommand : IRequest<Unit>
     {
+        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public int Amount { get; set; }
-        public DateTime StartTime { get; set; }
+        public string RollNumber { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
 
-        public class CreateClassCommandHandler : IRequestHandler<CreateClassCommand, Unit>
+        public class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand, Unit>
         {
             private readonly IUnitOfWork _unitOfWork;
-            public CreateClassCommandHandler(IUnitOfWork unitOfWork, IWebHostEnvironment env)
+            public CreateStudentCommandHandler(IUnitOfWork unitOfWork, IWebHostEnvironment env)
             {
                 _unitOfWork = unitOfWork;
             }
 
-            public async Task<Unit> Handle(CreateClassCommand command, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(CreateStudentCommand command, CancellationToken cancellationToken)
             {
-                Class clazz = new Class
+                Student data = new Student
                 {
                     Name = command.Name,
-                    Amount = command.Amount,
-                    StartTime = command.StartTime,
+                    Email = command.Email,
+                    RollNumber = command.RollNumber,
+                    CreatedDate = DateTime.Now,
                     LastUpdatedDate = DateTime.Now
                 };
-                _unitOfWork.Classes.Create(clazz);
+                _unitOfWork.Students.Create(data);
                 await _unitOfWork.Complete();
                 return Unit.Value;
             }

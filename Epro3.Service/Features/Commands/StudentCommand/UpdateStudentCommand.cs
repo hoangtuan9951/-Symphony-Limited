@@ -14,24 +14,24 @@ namespace Epro3.Application.Features.Commands.StudentCommand
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public int Amount { get; set; }
-        public DateTime StartTime { get; set; }
-        public class UpdateClassCommandHandler : IRequestHandler<UpdateClassCommand, Unit>
+        public string RollNumber { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public class UpdateStudentCommandHandler : IRequestHandler<UpdateStudentCommand, Unit>
         {
             private readonly IUnitOfWork _unitOfWork;
-            public UpdateClassCommandHandler(IUnitOfWork unitOfWork)
+            public UpdateStudentCommandHandler(IUnitOfWork unitOfWork)
             {
                 _unitOfWork = unitOfWork;
             }
-            public async Task<Unit> Handle(UpdateClassCommand command, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(UpdateStudentCommand command, CancellationToken cancellationToken)
             {
 
-                Class data = await _unitOfWork.Classes.GetById(command.Id);
+                Student data = await _unitOfWork.Students.GetById(command.Id);
 
                 data.Name = command.Name;
+                data.RollNumber = command.RollNumber;
+                data.Email = command.Email;
                 data.LastUpdatedDate = DateTime.Now;
-                data.Amount = command.Amount;
-                data.StartTime = command.StartTime;
 
                 await _unitOfWork.Complete();
                 return Unit.Value;

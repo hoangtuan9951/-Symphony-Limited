@@ -26,5 +26,6 @@ namespace Epro3.Domain.Entities
         public bool Active { get; set; }
         public ICollection<CourseModule>? CourseModules { get; set; }
         public ICollection<Class>? Classes { get; set; }
+        public ICollection<EntranceExamStudentResult>? EntranceExamStudentResults { get; set; }
     }
 }

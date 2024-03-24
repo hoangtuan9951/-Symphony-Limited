@@ -13,5 +13,7 @@ namespace Epro3.Domain.Entities
         public int Amount { get; set; } 
         public DateTime StartTime { get; set; }
         public DateTime LastUpdatedDate { get; set;}
+        public int CourseId { get; set; }
+        public Course? Course { get; set; }
     }
 }

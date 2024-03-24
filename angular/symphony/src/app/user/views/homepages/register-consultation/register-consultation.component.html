@@ -11,10 +11,10 @@
         </h2>
         <h3 class="elementskit-section-subtitle">
           Receive detailed information about the course and scholarships </h3>
-        <form class="form-res-consultation" (ngSubmit)="onSubmit()">
+        <form class="form-res-consultation">
           <mat-form-field>
             <mat-label>User name</mat-label>
-            <input required matInput [formControl]="name"  [(ngModel)]="formData.name" />
+            <input required matInput [formControl]="name" />
             @if (name.invalid) {
             <mat-error>{{ getErrorMessage() }}</mat-error>
             }
@@ -22,7 +22,7 @@
           <div class="example-container">
             <mat-form-field>
               <mat-label>Email</mat-label>
-              <input matInput placeholder="pat@example.com" [formControl]="email"  [(ngModel)]="formData.email" required />
+              <input matInput placeholder="pat@example.com" [formControl]="email" required />
               @if (email.invalid) {
               <mat-error>{{ getErrorMessage() }}</mat-error>
               }
@@ -31,17 +31,24 @@
           <div>
             <mat-form-field>
               <mat-label>Phone</mat-label>
-              <input required matInput [formControl]="phone"  [(ngModel)]="formData.phone_number"/>
+              <input required matInput [formControl]="phone" />
               @if (phone.invalid) {
               <mat-error>{{ getErrorMessage() }}</mat-error>
               }
             </mat-form-field>
           </div>
-          <button class="btn-consultation" type="submit">Advise now</button>
+          <div>
+            <mat-form-field>
+              <mat-label>Level</mat-label>
+              <mat-select>
+                <mat-option value="level1">Student</mat-option>
+                <mat-option value="level2">University student</mat-option>
+                <mat-option value="level3">Working professional</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <button class="btn-consultation">Advise now</button>
         </form>
-        <div *ngIf="registrationSuccess">
-          <p>Registration successful! Thank you.</p>
-        </div>
       </div>
     </div>
   </div>

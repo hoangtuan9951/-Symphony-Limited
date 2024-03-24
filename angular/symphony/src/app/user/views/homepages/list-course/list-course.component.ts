@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { CourseService } from '../../../services/course.service';
-import { CoursesModel } from '../../../models/course.model';
+import { LIST_COURSE } from '../../../constant';
 
 @Component({
   selector: 'app-list-course',
@@ -8,13 +7,5 @@ import { CoursesModel } from '../../../models/course.model';
   styleUrl: './list-course.component.css'
 })
 export class ListCourseComponent {
-list_course: CoursesModel[] = [];
-  constructor(private courseService: CourseService) { }
-  ngOnInit(): void {
-  this.courseService.getTopSixCousse().subscribe(response => {
-     this.list_course = response;
-
-  });
+  list_course = LIST_COURSE
 }
-}
-

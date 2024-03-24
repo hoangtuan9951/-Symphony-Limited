@@ -13,17 +13,17 @@ namespace Epro3.Application.Features.Commands.CourseModuleCommand
     public class DeleteCourseModuleCommand : IRequest<Unit>
     {
         public int Id { get; set; }
-        public class DeleteClassCommandHandler : IRequestHandler<DeleteClassCommand, Unit>
+        public class DeleteCourseModuleCommandHandler : IRequestHandler<DeleteCourseModuleCommand, Unit>
         {
             private readonly IUnitOfWork _unitOfWork;
-            public DeleteClassCommandHandler(IUnitOfWork unitOfWork)
+            public DeleteCourseModuleCommandHandler(IUnitOfWork unitOfWork)
             {
                 _unitOfWork = unitOfWork;
             }
-            public async Task<Unit> Handle(DeleteClassCommand command, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(DeleteCourseModuleCommand command, CancellationToken cancellationToken)
             {
-                Class data = await _unitOfWork.Classes.GetById(command.Id);
-                _unitOfWork.Classes.Delete(data);
+                CourseModule data = await _unitOfWork.CourseModules.GetById(command.Id);
+                _unitOfWork.CourseModules.Delete(data);
                 await _unitOfWork.Complete();
                 return Unit.Value;
             }

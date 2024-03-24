@@ -9,6 +9,6 @@ namespace Epro3.Domain.Interfaces.IRepository.Epro3
 {
     public interface IAdminRepository
     {
-        Task Login(string username, string password);
+        Task<int> Login(string username, string password);
     }
 }

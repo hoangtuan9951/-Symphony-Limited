@@ -13,28 +13,29 @@ namespace Epro3.Application.Features.Commands.EntranceExamStudentResultCommand
 {
     public class CreateEntranceExamStudentResultCommand : IRequest<Unit>
     {
-        public string Name { get; set; } = string.Empty;
-        public int Amount { get; set; }
-        public DateTime StartTime { get; set; }
+        public int StudentId { get; set; }
+        public int EntrenceExamId { get; set; }
+        public int CourseId { get; set; }
+        public int Grade { get; set; }
 
-        public class CreateClassCommandHandler : IRequestHandler<CreateClassCommand, Unit>
+        public class CreateEntranceExamStudentResultCommandHandler : IRequestHandler<CreateEntranceExamStudentResultCommand, Unit>
         {
             private readonly IUnitOfWork _unitOfWork;
-            public CreateClassCommandHandler(IUnitOfWork unitOfWork, IWebHostEnvironment env)
+            public CreateEntranceExamStudentResultCommandHandler(IUnitOfWork unitOfWork, IWebHostEnvironment env)
             {
                 _unitOfWork = unitOfWork;
             }
 
-            public async Task<Unit> Handle(CreateClassCommand command, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(CreateEntranceExamStudentResultCommand command, CancellationToken cancellationToken)
             {
-                Class clazz = new Class
+                EntranceExamStudentResult data = new EntranceExamStudentResult
                 {
-                    Name = command.Name,
-                    Amount = command.Amount,
-                    StartTime = command.StartTime,
-                    LastUpdatedDate = DateTime.Now
+                    StudentId = command.StudentId,
+                    CourseId = command.CourseId,
+                    Grade = command.Grade,
+                    EntrenceExamId = command.EntrenceExamId
                 };
-                _unitOfWork.Classes.Create(clazz);
+                _unitOfWork.EntranceExamStudentResults.Create(data);
                 await _unitOfWork.Complete();
                 return Unit.Value;
             }

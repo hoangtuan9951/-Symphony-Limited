@@ -8,7 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
-    <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="MediatR" Version="11.1.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.16">
       <PrivateAssets>all</PrivateAssets>
@@ -20,18 +21,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Epro3.Domain\Epro3.Domain.csproj" />
     <ProjectReference Include="..\Epro3.Infrastructure\Epro3.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\Queries\AboutQuery\" />
-    <Folder Include="Features\Queries\AdminQuery\" />
-    <Folder Include="Features\Queries\ClassQuery\" />
-    <Folder Include="Features\Queries\ContactQuery\" />
-    <Folder Include="Features\Queries\CourseModuleQuery\" />
-    <Folder Include="Features\Queries\EntranceExamQuery\" />
-    <Folder Include="Features\Queries\EntranceExamStudentResultQuery\" />
-    <Folder Include="Features\Queries\FAQQuery\" />
-    <Folder Include="Features\Queries\StudentQuery\" />
   </ItemGroup>
 
 </Project>

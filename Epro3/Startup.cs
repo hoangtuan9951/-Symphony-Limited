@@ -1,4 +1,5 @@
-﻿using Epro3.Infrastructure.DBContext;
+﻿using Epro3.Domain.Entities;
+using Epro3.Infrastructure.DBContext;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,6 +32,31 @@ namespace Epro3
                         dbContext.Database.Migrate();
                     }
                     conActive = true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+            }
+        }
+
+        public async Task Init()
+        {
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                var scopedServices = scope.ServiceProvider;
+                try
+                {
+                    var dbContext = scopedServices.GetRequiredService<ApplicationDatabaseContext>();
+
+                    Admin admin = new Admin
+                    {
+                        UserName = "admin",
+                        Password = "admin"
+                    };
+
+                    dbContext.Admins.Add(admin);
+                    await dbContext.SaveChangesAsync();
                 }
                 catch (Exception ex)
                 {

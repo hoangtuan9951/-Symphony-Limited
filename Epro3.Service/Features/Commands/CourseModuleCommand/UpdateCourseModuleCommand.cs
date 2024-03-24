@@ -15,23 +15,22 @@ namespace Epro3.Application.Features.Commands.CourseModuleCommand
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public int Amount { get; set; }
-        public DateTime StartTime { get; set; }
-        public class UpdateClassCommandHandler : IRequestHandler<UpdateClassCommand, Unit>
+        public class UpdateCourseModuleCommandHandler : IRequestHandler<UpdateCourseModuleCommand, Unit>
         {
             private readonly IUnitOfWork _unitOfWork;
-            public UpdateClassCommandHandler(IUnitOfWork unitOfWork)
+            public UpdateCourseModuleCommandHandler(IUnitOfWork unitOfWork)
             {
                 _unitOfWork = unitOfWork;
             }
-            public async Task<Unit> Handle(UpdateClassCommand command, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(UpdateCourseModuleCommand command, CancellationToken cancellationToken)
             {
 
-                Class data = await _unitOfWork.Classes.GetById(command.Id);
+                CourseModule data = await _unitOfWork.CourseModules.GetById(command.Id);
 
                 data.Name = command.Name;
                 data.LastUpdatedDate = DateTime.Now;
                 data.Amount = command.Amount;
-                data.StartTime = command.StartTime;
+                data.LastUpdatedDate = DateTime.Now;
 
                 await _unitOfWork.Complete();
                 return Unit.Value;

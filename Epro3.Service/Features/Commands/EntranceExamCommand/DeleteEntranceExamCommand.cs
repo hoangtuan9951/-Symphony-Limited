@@ -13,17 +13,17 @@ namespace Epro3.Application.Features.Commands.EntranceExamCommand
     public class DeleteEntranceExamCommand : IRequest<Unit>
     {
         public int Id { get; set; }
-        public class DeleteClassCommandHandler : IRequestHandler<DeleteClassCommand, Unit>
+        public class DeleteEntranceExamCommandHandler : IRequestHandler<DeleteEntranceExamCommand, Unit>
         {
             private readonly IUnitOfWork _unitOfWork;
-            public DeleteClassCommandHandler(IUnitOfWork unitOfWork)
+            public DeleteEntranceExamCommandHandler(IUnitOfWork unitOfWork)
             {
                 _unitOfWork = unitOfWork;
             }
-            public async Task<Unit> Handle(DeleteClassCommand command, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(DeleteEntranceExamCommand command, CancellationToken cancellationToken)
             {
-                Class data = await _unitOfWork.Classes.GetById(command.Id);
-                _unitOfWork.Classes.Delete(data);
+                EntranceExam data = await _unitOfWork.EntranceExams.GetById(command.Id);
+                _unitOfWork.EntranceExams.Delete(data);
                 await _unitOfWork.Complete();
                 return Unit.Value;
             }

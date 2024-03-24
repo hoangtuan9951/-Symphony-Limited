@@ -2,6 +2,7 @@
 using Epro3.Domain.Interfaces.IRepository.Architecture;
 using Epro3.Domain.Interfaces.IRepository.Epro3;
 using Epro3.Infrastructure.DBContext;
+using Epro3.Infrastructure.Repositories.Epro3;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,29 +24,19 @@ namespace Epro3.Infrastructure.Repositories
         public IEntranceExamStudentResultRepository EntranceExamStudentResults { get; private set; }
         public IFAQRepository FAQs { get; private set; }
         public IStudentRepository Students { get; private set; }
-        public UnitOfWork(ApplicationDatabaseContext context,
-                          IAboutRepository aboutRepository,
-                          IAdminRepository adminRepository,
-                          IClassRepository classRepository,
-                          IContactRepository contactRepository,
-                          ICourseModuleRepository courseModuleRepository,
-                          ICourseRepository courseRepository,
-                          IEntranceExamRepository entranceExamRepository,
-                          IEntranceExamStudentResultRepository entranceExamStudentResultRepository,
-                          IFAQRepository fAQRepository,
-                          IStudentRepository studentRepository)
+        public UnitOfWork(ApplicationDatabaseContext context)
         {
             _context = context;
-            Abouts = aboutRepository;
-            Admins = adminRepository;
-            Classes = classRepository;
-            Contacts = contactRepository;
-            CourseModules = courseModuleRepository;
-            Courses = courseRepository;
-            EntranceExams = entranceExamRepository;
-            EntranceExamStudentResults = entranceExamStudentResultRepository;
-            FAQs = fAQRepository;
-            Students = studentRepository;
+            Abouts = new AboutRepository(_context);
+            Admins = new AdminRepository(_context);
+            Classes = new ClassRepository(_context);
+            Contacts = new ContactRepository(_context);
+            CourseModules = new CourseModuleRepository(_context);
+            Courses = new CourseRepository(_context);
+            EntranceExams = new EntranceExamRepository(_context);
+            EntranceExamStudentResults = new EntranceExamStudentResultRepository(_context);
+            FAQs = new FAQRepository(_context);
+            Students = new StudentRepository(_context);
         }
         public async Task<int> Complete()
         {

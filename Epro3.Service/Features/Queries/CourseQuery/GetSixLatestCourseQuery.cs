@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Epro3.Application.DTOs.ClientDTOs;
+using Epro3.Application.DTOs.ClientDTOs.Course;
 using Epro3.Domain.Interfaces.IRepository.Architecture;
 using MediatR;
 using System;

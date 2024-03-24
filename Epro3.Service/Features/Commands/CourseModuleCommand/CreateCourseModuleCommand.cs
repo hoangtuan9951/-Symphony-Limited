@@ -15,26 +15,26 @@ namespace Epro3.Application.Features.Commands.CourseModuleCommand
     {
         public string Name { get; set; } = string.Empty;
         public int Amount { get; set; }
-        public DateTime StartTime { get; set; }
+        public int CourseId { get; set; }
 
-        public class CreateClassCommandHandler : IRequestHandler<CreateClassCommand, Unit>
+        public class CreateCourseModuleCommandHandler : IRequestHandler<CreateCourseModuleCommand, Unit>
         {
             private readonly IUnitOfWork _unitOfWork;
-            public CreateClassCommandHandler(IUnitOfWork unitOfWork, IWebHostEnvironment env)
+            public CreateCourseModuleCommandHandler(IUnitOfWork unitOfWork, IWebHostEnvironment env)
             {
                 _unitOfWork = unitOfWork;
             }
 
-            public async Task<Unit> Handle(CreateClassCommand command, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(CreateCourseModuleCommand command, CancellationToken cancellationToken)
             {
-                Class clazz = new Class
+                CourseModule data = new CourseModule
                 {
                     Name = command.Name,
                     Amount = command.Amount,
-                    StartTime = command.StartTime,
+                    CourseId = command.CourseId,
                     LastUpdatedDate = DateTime.Now
                 };
-                _unitOfWork.Classes.Create(clazz);
+                _unitOfWork.CourseModules.Create(data);
                 await _unitOfWork.Complete();
                 return Unit.Value;
             }

@@ -6,10 +6,10 @@
         <div class="row">
           <div class="col-4" *ngFor="let partner of list_course">
             <div class="">
-              <img [src]="partner.Image" alt="" style="width: 100%" />
-              <p class="title-course">{{ partner.Name }}</p>
+              <img [src]="partner.image" alt="" style="width: 100%" />
+              <p class="title-course">{{ partner.name }}</p>
               <p class="elementor-image-box-description">
-                {{ partner.Description }}
+                {{ partner.description }}
               </p>
               <div>
                 <ul class="elementor-icon-list-items">
@@ -19,7 +19,7 @@
                         <i aria-hidden="true" class="fas fa-gift"></i>
                       </span>
                       <span class="elementor-icon-list-text">{{
-                        partner.Discount
+                        partner.discount
                       }}</span>
                     </a>
                   </li>
@@ -29,7 +29,7 @@
                         <i aria-hidden="true" class="fas fa-clock"></i>
                       </span>
                       <span class="elementor-icon-list-text"
-                        >Opening: {{ partner.Start_time }}</span
+                        >Opening: {{ partner.startTime }}</span
                       >
                     </a>
                   </li>

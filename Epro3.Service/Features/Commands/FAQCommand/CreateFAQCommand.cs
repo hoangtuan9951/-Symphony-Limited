@@ -13,28 +13,28 @@ namespace Epro3.Application.Features.Commands.FAQCommand
 {
     public class CreateFAQCommand : IRequest<Unit>
     {
-        public string Name { get; set; } = string.Empty;
-        public int Amount { get; set; }
-        public DateTime StartTime { get; set; }
+        public string Question { get; set; } = string.Empty;
+        public string Answer { get; set; } = string.Empty;
+        public bool Active { get; set; }
 
-        public class CreateClassCommandHandler : IRequestHandler<CreateClassCommand, Unit>
+        public class CreateFAQCommandHandler : IRequestHandler<CreateFAQCommand, Unit>
         {
             private readonly IUnitOfWork _unitOfWork;
-            public CreateClassCommandHandler(IUnitOfWork unitOfWork, IWebHostEnvironment env)
+            public CreateFAQCommandHandler(IUnitOfWork unitOfWork, IWebHostEnvironment env)
             {
                 _unitOfWork = unitOfWork;
             }
 
-            public async Task<Unit> Handle(CreateClassCommand command, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(CreateFAQCommand command, CancellationToken cancellationToken)
             {
-                Class clazz = new Class
+                FAQ data = new FAQ
                 {
-                    Name = command.Name,
-                    Amount = command.Amount,
-                    StartTime = command.StartTime,
+                    Question = command.Question,
+                    Answer = command.Answer,
+                    Active = command.Active,
                     LastUpdatedDate = DateTime.Now
                 };
-                _unitOfWork.Classes.Create(clazz);
+                _unitOfWork.FAQs.Create(data);
                 await _unitOfWork.Complete();
                 return Unit.Value;
             }

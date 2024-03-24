@@ -13,28 +13,26 @@ namespace Epro3.Application.Features.Commands.EntranceExamCommand
 {
     public class CreateEntranceExamCommand : IRequest<Unit>
     {
-        public string Name { get; set; } = string.Empty;
-        public int Amount { get; set; }
+        public int Name { get; set; }
         public DateTime StartTime { get; set; }
 
-        public class CreateClassCommandHandler : IRequestHandler<CreateClassCommand, Unit>
+        public class CreateEntranceExamCommandHandler : IRequestHandler<CreateEntranceExamCommand, Unit>
         {
             private readonly IUnitOfWork _unitOfWork;
-            public CreateClassCommandHandler(IUnitOfWork unitOfWork, IWebHostEnvironment env)
+            public CreateEntranceExamCommandHandler(IUnitOfWork unitOfWork, IWebHostEnvironment env)
             {
                 _unitOfWork = unitOfWork;
             }
 
-            public async Task<Unit> Handle(CreateClassCommand command, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(CreateEntranceExamCommand command, CancellationToken cancellationToken)
             {
-                Class clazz = new Class
+                EntranceExam data = new EntranceExam
                 {
                     Name = command.Name,
-                    Amount = command.Amount,
-                    StartTime = command.StartTime,
-                    LastUpdatedDate = DateTime.Now
+                    StartTime = command.StartTime
                 };
-                _unitOfWork.Classes.Create(clazz);
+
+                _unitOfWork.EntranceExams.Create(data);
                 await _unitOfWork.Complete();
                 return Unit.Value;
             }
