@@ -3,12 +3,15 @@ using Epro3.Application.Features.Commands.CourseCommand;
 using Epro3.Application.Features.Queries.ContactQuery;
 using Epro3.Application.Features.Queries.CourseQuery;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Epro3.Controllers.AdminController
 {
     [Route("api/admin/contacts")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
     public class ContactAdminController : ControllerBase
     {
         private readonly IMediator _mediator;

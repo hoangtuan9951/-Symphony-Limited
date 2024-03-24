@@ -30,10 +30,10 @@ namespace Epro3.Application.Features.Queries.CourseModuleQuery
         }
     }
 
-    public class GetCourseModuleModuleByIdClientQuery : IRequest<CourseModuleDetailClientDTO>
+    public class GetCourseModuleByIdClientQuery : IRequest<CourseModuleDetailClientDTO>
     {
         public int Id { get; set; }
-        public class GetCourseModuleModuleByIdClientQueryHandler : IRequestHandler<GetCourseModuleModuleByIdClientQuery, CourseModuleDetailClientDTO>
+        public class GetCourseModuleModuleByIdClientQueryHandler : IRequestHandler<GetCourseModuleByIdClientQuery, CourseModuleDetailClientDTO>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -42,7 +42,7 @@ namespace Epro3.Application.Features.Queries.CourseModuleQuery
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<CourseModuleDetailClientDTO> Handle(GetCourseModuleModuleByIdClientQuery command, CancellationToken cancellationToken)
+            public async Task<CourseModuleDetailClientDTO> Handle(GetCourseModuleByIdClientQuery command, CancellationToken cancellationToken)
             {
                 return _mapper.Map<CourseModuleDetailClientDTO>(await _unitOfWork.CourseModules.GetById(command.Id));
             }

@@ -3,12 +3,15 @@ using Epro3.Application.Features.Commands.FAQCommand;
 using Epro3.Application.Features.Queries.CourseQuery;
 using Epro3.Application.Features.Queries.FAQQuery;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Epro3.Controllers.AdminController
 {
     [Route("api/admin/faqs")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
     public class FAQAdminController : ControllerBase
     {
         private readonly IMediator _mediator;

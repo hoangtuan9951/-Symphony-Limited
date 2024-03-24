@@ -27,7 +27,8 @@ namespace Epro3.Application.Features.Queries.AdminQuery
             {
                 return new AdminAuthenDTO
                 {
-                    AdminId = await _unitOfWork.Admins.Login(command.UserName, command.Password)
+                    AdminId = await _unitOfWork.Admins.Login(command.UserName, command.Password),
+                    Role = "Admin"
                 };
             }
         }

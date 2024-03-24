@@ -3,12 +3,15 @@ using Epro3.Application.Features.Commands.CourseModuleCommand;
 using Epro3.Application.Features.Queries.CourseModuleQuery;
 using Epro3.Application.Features.Queries.CourseQuery;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Epro3.Controllers.AdminController
 {
     [Route("api/admin/course-modules")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
     public class CourseModuleAdminController : ControllerBase
     {
         private readonly IMediator _mediator;

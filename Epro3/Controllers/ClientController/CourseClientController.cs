@@ -48,7 +48,7 @@ namespace Epro3.Controllers.ClientController
         {
             try
             {
-                var responseData = await _mediator.Send(new GetSixLatestCourseQuery());
+                var responseData = await _mediator.Send(new GetSixLatestCourseClientQuery());
                 return Ok(responseData);
             }
             catch (Exception e)

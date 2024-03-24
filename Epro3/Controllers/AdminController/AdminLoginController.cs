@@ -2,6 +2,8 @@
 using Epro3.Application.Features.Commands.ClassCommand;
 using Epro3.Application.Features.Queries.AdminQuery;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -47,6 +49,7 @@ namespace Epro3.Controllers.AdminController
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim("AdminId", adminAuthen.AdminId.ToString()),
+                    new Claim(ClaimTypes.Role, adminAuthen.Role)
                 }),
                 Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512Signature)

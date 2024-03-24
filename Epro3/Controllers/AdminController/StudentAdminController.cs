@@ -3,12 +3,15 @@ using Epro3.Application.Features.Commands.StudentCommand;
 using Epro3.Application.Features.Queries.CourseQuery;
 using Epro3.Application.Features.Queries.StudentQuery;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Epro3.Controllers.AdminController
 {
     [Route("api/admin/students")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
     public class StudentAdminController : ControllerBase
     {
         private readonly IMediator _mediator;

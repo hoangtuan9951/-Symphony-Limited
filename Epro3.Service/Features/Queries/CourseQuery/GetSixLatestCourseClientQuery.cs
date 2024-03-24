@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Epro3.Application.Features.Queries.CourseQuery
 {
-    public class GetSixLatestCourseQuery : IRequest<IEnumerable<CourseClientDTO>>
+    public class GetSixLatestCourseClientQuery : IRequest<IEnumerable<CourseClientDTO>>
     {
-        public class GetSixLatestCourseQueryHandler : IRequestHandler<GetSixLatestCourseQuery, IEnumerable<CourseClientDTO>>
+        public class GetSixLatestCourseQueryHandler : IRequestHandler<GetSixLatestCourseClientQuery, IEnumerable<CourseClientDTO>>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
@@ -21,7 +21,7 @@ namespace Epro3.Application.Features.Queries.CourseQuery
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<IEnumerable<CourseClientDTO>> Handle(GetSixLatestCourseQuery command, CancellationToken cancellationToken)
+            public async Task<IEnumerable<CourseClientDTO>> Handle(GetSixLatestCourseClientQuery command, CancellationToken cancellationToken)
             {
                 return _mapper.Map<IEnumerable<CourseClientDTO>>(await _unitOfWork.Courses.GetSixLatestCourse());
             }

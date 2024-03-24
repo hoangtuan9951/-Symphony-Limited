@@ -3,12 +3,15 @@ using Epro3.Application.Features.Commands.CourseCommand;
 using Epro3.Application.Features.Queries.AboutQuery;
 using Epro3.Application.Features.Queries.CourseQuery;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Epro3.Controllers.AdminController
 {
     [Route("api/admin/abouts")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
     public class AboutAdminController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -32,7 +35,7 @@ namespace Epro3.Controllers.AdminController
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateAboutCommand command)
+        public async Task<IActionResult> Create([FromForm]CreateAboutCommand command)
         {
             try
             {
@@ -46,7 +49,7 @@ namespace Epro3.Controllers.AdminController
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(UpdateAboutCommand command)
+        public async Task<IActionResult> Update([FromForm]UpdateAboutCommand command)
         {
             try
             {

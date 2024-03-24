@@ -9,6 +9,7 @@ namespace Epro3.Controllers.AdminController
 {
     [Route("api/admin/courses")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
     public class CourseAdminController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -46,7 +47,7 @@ namespace Epro3.Controllers.AdminController
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateCourseCommand command)
+        public async Task<IActionResult> Create([FromForm]CreateCourseCommand command)
         {
             try
             {
@@ -60,7 +61,7 @@ namespace Epro3.Controllers.AdminController
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(UpdateCourseCommand command)
+        public async Task<IActionResult> Update([FromForm]UpdateCourseCommand command)
         {
             try
             {
