@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Epro3.Application.Helpers;
 using Epro3.Domain.Entities;
-using Epro3.Domain.Interfaces.IRepository;
+using Epro3.Domain.Interfaces.IRepository.Architecture;
 using Epro3.Infrastructure.DBContext;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
@@ -32,14 +32,10 @@ namespace Epro3.Application.Features.Commands.CourseCommand
         public class CreateCourseCommandHandler : IRequestHandler<CreateCourseCommand, Unit>
         {
             private readonly IUnitOfWork _unitOfWork;
-            private readonly IMapper _mapper;
             private readonly IWebHostEnvironment _env;
-            public CreateCourseCommandHandler(IUnitOfWork unitOfWork,
-                                      IMapper mapper,
-                                      IWebHostEnvironment env)
+            public CreateCourseCommandHandler(IUnitOfWork unitOfWork, IWebHostEnvironment env)
             {
                 _unitOfWork = unitOfWork;
-                _mapper = mapper;
                 _env = env;
             }
 
@@ -70,10 +66,8 @@ namespace Epro3.Application.Features.Commands.CourseCommand
                     Amount = command.Amount,
                     Discount = command.Discount,
                     Description = command.Description,
-                    CourseDetail = command.CourseDetail,
                     Active = command.Active,
                     CreatedDate = DateTime.Now,
-                    LastUpdatedDate = DateTime.Now,
                     StartedDate = command.StartedDate,
                     EndedDate = command.EndedDate,
                     Thumbnail = FileHelper.CourseImageFileUri(thumbnailFileName),

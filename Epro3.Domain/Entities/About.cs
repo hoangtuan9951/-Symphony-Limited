@@ -10,8 +10,7 @@ namespace Epro3.Domain.Entities
     {
         public int Id { get; set; }
         public string Description { get; set; } = string.Empty;
-        public string ImageBackground { get; set; } = string.Empty;
-        public DateTime CreatedDate { get; set; }
+        public string BackgroundImage { get; set; } = string.Empty;
         public DateTime LastUpdatedDate { get; set;}
     }
 }

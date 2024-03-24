@@ -17,11 +17,14 @@ namespace Epro3.Domain.Entities
         public string Thumbnail { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string BackGroundImage {  get; set; } = string.Empty;
-        public string CourseDetail { get; set; } = string.Empty;
+        public decimal GradePass { get; set; }
         public DateTime StartedDate { get; set; }
         public DateTime EndedDate { get; set;}
-        public bool Active { get; set; }
+        public decimal Fee { get; set; }
         public DateTime CreatedDate { get; set; }
-        public DateTime LastUpdatedDate { get; set;}
+        public DateTime FeeChagreDate { get; set; }
+        public bool Active { get; set; }
+        public ICollection<CourseModule>? CourseModules { get; set; }
+        public ICollection<Class>? Classes { get; set; }
     }
 }

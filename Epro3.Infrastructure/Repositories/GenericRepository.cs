@@ -1,4 +1,4 @@
-﻿using Epro3.Domain.Interfaces.IRepository;
+﻿using Epro3.Domain.Interfaces.IRepository.Architecture;
 using Epro3.Infrastructure.DBContext;
 using Microsoft.EntityFrameworkCore;
 using System;

@@ -1,6 +1,7 @@
 using Epro3.Domain.Interfaces.IService.IAdminService;
 using Epro3.Domain.Interfaces.IService.IApplicationService;
 using Epro3.Service.AdminService;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Epro3.Controllers.ApplicationController

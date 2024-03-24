@@ -2,7 +2,7 @@
 using Epro3.Domain.DTOs.AdminDTOs.Course;
 using Epro3.Domain.DTOs.ApplicationDTOs;
 using Epro3.Domain.Entities;
-using Epro3.Domain.Interfaces.IRepository;
+using Epro3.Domain.Interfaces.IRepository.Architecture;
 using Epro3.Domain.Interfaces.IService.IApplicationService;
 using Microsoft.AspNetCore.Hosting;
 using System;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Epro3.Service.ApplicationService
+namespace Epro3.Application.ApplicationService
 {
     public class CourseServiceApplication : ICourseServiceApplication
     {

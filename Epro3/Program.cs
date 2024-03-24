@@ -1,5 +1,5 @@
 using Epro3.Application.Helpers;
-using Epro3.Domain.Interfaces.IRepository;
+using Epro3.Domain.Interfaces.IRepository.Architecture;
 using Epro3.Infrastructure.DBContext;
 using Epro3.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

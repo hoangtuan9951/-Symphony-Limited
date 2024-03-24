@@ -14,13 +14,12 @@ namespace Epro3.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<Course> builder)
         {
             builder.ToTable("course");
-            builder.HasKey(c => c.Id);
-            builder.Property(c => c.Id).ValueGeneratedOnAdd();
-            builder.Property(c => c.StartedDate).HasColumnType("TIMESTAMP");
-            builder.Property(c => c.EndedDate).HasColumnType("TIMESTAMP");
-            builder.Property(c => c.CreatedDate).HasColumnType("TIMESTAMP");
-            builder.Property(c => c.LastUpdatedDate).HasColumnType("TIMESTAMP");
-            builder.HasIndex(c => c.CreatedDate);
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).ValueGeneratedOnAdd();
+            builder.Property(e => e.StartedDate).HasColumnType("TIMESTAMP");
+            builder.Property(e => e.EndedDate).HasColumnType("TIMESTAMP");
+            builder.Property(e => e.FeeChagreDate).HasColumnType("TIMESTAMP");
+            builder.Property(e => e.CreatedDate).HasColumnType("TIMESTAMP");
         }
     }
 }

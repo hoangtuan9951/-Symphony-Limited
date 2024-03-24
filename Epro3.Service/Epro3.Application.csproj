@@ -22,4 +22,16 @@
     <ProjectReference Include="..\Epro3.Infrastructure\Epro3.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Queries\AboutQuery\" />
+    <Folder Include="Features\Queries\AdminQuery\" />
+    <Folder Include="Features\Queries\ClassQuery\" />
+    <Folder Include="Features\Queries\ContactQuery\" />
+    <Folder Include="Features\Queries\CourseModuleQuery\" />
+    <Folder Include="Features\Queries\EntranceExamQuery\" />
+    <Folder Include="Features\Queries\EntranceExamStudentResultQuery\" />
+    <Folder Include="Features\Queries\FAQQuery\" />
+    <Folder Include="Features\Queries\StudentQuery\" />
+  </ItemGroup>
+
 </Project>

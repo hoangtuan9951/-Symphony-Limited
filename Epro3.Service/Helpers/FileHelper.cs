@@ -20,9 +20,17 @@ namespace Epro3.Application.Helpers
             fileName = "background" + fileName.Replace(" ", "-") + extension;
             return fileName;
         }
+        public static string CreateImageFileName(string prefix, string extension)
+        {
+            return prefix + DateTime.Now.ToString("yyyyMMddHHmmssfff") + extension;
+        }
         public static string CourseImageFileUri(string fileName)
         {
             return "http://localhost:2002/resource/image/course/" + fileName;
+        }
+        public static string ImageFileUri(string fileName)
+        {
+            return "http://localhost:2002/resource/image/other/" + fileName;
         }
     }
 }

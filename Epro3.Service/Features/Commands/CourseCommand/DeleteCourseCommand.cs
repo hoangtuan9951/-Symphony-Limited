@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Epro3.Domain.Entities;
-using Epro3.Domain.Interfaces.IRepository;
+using Epro3.Domain.Interfaces.IRepository.Architecture;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using System;

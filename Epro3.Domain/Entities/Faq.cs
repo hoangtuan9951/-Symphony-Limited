@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace Epro3.Domain.Entities
 {
-    public class Faq
+    public class FAQ
     {
         public int Id { get; set; }
         public string Question { get; set; } = string.Empty;
         public string Answer { get; set; } = string.Empty;
-        public string Active { get; set; } = string.Empty;
-        public DateTime CreatedDate { get; set; }
+        public bool Active { get; set; }
         public DateTime LastUpdatedDate { get; set;}
     }
 }
