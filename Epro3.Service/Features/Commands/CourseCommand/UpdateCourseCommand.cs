@@ -1,6 +1,6 @@
 ﻿using Epro3.Application.Helpers;
 using Epro3.Domain.Entities;
-using Epro3.Domain.Interfaces.IRepository;
+using Epro3.Domain.Interfaces.IRepository.Architecture;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -72,15 +72,12 @@ namespace Epro3.Application.Features.Commands.CourseCommand
                 data.Amount = command.Amount;
                 data.Discount = command.Discount;
                 data.Description = command.Description;
-                data.CourseDetail = command.CourseDetail;
                 data.Active = command.Active;
                 data.StartedDate = command.StartedDate;
                 data.EndedDate = command.EndedDate;
-                data.LastUpdatedDate = DateTime.Now;
                 data.Thumbnail = FileHelper.CourseImageFileUri(thumbnailFileName);
                 data.BackGroundImage = FileHelper.CourseImageFileUri(bgFileName);
 
-                _unitOfWork.Courses.Delete(data);
                 await _unitOfWork.Complete();
                 return Unit.Value;
             }

@@ -2,7 +2,7 @@
 using Epro3.Domain.DTOs.AdminDTOs.Course;
 using Epro3.Domain.Entities;
 using Epro3.Domain.Helpers;
-using Epro3.Domain.Interfaces.IRepository;
+using Epro3.Domain.Interfaces.IRepository.Architecture;
 using Epro3.Domain.Interfaces.IService.IAdminService;
 using Epro3.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Hosting;
@@ -13,16 +13,17 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Epro3.Service.AdminService
+namespace Epro3.Application.AdminService
 {
-    public class CourseServiceAdmin : ICourseServiceAdmin
+    public class CourseServiceAdmin : ICourseAdminService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _env;
         public CourseServiceAdmin(IUnitOfWork unitOfWork,
                                   IMapper mapper,
-                                  IWebHostEnvironment env) {
+                                  IWebHostEnvironment env)
+        {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _env = env;
@@ -57,10 +58,8 @@ namespace Epro3.Service.AdminService
                     Amount = createCourseDTO.Amount,
                     Discount = createCourseDTO.Discount,
                     Description = createCourseDTO.Description,
-                    CourseDetail = createCourseDTO.CourseDetail,
                     Active = createCourseDTO.Active,
                     CreatedDate = DateTime.Now,
-                    LastUpdatedDate = DateTime.Now,
                     StartedDate = createCourseDTO.StartedDate,
                     EndedDate = createCourseDTO.EndedDate,
                     Thumbnail = FileHelper.CourseImageFileUri(thumbnailFileName),
@@ -70,7 +69,7 @@ namespace Epro3.Service.AdminService
                 _unitOfWork.Courses.Create(course);
                 await _unitOfWork.Complete();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
@@ -83,7 +82,8 @@ namespace Epro3.Service.AdminService
                 Course data = await _unitOfWork.Courses.GetById(id);
                 _unitOfWork.Courses.Delete(data);
                 await _unitOfWork.Complete();
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
@@ -151,11 +151,9 @@ namespace Epro3.Service.AdminService
                 data.Amount = updateCourseDTO.Amount;
                 data.Discount = updateCourseDTO.Discount;
                 data.Description = updateCourseDTO.Description;
-                data.CourseDetail = updateCourseDTO.CourseDetail;
                 data.Active = updateCourseDTO.Active;
                 data.StartedDate = updateCourseDTO.StartedDate;
                 data.EndedDate = updateCourseDTO.EndedDate;
-                data.LastUpdatedDate = DateTime.Now;
                 data.Thumbnail = FileHelper.CourseImageFileUri(thumbnailFileName);
                 data.BackGroundImage = FileHelper.CourseImageFileUri(bgFileName);
 

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Epro3.Application.DTOs.AdminDTOs.Course;
 using Epro3.Application.DTOs.ClientDTOs;
-using Epro3.Domain.Interfaces.IRepository;
+using Epro3.Domain.Interfaces.IRepository.Architecture;
 using MediatR;
 using System;
 using System.Collections.Generic;
