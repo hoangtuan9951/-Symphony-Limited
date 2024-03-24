@@ -3,19 +3,11 @@ import {
     MAT_DIALOG_DATA,
     MatDialogRef,
 } from '@angular/material/dialog';
+import { CourseModules } from '../../../models/CourseModule.model';
 
 export interface DialogData {
     animal: string;
     name: string;
-}
-
-export interface PeriodicElement {
-    id: number | null;
-    username: string;
-    email: string;
-    role: string;
-    created_at: string | null;
-    updated_at: string | null;
 }
 
 /**
@@ -23,13 +15,13 @@ export interface PeriodicElement {
  */
 @Component({
     selector: 'dialog-admin-component',
-    templateUrl: './dialog.component.html',
-    styleUrls: ['./dialog.component.scss'],
+    templateUrl: './dialog-course-module.component.html',
+    styleUrls: ['./dialog-course-module.component.scss'],
 })
-export class DialogManageAdmin {
+export class DialogCourseModuleComponent {
     constructor(
-        public dialogRef: MatDialogRef<DialogManageAdmin>,
-        @Inject(MAT_DIALOG_DATA) public data: PeriodicElement,
+        public dialogRef: MatDialogRef<DialogCourseModuleComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: CourseModules,
     ) { }
 
     onNoClick(): void {
@@ -40,10 +32,10 @@ export class DialogManageAdmin {
         console.log("data", this.data);
     }
 
-    admin = {
-        username: this.data.username,
-        email: this.data.email,
-        role: this.data.role
+    module = {
+        module_name: this.data.module_name,
+        amount: this.data.amount,
+        active: this.data.active
     };
 
     onSubmit(form: any) {

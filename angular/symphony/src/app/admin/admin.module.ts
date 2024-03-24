@@ -22,6 +22,14 @@ import { ManageClassComponent } from './views/manageClass/manageClass.component'
 import { DialogManageClass } from './views/manageClass/dialog/dialog.component';
 import { UserContactComponent } from './views/userContact/userContact.component';
 import { AboutUsComponent } from './views/aboutUs/aboutUs.component';
+import { CourseModuleComponent } from './views/course-module/course-module.component';
+import { DialogCourseModuleComponent } from './views/course-module/dialog-course-module/dialog-course-module.component';
+import { ManagerFaqComponent } from './views/manager-faq/manager-faq.component';
+import { DialogFaqComponent } from './views/manager-faq/dialog-faq/dialog-faq.component';
+import { ContactUsComponent } from './views/contact-us/contact-us.component';
+import { DialogContatctusComponent } from './views/contact-us/dialog-contatctus/dialog-contatctus.component';
+import { StudentComponent } from './views/student/student.component';
+import { DialogStudentComponent } from './views/student/dialog-student/dialog-student.component';
 @NgModule({
   declarations: [
     HomeAdminComponent,
@@ -32,6 +40,14 @@ import { AboutUsComponent } from './views/aboutUs/aboutUs.component';
     DialogManageClass,
     UserContactComponent,
     AboutUsComponent,
+    CourseModuleComponent,
+    DialogCourseModuleComponent,
+    ManagerFaqComponent,
+    DialogFaqComponent,
+    ContactUsComponent,
+    DialogContatctusComponent,
+    StudentComponent,
+    DialogStudentComponent,
   ],
   imports: [
     CommonModule,
