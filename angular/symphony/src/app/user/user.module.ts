@@ -37,7 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatGridListModule,
     RegisterConsultationComponent,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     provideAnimationsAsync()

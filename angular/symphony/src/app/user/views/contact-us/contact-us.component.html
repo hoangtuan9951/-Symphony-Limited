@@ -1,9 +1,32 @@
 <div class="main-contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="title">THÔNG TIN LIÊN HỆ</h1>
-            </div>
-        </div>
+  <div
+    class="porto-u-heading tc01"
+    data-hspacer="no_spacer"
+    data-halign="center"
+    style="text-align: center"
+  >
+    <div class="porto-u-main-heading">
+      <h1>THÔNG TIN LIÊN HỆ</h1>
     </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div
+        class="wpb_text_column wpb_content_element wpb_animate_when_almost_visible wpb_fadeInLeft fadeInLeft lienhe01 wpb_start_animation animated"
+        *ngFor="let item of contacts; let i = index"
+      >
+        <div class="wpb_wrapper">
+            <p style="text-align: justify;"><strong>Chi nhánh: {{ i + 1 }}</strong></p>
+          <ul>
+            <li style="text-align: justify">
+              Địa chỉ: {{item.address}}
+            </li>
+            <li style="text-align: justify">Điện thoại: {{ item.hotline }}</li>
+            <li style="text-align: justify">Email: {{ item.email }}</li>
+          </ul>
+        </div>
+        <div class="porto-separator  "><hr class="separator-line wpb_animate_when_almost_visible wpb_fadeInUp fadeInUp align_center wpb_start_animation animated" style="background-image: -webkit-linear-gradient(left, transparent, grey, transparent); background-image: linear-gradient(to right, transparent, grey, transparent);width:80%;"></div>
+      </div>
+    </div>
+  </div>
 </div>
