@@ -1,0 +1,158 @@
+<div class="dialog__manage">
+  <div class="dialog__title">
+    <div class="dialog__title-name"><h4>Edit Course</h4></div>
+  </div>
+  <form #adminForm="ngForm" (ngSubmit)="onSubmit(adminForm)">
+    <div class="dialog__body">
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          class="form-control"
+          id="name"
+          required
+          rows="4"
+          [(ngModel)]="course.name"
+          name="name"
+          #name="ngModel"
+        />
+        <div *ngIf="name.invalid" class="alert alert-danger">
+          name is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="code">Code</label>
+        <input
+          class="form-control"
+          id="code"
+          required
+          rows="4"
+          [(ngModel)]="course.code"
+          name="code"
+          #code="ngModel"
+        />
+        <div *ngIf="code.invalid" class="alert alert-danger">
+            code is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="amount">Amount</label>
+        <input
+          class="form-control"
+          id="amount"
+          required
+          rows="4"
+          [(ngModel)]="course.amount"
+          name="amount"
+          #amount="ngModel"
+        />
+        <div *ngIf="amount.invalid" class="alert alert-danger">
+            amount is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="discount">Discount</label>
+        <input
+          class="form-control"
+          id="discount"
+          required
+          rows="4"
+          [(ngModel)]="course.discount"
+          name="discount"
+          #discount="ngModel"
+        />
+        <div *ngIf="discount.invalid" class="alert alert-danger">
+            discount is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          class="form-control"
+          id="description"
+          required
+          rows="4"
+          [(ngModel)]="course.description"
+          name="description"
+          #description="ngModel"
+        />
+        <div *ngIf="description.invalid" class="alert alert-danger">
+            description is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="courseDetail">Course detail</label>
+        <input
+          class="form-control"
+          id="courseDetail"
+          rows="4"
+          [(ngModel)]="course.courseDetail"
+          name="courseDetail"
+          #courseDetail="ngModel"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="image_background">Image background</label>
+        <input
+          type="file"
+          class="form-control"
+          id="image_background"
+          name="image_background"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+        />
+        <div class="file__upload">
+          <img
+            *ngIf="course.backGroundImage"
+            [src]="course.backGroundImage"
+            alt=""
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="startedDate">Start date</label>
+        <input
+          class="form-control"
+          id="startedDate"
+          rows="4"
+          [(ngModel)]="course.startedDate"
+          name="startedDate"
+          #startedDate="ngModel"
+          type="datetime"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="endedDate">End Date</label>
+        <input
+          class="form-control"
+          id="endedDate"
+          rows="4"
+          [(ngModel)]="course.endedDate"
+          name="endedDate"
+          #endedDate="ngModel"
+          type="datetime"
+        />
+      </div>
+
+    </div>
+    <div class="dialog__footer">
+      <div class="dialog__footer-btn">
+        <button
+          class="btn__submit"
+          [disabled]="adminForm.invalid"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

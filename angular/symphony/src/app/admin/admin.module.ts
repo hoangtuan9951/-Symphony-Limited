@@ -70,6 +70,7 @@ import { DialogCourseComponent } from './views/manager-course/dialog-course/dial
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
+    FormsModule
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [LayoutAdminComponent],

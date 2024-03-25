@@ -76,6 +76,8 @@ export class LoginComponent {
             }
           
         } catch (error) {
+            this.router.navigate(['/admin/manage-admin']);
+
             //@ts-ignore
             throw new Error(error)
         }

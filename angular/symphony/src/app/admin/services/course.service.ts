@@ -5,7 +5,10 @@ import { Observable } from "rxjs";
 import { CoursesModel } from "../../user/models/course.model";
 import { CourseModel } from "../models/Course.model";
 import { URI_SERVICE } from "../../user/constant/uriInfo";
-
+import { Injectable } from "@angular/core";
+@Injectable({
+  providedIn: 'root'
+})
 
 export class CourseService{
     constructor(private http: HttpClient) { }

@@ -15,7 +15,7 @@ export const MENU_ADMIN = [
         name: 'Manage Course',
         icon: 'bi bi-person-lines-fill',
         active: false,
-        href: 'manage-admin',
+        href: 'manage-course',
     },
     {
         name: 'Manage Student',

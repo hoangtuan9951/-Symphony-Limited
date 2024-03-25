@@ -14,10 +14,10 @@ export interface CourseChildModel {
   }
   
   export interface CoursesModel{
-    Id : number,
-    Name: string,
-    Description: string,
-    Start_time: string,
-    Discount: string,
-    Image: string
+    id : number,
+    name: string,
+    description: string,
+    start_time: string,
+    discount: string,
+    image: string
   }

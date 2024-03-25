@@ -10,6 +10,7 @@ import { CourseModuleComponent } from './views/course-module/course-module.compo
 import { ManagerFaqComponent } from './views/manager-faq/manager-faq.component';
 import { ContactUsComponent } from './views/contact-us/contact-us.component';
 import { StudentComponent } from './views/student/student.component';
+import { ManagerCourseComponent } from './views/manager-course/manager-course.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,9 @@ const routes: Routes = [
       { path: 'manage-module', component: CourseModuleComponent },
       { path: 'manage-faq', component: ManagerFaqComponent },
       { path: 'contact-us', component: ContactUsComponent },
-      { path: 'student', component: StudentComponent }
+      { path: 'student', component: StudentComponent },
+      { path: 'manage-course', component: ManagerCourseComponent }
+
     ]
   },
 ];
