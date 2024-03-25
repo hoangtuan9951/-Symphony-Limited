@@ -2,6 +2,21 @@
     text-align: center;
     font-weight: 500;
 }
-.main-contact{
-    padding: 30px 0;
+
+.wpb_button, .wpb_content_element, ul.wpb_thumbnails-fluid>li {
+    margin-bottom: 20px;
+}
+li {
+    letter-spacing: 0.1px;
+    font-weight: 400;
+    color: #474747;
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 10px;
+}
+.porto-separator {
+    margin: 0 0 22px;
+}
+.wpb_wrapper{
+    padding: 30px;
 }

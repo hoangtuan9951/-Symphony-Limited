@@ -30,7 +30,6 @@
 
   <ItemGroup>
     <Folder Include="Resource\Image\Course\" />
-    <Folder Include="Resource\Image\Other\" />
   </ItemGroup>
 
 </Project>

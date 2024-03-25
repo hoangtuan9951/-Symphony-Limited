@@ -1,1 +1,1 @@
-export const URI_SERVICE = ""
+export const URI_SERVICE = "http://localhost:2002"

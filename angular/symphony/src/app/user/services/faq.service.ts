@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { FAQModel } from '../models/faq.model';
 import { URI_SERVICE } from '../constant/uriInfo';
 
@@ -9,9 +9,16 @@ import { URI_SERVICE } from '../constant/uriInfo';
 })
 export class FAQService {
  
-  constructor(private http: HttpClient) { }
+  private apiUrl = 'http://localhost:2002/api/client/faqs';
 
-  getAllListData(): Observable<any> {
-    return this.http.get<{ success: boolean, total: number, data: FAQModel[] }>(URI_SERVICE +  '/v1/api/application/faqs');
+  constructor(private http: HttpClient) {}
+
+  getFAQ(): Observable<FAQModel[]> {
+    return this.http.get<FAQModel[]>(this.apiUrl).pipe(catchError(this.handleError));
+  }
+
+  private handleError(error: any): Observable<any> {
+    console.error('An error occurred:', error);
+    return throwError(error);
   }
 }
