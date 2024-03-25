@@ -22,6 +22,8 @@ import { ManageClassComponent } from './views/manageClass/manageClass.component'
 import { DialogManageClass } from './views/manageClass/dialog/dialog.component';
 import { UserContactComponent } from './views/userContact/userContact.component';
 import { AboutUsComponent } from './views/aboutUs/aboutUs.component';
+import { DialogManageContact } from './views/userContact/dialog/dialog.component';
+import { DialogManageAboutUs } from './views/aboutUs/dialog/dialog.component';
 @NgModule({
   declarations: [
     HomeAdminComponent,
@@ -32,6 +34,8 @@ import { AboutUsComponent } from './views/aboutUs/aboutUs.component';
     DialogManageClass,
     UserContactComponent,
     AboutUsComponent,
+    DialogManageContact,
+    DialogManageAboutUs,
   ],
   imports: [
     CommonModule,

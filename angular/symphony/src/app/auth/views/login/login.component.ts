@@ -1,7 +1,9 @@
 // home.component.ts
-
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { PATH_IMAGES } from '../../../user/constant/images';
+import authApi from '../../service/auth';
+import { getToken, setHeader, setToken } from '../../../service/index';
 
 @Component({
     selector: 'app-login-admin',
@@ -11,8 +13,10 @@ import { PATH_IMAGES } from '../../../user/constant/images';
 
 
 export class LoginComponent {
-    email: string = '';
+    username: string = '';
     password: string = '';
+
+    constructor(private router: Router) { };
 
     TYPE_ERROR = {
         REQUIRED: 'required',
@@ -20,37 +24,36 @@ export class LoginComponent {
     }
 
     errorForm = {
-        email: { isError: false, type: '' },
+        username: { isError: false, type: '' },
         password: { isError: false, type: '' },
     }
 
     imageLogin = PATH_IMAGES.login;
 
     handleChange(event: any, type: string) {
-        if(type === 'email') {
-            this.errorForm.email = {
+        if (type === 'username') {
+            this.errorForm.username = {
                 isError: false,
                 type: ''
             }
         }
 
-        if(type === 'password') {
+        if (type === 'password') {
             this.errorForm.password = {
                 isError: false,
                 type: ''
             }
         }
-      }
+    }
 
-    onSubmit() {
-        console.log('User input:', this.email, this.password);
-
-        if (!this.email) {
-            this.errorForm.email = {
+    async onSubmit() {
+        //validate
+        if (!this.username) {
+            this.errorForm.username = {
                 isError: true,
                 type: this.TYPE_ERROR.REQUIRED
             }
-        } 
+        }
 
         if (!this.password) {
             this.errorForm.password = {
@@ -59,22 +62,33 @@ export class LoginComponent {
             }
         }
 
-        if (this.email) {
-            const emailRegex: RegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            const is_valid = emailRegex.test(this.email);
+        if (this.errorForm.username.isError || this.errorForm.password.isError) return;
 
-            if(!is_valid) {
-                this.errorForm.email = {
-                    isError: true,
-                    type: this.TYPE_ERROR.NOT_VALID
-                }
+        //auth
+        try {
+            //@ts-ignore
+            const token = await authApi.login({ username: this.username, password: this.password })
+          
+            if(token && typeof token === 'string') {
+                setHeader('Authorization', token)
+                setToken(token)
+                this.router.navigate(['/admin/manage-admin']);
             }
-
+          
+        } catch (error) {
+            //@ts-ignore
+            throw new Error(error)
         }
 
-        if(this.errorForm.email.isError || this.errorForm.password.isError) return;
 
-        console.log("valid", this.email, this.password)
+    }
+
+    ngOnInit(): void {
+        // Thực hiện các hành động sau khi component được khởi tạo
+        const token = getToken();
+        if(token) {
+            this.router.navigate(['/admin/manage-admin']);
+        }
     }
 }
 

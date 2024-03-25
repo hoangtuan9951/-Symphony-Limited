@@ -15,7 +15,7 @@ const routes: Routes = [
       { path: 'manage-admin', component: ManageAdminComponent},
       { path: 'manage-class', component: ManageClassComponent},
       { path: 'contact', component: UserContactComponent},
-      { path: 'about-us', component: AboutUsComponent}
+      { path: 'about-us', component: AboutUsComponent},
     ]
   },
 ];

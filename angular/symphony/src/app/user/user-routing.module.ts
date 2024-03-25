@@ -5,6 +5,7 @@ import { AdmissionsComponent } from './views/admissions/admissions.component';
 import { FAQComponent } from './views/faq/faq.component';
 import { AboutUsComponent } from './views/about-us/about-us.component';
 import { ContactUsComponent } from './views/contact-us/contact-us.component';
+import { SearchScore } from './views/searchScore/searchScore.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
       { path: 'faq', component: FAQComponent, pathMatch: 'full' },
       { path: 'about', component: AboutUsComponent, pathMatch: 'full' },
       { path: 'contact', component: ContactUsComponent, pathMatch: 'full' },
+      { path: 'search-score', component: SearchScore, pathMatch: 'full' },
     ],
   },
 ];

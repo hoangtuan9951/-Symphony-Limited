@@ -1,9 +1,21 @@
 <div class="manage__admin">
-    <!-- <div class="manage__admin-create">
-      <div class="admin__create-btn">
-          <button mat-raised-button (click)="openDialog()">Create class</button>
+  <div class="manage__admin-create">
+    <div class="input-group">
+      <div class="form-outline" data-mdb-input-init>
+        <input
+          [(ngModel)]="user_name"
+          name="user_name"
+          type="search"
+          id="form1"
+          class="form-control"
+          placeholder="search by email"
+        />
       </div>
-    </div> -->
+      <button (click)="handleSearchByName()" type="button" class="btn btn-primary" data-mdb-ripple-init>
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </div>
     <div class="manage__admin-list">
       <div class="manage__admin-table">
         <div class="mat-elevation-z8">
@@ -12,39 +24,46 @@
               <th mat-header-cell *matHeaderCellDef>No.</th>
               <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
             </ng-container>
-  
+
             <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef>User name</th>
+              <th mat-header-cell *matHeaderCellDef>NAME</th>
               <td mat-cell *matCellDef="let element">{{ element.name }}</td>
             </ng-container>
   
             <ng-container matColumnDef="email">
-              <th mat-header-cell *matHeaderCellDef>Email</th>
+              <th mat-header-cell *matHeaderCellDef>EMAIL</th>
               <td mat-cell *matCellDef="let element">{{ element.email }}</td>
             </ng-container>
   
             <ng-container matColumnDef="phone_number">
-              <th mat-header-cell *matHeaderCellDef>Phone number</th>
+              <th mat-header-cell *matHeaderCellDef>PHONE NUMBER</th>
               <td mat-cell *matCellDef="let element">{{ element.phone_number }}</td>
             </ng-container>
 
-            <ng-container matColumnDef="message">
-                <th mat-header-cell *matHeaderCellDef>Message</th>
-                <td mat-cell *matCellDef="let element">{{ element.message }}</td>
+            <ng-container matColumnDef="address">
+                <th mat-header-cell *matHeaderCellDef>ADDRESS</th>
+                <td mat-cell *matCellDef="let element">{{ element.address }}</td>
               </ng-container>
 
               <ng-container matColumnDef="status">
-                <th mat-header-cell *matHeaderCellDef>Status</th>
-                <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+                <th mat-header-cell *matHeaderCellDef>STATUS</th>
+                <td mat-cell *matCellDef="let element">
+                  <div class="action__table">
+                    <button class="btn__status">{{ element.status }}</button>
+                  </div>
+                  </td>
               </ng-container>
-  
+
             <ng-container matColumnDef="action">
               <th mat-header-cell *matHeaderCellDef>Action</th>
               <td mat-cell *matCellDef="let element">
+                
                 <div class="action__table">
+                  <button class="btn__edit" (click)="openEditDialog(element)">
+                    View
+                  </button>
                   <button class="btn__delete" (click)="handleDelete(element.id)">Delete</button>
                 </div>
-              
               </td>
             </ng-container>
   

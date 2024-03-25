@@ -1,6 +1,6 @@
 <div class="dialog__manage">
   <div class="dialog__title">
-    <div class="dialog__title-name"><h4>Create admin</h4></div>
+    <div class="dialog__title-name"><h4>update admin</h4></div>
     <div class="dialog__title-close" mat-button (click)="onNoClick()">
       <svg
         fill-rule="evenodd"
@@ -21,22 +21,16 @@
   <form #adminForm="ngForm" (ngSubmit)="onSubmit(adminForm)">
     <div class="dialog__body">
       <div class="form-group">
-        <label for="username">User Name</label>
+        <label for="user_name">User Name</label>
         <input
           type="text"
           class="form-control"
-          id="username"
-          required
-          [(ngModel)]="admin.username"
-          name="username"
-          #username="ngModel"
+          id="user_name"
+          [(ngModel)]="admin.user_name"
+          name="user_name"
+          #user_name="ngModel"
+          disabled
         />
-        <div
-          *ngIf="username.invalid && username.touched"
-          class="alert alert-danger"
-        >
-          User name is required.
-        </div>
       </div>
 
       <div class="form-group">
@@ -45,15 +39,11 @@
           type="email"
           class="form-control"
           id="email"
-          required
           [(ngModel)]="admin.email"
           name="email"
           #email="ngModel"
-          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+          disabled
         />
-        <div *ngIf="email.invalid && email.touched" class="alert alert-danger">
-          Email is not valid.
-        </div>
       </div>
 
       <div class="form-group">
@@ -61,17 +51,29 @@
         <select
           class="form-control"
           id="role"
-          required
           [(ngModel)]="admin.role"
           name="role"
           #role="ngModel"
+          disabled
         >
-          <option value="superadmin">Super Admin</option>
           <option value="admin">Admin</option>
-          <option value="moderator">Moderator</option>
         </select>
-        <div *ngIf="role.invalid && role.touched" class="alert alert-danger">
-          Role is required.
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          required
+          minlength="6"
+          [(ngModel)]="admin.password"
+          name="password"
+          #password="ngModel"
+        />
+        <div *ngIf="password.invalid" class="alert alert-danger">
+          Password is required and must be at least 6 characters.
         </div>
       </div>
     </div>

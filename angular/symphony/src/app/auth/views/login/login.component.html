@@ -19,18 +19,15 @@
                     </div>
                     <input
                       type="text"
-                      placeholder="Your Email"
-                      [(ngModel)]="email"
-                      name="email"
-                      (input)="handleChange($event, 'email')"
+                      placeholder="User name"
+                      [(ngModel)]="username"
+                      name="username"
+                      (input)="handleChange($event, 'username')"
                     />
                   </div>
-                  <div class="input__field-error" *ngIf="errorForm.email.type === TYPE_ERROR.REQUIRED">
-                   <p > email is required!</p>
+                  <div class="input__field-error" *ngIf="errorForm.username.type === TYPE_ERROR.REQUIRED">
+                   <p > username is required!</p>
                   </div>
-                  <div class="input__field-error" *ngIf="errorForm.email.type === TYPE_ERROR.NOT_VALID">
-                    <p > email is not valid!</p>
-                   </div>
                 </div>
 
                 <div class="content__input-field">

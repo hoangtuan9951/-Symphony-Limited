@@ -1,0 +1,53 @@
+<div class="dialog__manage">
+  <div class="dialog__title">
+    <div class="dialog__title-name"><h4>Edit About us</h4></div>
+  </div>
+  <form #adminForm="ngForm" (ngSubmit)="onSubmit(adminForm)">
+    <div class="dialog__body">
+      <div class="form-group">
+        <label for="image_background">Image background</label>
+        <input
+          type="file"
+          class="form-control"
+          id="image_background"
+          name="image_background"
+          accept="image/*" 
+          (change)="onFileSelected($event)"
+        />
+        <div
+          class="file__upload"
+        >
+        <img *ngIf="detailAboutForm.image_background" [src]="detailAboutForm.image_background" alt="">
+        </div>
+      </div>
+
+    <div class="form-group">
+  <label for="description">Description</label>
+  <textarea
+    class="form-control"
+    id="description"
+    required
+    rows="4"
+    [(ngModel)]="detailAboutForm.description"
+    name="description"
+    #description="ngModel"
+  ></textarea>
+  <div *ngIf="description.invalid" class="alert alert-danger">
+    Description is required.
+  </div>
+</div>
+
+    </div>
+    <div class="dialog__footer">
+      <div class="dialog__footer-btn">
+        <button
+          class="btn__submit"
+          [disabled]="adminForm.invalid"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
