@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { URI_SERVICE } from '../../user/constant/uriInfo';
-import { FAQModel } from '../models/FAQ.model';
+import { FAQCreateModel, FAQModel } from '../models/FAQ.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,8 @@ export class FAQService {
     return this.http.get<FAQModel>(url);
   }
 
-  create(courseModule: FAQModel): Observable<FAQModel> {
-    return this.http.post<FAQModel>(URI_SERVICE + "", courseModule);
+  create(courseModule: FAQCreateModel): Observable<FAQCreateModel> {
+    return this.http.post<FAQCreateModel>(URI_SERVICE + "/api/admin/faqs", courseModule);
   }
 
   update(courseModule: FAQModel): Observable<FAQModel> {

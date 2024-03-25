@@ -4,7 +4,8 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { CourseModules } from '../../../models/CourseModule.model';
-import { FAQModel } from '../../../models/FAQ.model';
+import { FAQCreateModel, FAQModel } from '../../../models/FAQ.model';
+import { FAQService } from '../../../services/faq.service';
 
 export interface DialogData {
   animal: string;
@@ -20,9 +21,17 @@ export interface DialogData {
   styleUrl: './dialog-faq.component.css'
 })
 export class DialogFaqComponent {
+  faq: FAQCreateModel = {
+    question: this.data.question,
+    answer: this.data.answer,
+    active: this.data.active
+  };
+  
   constructor(
+    private apiService: FAQService,
     public dialogRef: MatDialogRef<DialogFaqComponent>,
     @Inject(MAT_DIALOG_DATA) public data: FAQModel,
+    
   ) { }
 
   onNoClick(): void {
@@ -33,14 +42,12 @@ export class DialogFaqComponent {
     console.log("data", this.data);
   }
 
-  faq = {
-    question: this.data.question,
-    answer: this.data.answer,
-    active: this.data.active
-  };
 
   onSubmit(form: any) {
-    console.log('Admin Data:', form.value);
+    this.apiService.create(this.faq).subscribe(response => {
+    }, error => {
+      console.error('Error:', error);
+    });
   }
 }
 
