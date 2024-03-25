@@ -12,7 +12,7 @@ export class CourseModulesService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<CourseModules[]> {
-    return this.http.get<CourseModules[]>(URI_SERVICE);
+    return this.http.get<CourseModules[]>(URI_SERVICE + "/api/admin/course-modules");
   }
 
   get(id: number): Observable<CourseModules> {
@@ -20,13 +20,13 @@ export class CourseModulesService {
     return this.http.get<CourseModules>(url);
   }
 
-  create(courseModule: CourseModules): Observable<CourseModules> {
-    return this.http.post<CourseModules>(URI_SERVICE + "", courseModule);
+  create(courseModule: any): Observable<any> {
+    return this.http.post<any>(URI_SERVICE + "", courseModule);
   }
 
-  update(courseModule: CourseModules): Observable<CourseModules> {
+  update(courseModule: any): Observable<any> {
     const url = `${URI_SERVICE + ""}/${courseModule.id}`;
-    return this.http.put<CourseModules>(url, courseModule);
+    return this.http.put<any>(url, courseModule);
   }
 
   delete(id: number): Observable<any> {

@@ -4,6 +4,7 @@ import {
     MatDialogRef,
 } from '@angular/material/dialog';
 import { CourseModules } from '../../../models/CourseModule.model';
+import { CourseModulesService } from '../../../services/courseModule.service';
 
 export interface DialogData {
     animal: string;
@@ -20,26 +21,62 @@ export interface DialogData {
 })
 export class DialogCourseModuleComponent {
     constructor(
+        private service: CourseModulesService,
         public dialogRef: MatDialogRef<DialogCourseModuleComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: CourseModules,
+        @Inject(MAT_DIALOG_DATA) public data: any,
     ) { }
 
     onNoClick(): void {
         this.dialogRef.close();
     }
 
+    module = {
+        id: 0,
+        module_name: '',
+        amount: '',
+        active: true,
+    };
+    private _imageSelected: File | null = null;
+    private is_edit: boolean = false;
+
     ngOnInit(): void {
-        console.log("data", this.data);
+        if (this.data.id) {
+            this.is_edit = true;
+            this.module.module_name = this.data.module_name;
+            this.module.amount = this.data.amount;
+            this.module.active = this.data.active;
+            this.module.id = this.data.id
+
+        }
     }
 
-    module = {
-        module_name: this.data.module_name,
-        amount: this.data.amount,
-        active: this.data.active
-    };
+    async onSubmit(form: any) {
 
-    onSubmit(form: any) {
-        console.log('Admin Data:', form.value);
+        try {
+
+            if (this.is_edit) {
+                const body = {
+                    id:this.module.id,
+                    module_name: this.module.module_name,
+                    amount: this.module.amount,
+                    active: this.module.active
+                };
+
+                await this.service.update(body);
+            } else {
+                const body = {
+                    module_name: this.module.module_name,
+                    amount: this.module.amount,
+                    active: this.module.active
+                };
+                await this.service.create(body);
+            }
+
+            await this.data.callback();
+            this.onNoClick();
+        } catch (error) {
+            throw new Error((error as Error).message);
+        }
     }
 }
 
