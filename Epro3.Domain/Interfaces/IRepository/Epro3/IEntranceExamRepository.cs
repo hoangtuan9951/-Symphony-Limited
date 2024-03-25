@@ -10,5 +10,7 @@ namespace Epro3.Domain.Interfaces.IRepository.Epro3
 {
     public interface IEntranceExamRepository : IGenericRepository<EntranceExam>
     {
+        Task<EntranceExam> GetLatestEntranceExamDetail();
+        Task<EntranceExam> GetLastOverEntranceExamDetail();
     }
 }

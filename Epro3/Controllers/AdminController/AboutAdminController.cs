@@ -67,7 +67,7 @@ namespace Epro3.Controllers.AdminController
         {
             try
             {
-                await _mediator.Send(new DeleteCourseCommand { Id = id });
+                await _mediator.Send(new DeleteAboutCommand { Id = id });
                 return new ObjectResult(null) { StatusCode = StatusCodes.Status204NoContent };
             }
             catch (Exception e)

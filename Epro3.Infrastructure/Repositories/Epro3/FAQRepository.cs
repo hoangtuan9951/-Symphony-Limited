@@ -15,5 +15,10 @@ namespace Epro3.Infrastructure.Repositories.Epro3
         public FAQRepository(ApplicationDatabaseContext context) : base(context)
         {
         }
+
+        public async Task<IEnumerable<FAQ>> GetAllEnableFAQ()
+        {
+            return await _context.FAQs.Where(e => e.Active == true).ToListAsync();
+        }
     }
 }

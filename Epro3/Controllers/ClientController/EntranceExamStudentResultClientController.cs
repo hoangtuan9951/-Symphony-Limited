@@ -1,4 +1,5 @@
-﻿using Epro3.Application.Features.Queries.EntranceExamStudentResultQuery;
+﻿using Epro3.Application.Features.Queries.EntranceExamQuery;
+using Epro3.Application.Features.Queries.EntranceExamStudentResultQuery;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,11 +16,11 @@ namespace Epro3.Controllers.ClientController
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllEntranceExamStudentResult()
+        public async Task<IActionResult> GetLatestEntranceExam()
         {
             try
             {
-                var responseData = await _mediator.Send(new GetAllEntranceExamStudentResultClientQuery());
+                var responseData = await _mediator.Send(new GetLatestEntranceExamClientQuery());
                 return Ok(responseData);
             }
             catch (Exception e)
@@ -28,12 +29,26 @@ namespace Epro3.Controllers.ClientController
             }
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetEntranceExamStudentResultDetail(int id)
+        [HttpGet("last-over")]
+        public async Task<IActionResult> GetLastOverEntranceExam()
         {
             try
             {
-                var responseData = await _mediator.Send(new GetEntranceExamStudentResultByIdClientQuery { Id = id });
+                var responseData = await _mediator.Send(new GetLastOverEntranceExamClientQuery());
+                return Ok(responseData);
+            }
+            catch (Exception e)
+            {
+                return new ObjectResult(new { message = e.Message }) { StatusCode = 500 };
+            }
+        }
+
+        [HttpGet("result")]
+        public async Task<IActionResult> GetEntranceExamStudentResultDetail(string studentRollNumber)
+        {
+            try
+            {
+                var responseData = await _mediator.Send(new GetEntranceExamStudentResultByStudentRollNumberClientQuery { StudentRollNumber = studentRollNumber });
                 return Ok(responseData);
             }
             catch (Exception e)

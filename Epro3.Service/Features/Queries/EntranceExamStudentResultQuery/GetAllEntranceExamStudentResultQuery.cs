@@ -30,22 +30,4 @@ namespace Epro3.Application.Features.Queries.EntranceExamStudentResultQuery
             }
         }
     }
-
-    public class GetAllEntranceExamStudentResultClientQuery : IRequest<IEnumerable<EntranceExamStudentResultClientDTO>>
-    {
-        public class GetAllEntranceExamStudentResultClientQueryHandler : IRequestHandler<GetAllEntranceExamStudentResultClientQuery, IEnumerable<EntranceExamStudentResultClientDTO>>
-        {
-            private readonly IUnitOfWork _unitOfWork;
-            private readonly IMapper _mapper;
-            public GetAllEntranceExamStudentResultClientQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
-            {
-                _unitOfWork = unitOfWork;
-                _mapper = mapper;
-            }
-            public async Task<IEnumerable<EntranceExamStudentResultClientDTO>> Handle(GetAllEntranceExamStudentResultClientQuery command, CancellationToken cancellationToken)
-            {
-                return _mapper.Map<IEnumerable<EntranceExamStudentResultClientDTO>>(await _unitOfWork.EntranceExamStudentResults.GetAll());
-            }
-        }
-    }
 }

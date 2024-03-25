@@ -18,8 +18,10 @@ namespace Epro3.Infrastructure.Configurations
             builder.Property(e => e.Id).ValueGeneratedOnAdd();
             builder.Property(e => e.StartedDate).HasColumnType("TIMESTAMP");
             builder.Property(e => e.EndedDate).HasColumnType("TIMESTAMP");
-            builder.Property(e => e.FeeChagreDate).HasColumnType("TIMESTAMP");
+            builder.Property(e => e.FeeChargeDate).HasColumnType("TIMESTAMP");
             builder.Property(e => e.CreatedDate).HasColumnType("TIMESTAMP");
+            builder.HasMany(e => e.Classes).WithOne(e => e.Course).HasForeignKey(e => e.CourseId);
+            builder.HasMany(e => e.CourseModules).WithOne(e => e.Course).HasForeignKey(e => e.CourseId);
         }
     }
 }

@@ -21,8 +21,8 @@ namespace Epro3.Application.Features.Commands.CourseCommand
         public decimal Discount { get; set; }
         public required string Description { get; set; }
         public required string CourseDetail { get; set; }
-        public required IFormFile Thumbnail { get; set; }
-        public required IFormFile BackGroundImage { get; set; }
+        public IFormFile? Thumbnail { get; set; }
+        public IFormFile? BackGroundImage { get; set; }
         public DateTime StartedDate { get; set; }
         public DateTime EndedDate { get; set; }
         public bool Active { get; set; }
@@ -40,32 +40,40 @@ namespace Epro3.Application.Features.Commands.CourseCommand
 
                 Course data = await _unitOfWork.Courses.GetById(command.Id);
 
-                //delete old thumbnail image
-                string oldImageName = data.Thumbnail.Split('/').Last();
-                string oldImagePath = Path.Combine(_env.ContentRootPath, "volume/Resource/Image/Course", oldImageName);
-                File.Delete(oldImagePath);
-
-                //delete old background image
-                oldImageName = data.BackGroundImage.Split('/').Last();
-                oldImagePath = Path.Combine(_env.ContentRootPath, "volume/Resource/Image/Course", oldImageName);
-                File.Delete(oldImagePath);
-
-                //save thumbnail image file
-                string thumbnailExtension = Path.GetExtension(ContentDispositionHeaderValue.Parse(command.Thumbnail.ContentDisposition).FileName!.Trim('"'));
-                string thumbnailFileName = FileHelper.CreateCourseThumbnailFileName(command.Name, thumbnailExtension);
-                string thumbnailFilepath = Path.Combine(_env.ContentRootPath, "volume/Resource/Image/Course", thumbnailFileName);
-                using (var stream = new FileStream(thumbnailFilepath, FileMode.Create))
+                if (command.Thumbnail != null)
                 {
-                    await command.Thumbnail.CopyToAsync(stream);
+                    //delete old thumbnail image
+                    string oldImageName = data.Thumbnail.Split('/').Last();
+                    string oldImagePath = Path.Combine(_env.ContentRootPath, "volume/Resource/Image/Course", oldImageName);
+                    File.Delete(oldImagePath);
+
+                    //save thumbnail image file
+                    string thumbnailExtension = Path.GetExtension(ContentDispositionHeaderValue.Parse(command.Thumbnail.ContentDisposition).FileName!.Trim('"'));
+                    string thumbnailFileName = FileHelper.CreateCourseThumbnailFileName(command.Name, thumbnailExtension);
+                    string thumbnailFilepath = Path.Combine(_env.ContentRootPath, "volume/Resource/Image/Course", thumbnailFileName);
+                    using (var stream = new FileStream(thumbnailFilepath, FileMode.Create))
+                    {
+                        await command.Thumbnail.CopyToAsync(stream);
+                    }
+                    data.Thumbnail = FileHelper.CourseImageFileUri(thumbnailFileName);
                 }
 
-                //save background image file
-                string bgExtension = Path.GetExtension(ContentDispositionHeaderValue.Parse(command.BackGroundImage.ContentDisposition).FileName!.Trim('"'));
-                string bgFileName = FileHelper.CreateCourseBackgroundFileName(command.Name, bgExtension);
-                string bgFilepath = Path.Combine(_env.ContentRootPath, "volume/Resource/Image/Course", bgFileName);
-                using (var stream = new FileStream(bgFilepath, FileMode.Create))
+                if(command.BackGroundImage != null)
                 {
-                    await command.BackGroundImage.CopyToAsync(stream);
+                    //delete old background image
+                    string oldImageName = data.BackGroundImage.Split('/').Last();
+                    string oldImagePath = Path.Combine(_env.ContentRootPath, "volume/Resource/Image/Course", oldImageName);
+                    File.Delete(oldImagePath);
+
+                    //save background image file
+                    string bgExtension = Path.GetExtension(ContentDispositionHeaderValue.Parse(command.BackGroundImage.ContentDisposition).FileName!.Trim('"'));
+                    string bgFileName = FileHelper.CreateCourseBackgroundFileName(command.Name, bgExtension);
+                    string bgFilepath = Path.Combine(_env.ContentRootPath, "volume/Resource/Image/Course", bgFileName);
+                    using (var stream = new FileStream(bgFilepath, FileMode.Create))
+                    {
+                        await command.BackGroundImage.CopyToAsync(stream);
+                    }
+                    data.BackGroundImage = FileHelper.CourseImageFileUri(bgFileName);
                 }
 
                 data.Name = command.Name;
@@ -75,8 +83,6 @@ namespace Epro3.Application.Features.Commands.CourseCommand
                 data.Active = command.Active;
                 data.StartedDate = command.StartedDate;
                 data.EndedDate = command.EndedDate;
-                data.Thumbnail = FileHelper.CourseImageFileUri(thumbnailFileName);
-                data.BackGroundImage = FileHelper.CourseImageFileUri(bgFileName);
 
                 await _unitOfWork.Complete();
                 return Unit.Value;

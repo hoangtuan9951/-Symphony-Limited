@@ -29,23 +29,4 @@ namespace Epro3.Application.Features.Queries.EntranceExamQuery
             }
         }
     }
-
-    public class GetEntranceExamByIdClientQuery : IRequest<EntranceExamDetailClientDTO>
-    {
-        public int Id { get; set; }
-        public class GetEntranceExamByIdClientQueryHandler : IRequestHandler<GetEntranceExamByIdClientQuery, EntranceExamDetailClientDTO>
-        {
-            private readonly IUnitOfWork _unitOfWork;
-            private readonly IMapper _mapper;
-            public GetEntranceExamByIdClientQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
-            {
-                _unitOfWork = unitOfWork;
-                _mapper = mapper;
-            }
-            public async Task<EntranceExamDetailClientDTO> Handle(GetEntranceExamByIdClientQuery command, CancellationToken cancellationToken)
-            {
-                return _mapper.Map<EntranceExamDetailClientDTO>(await _unitOfWork.EntranceExams.GetById(command.Id));
-            }
-        }
-    }
 }

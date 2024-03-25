@@ -11,20 +11,21 @@ using System.Threading.Tasks;
 
 namespace Epro3.Application.Features.Queries.EntranceExamQuery
 {
-    public class GetAllEntranceExamAdminQuery : IRequest<IEnumerable<EntranceExamAdminDTO>>
+    public class GetLatestEntranceExamClientQuery : IRequest<EntranceExamClientDTO>
     {
-        public class GetAllEntranceExamAdminQueryHandler : IRequestHandler<GetAllEntranceExamAdminQuery, IEnumerable<EntranceExamAdminDTO>>
+        public int Id { get; set; }
+        public class GetLatestEntranceExamQueryHandler : IRequestHandler<GetLatestEntranceExamClientQuery, EntranceExamClientDTO>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
-            public GetAllEntranceExamAdminQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+            public GetLatestEntranceExamQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
             {
                 _unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
-            public async Task<IEnumerable<EntranceExamAdminDTO>> Handle(GetAllEntranceExamAdminQuery command, CancellationToken cancellationToken)
+            public async Task<EntranceExamClientDTO> Handle(GetLatestEntranceExamClientQuery command, CancellationToken cancellationToken)
             {
-                return _mapper.Map<IEnumerable<EntranceExamAdminDTO>>(await _unitOfWork.EntranceExams.GetAll());
+                return _mapper.Map<EntranceExamClientDTO>(await _unitOfWork.EntranceExams.GetById(command.Id));
             }
         }
     }

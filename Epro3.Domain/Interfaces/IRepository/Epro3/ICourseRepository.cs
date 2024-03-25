@@ -10,6 +10,7 @@ namespace Epro3.Domain.Interfaces.IRepository.Epro3
 {
     public interface ICourseRepository : IGenericRepository<Course>
     {
+        Task<IEnumerable<Course>> GetAllWithCourseModule();
         Task<IEnumerable<Course>> GetSixLatestCourse();
     }
 }

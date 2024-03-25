@@ -22,7 +22,7 @@ namespace Epro3.Domain.Entities
         public DateTime EndedDate { get; set;}
         public decimal Fee { get; set; }
         public DateTime CreatedDate { get; set; }
-        public DateTime FeeChagreDate { get; set; }
+        public DateTime FeeChargeDate { get; set; }
         public bool Active { get; set; }
         public ICollection<CourseModule>? CourseModules { get; set; }
         public ICollection<Class>? Classes { get; set; }

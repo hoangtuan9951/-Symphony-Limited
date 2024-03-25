@@ -11,5 +11,6 @@ namespace Epro3.Application.DTOs.ClientDTOs.EntranceExam
         public int Id { get; set; }
         public int Name { get; set; }
         public DateTime StartTime { get; set; }
+        public List<EntranceExamDetailDataDTO>? DTO { get; set; }
     }
 }

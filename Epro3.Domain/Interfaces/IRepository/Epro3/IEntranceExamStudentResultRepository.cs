@@ -10,5 +10,7 @@ namespace Epro3.Domain.Interfaces.IRepository.Epro3
 {
     public interface IEntranceExamStudentResultRepository : IGenericRepository<EntranceExamStudentResult>
     {
+        Task<IEnumerable<EntranceExamStudentResult>> GetAllWithInclude();
+        Task<EntranceExamStudentResult> GetDetailWithInclude(string studentRollNumber);
     }
 }

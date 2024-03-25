@@ -18,7 +18,7 @@ namespace Epro3.Application.Features.Commands.AboutCommand
     {
         public int Id { get; set; }
         public string Description { get; set; } = string.Empty;
-        public required IFormFile BackgroundImage { get; set; }
+        public IFormFile? BackgroundImage { get; set; }
         public class UpdateAboutCommandHandler : IRequestHandler<UpdateAboutCommand, Unit>
         {
             private readonly IUnitOfWork _unitOfWork;
@@ -33,21 +33,24 @@ namespace Epro3.Application.Features.Commands.AboutCommand
 
                 About data = await _unitOfWork.Abouts.GetById(command.Id);
 
-                string oldImageName = data.BackgroundImage.Split('/').Last();
-                string oldImagePath = Path.Combine(_env.ContentRootPath, "volume/Resource/Image/Other", oldImageName);
-                File.Delete(oldImagePath);
-
-                string extension = Path.GetExtension(ContentDispositionHeaderValue.Parse(command.BackgroundImage.ContentDisposition).FileName!.Trim('"'));
-                string fileName = FileHelper.CreateImageFileName("about", extension);
-                string filepath = Path.Combine(_env.ContentRootPath, "volume/Resource/Image/Other", fileName);
-                using (var stream = new FileStream(filepath, FileMode.Create))
+                if(command.BackgroundImage != null)
                 {
-                    await command.BackgroundImage.CopyToAsync(stream);
+                    string oldImageName = data.BackgroundImage.Split('/').Last();
+                    string oldImagePath = Path.Combine(_env.ContentRootPath, "volume/Resource/Image/Other", oldImageName);
+                    File.Delete(oldImagePath);
+
+                    string extension = Path.GetExtension(ContentDispositionHeaderValue.Parse(command.BackgroundImage.ContentDisposition).FileName!.Trim('"'));
+                    string fileName = FileHelper.CreateImageFileName("about", extension);
+                    string filepath = Path.Combine(_env.ContentRootPath, "volume/Resource/Image/Other", fileName);
+                    using (var stream = new FileStream(filepath, FileMode.Create))
+                    {
+                        await command.BackgroundImage.CopyToAsync(stream);
+                    }
+                    data.BackgroundImage = FileHelper.ImageFileUri(fileName);
                 }
 
                 data.Description = command.Description;
                 data.LastUpdatedDate = DateTime.Now;
-                data.BackgroundImage = FileHelper.ImageFileUri(fileName);
 
                 await _unitOfWork.Complete();
                 return Unit.Value;

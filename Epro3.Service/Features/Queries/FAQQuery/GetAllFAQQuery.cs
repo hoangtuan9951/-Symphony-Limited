@@ -42,7 +42,7 @@ namespace Epro3.Application.Features.Queries.FAQQuery
             }
             public async Task<IEnumerable<FAQClientDTO>> Handle(GetAllFAQClientQuery command, CancellationToken cancellationToken)
             {
-                return _mapper.Map<IEnumerable<FAQClientDTO>>(await _unitOfWork.FAQs.GetAll());
+                return _mapper.Map<IEnumerable<FAQClientDTO>>(await _unitOfWork.FAQs.GetAllEnableFAQ());
             }
         }
     }

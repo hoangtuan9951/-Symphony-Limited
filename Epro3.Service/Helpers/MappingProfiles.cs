@@ -31,10 +31,10 @@ namespace Epro3.Application.Helpers
             #endregion
 
             #region Class
-            CreateMap<Class, ClassClientDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course!.Name));
-            CreateMap<Class, ClassDetailClientDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course!.Name));
-            CreateMap<Class, ClassAdminDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course!.Name));
-            CreateMap<Class, ClassDetailAdminDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course!.Name));
+            CreateMap<Class, ClassClientDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course.Name));
+            CreateMap<Class, ClassDetailClientDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course.Name));
+            CreateMap<Class, ClassAdminDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course.Name));
+            CreateMap<Class, ClassDetailAdminDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course.Name));
             #endregion
 
             #region Contact
@@ -53,31 +53,30 @@ namespace Epro3.Application.Helpers
 
             #region CourseModule
             CreateMap<CourseModule, CourseModuleClientDTO>();
-            CreateMap<CourseModule, CourseModuleDetailClientDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course!.Name));
-            CreateMap<CourseModule, CourseModuleAdminDTO>();
-            CreateMap<CourseModule, CourseModuleDetailAdminDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course!.Name));
+            CreateMap<CourseModule, CourseModuleDetailClientDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course.Name));
+            CreateMap<CourseModule, CourseModuleAdminDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course.Name));
+            CreateMap<CourseModule, CourseModuleDetailAdminDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course.Name));
             #endregion
 
             #region EntranceExam
             CreateMap<EntranceExam, EntranceExamClientDTO>();
-            CreateMap<EntranceExam, EntranceExamDetailClientDTO>();
             CreateMap<EntranceExam, EntranceExamAdminDTO>();
             CreateMap<EntranceExam, EntranceExamDetailAdminDTO>();
             #endregion
 
             #region EntranceExamStudentResult
-            CreateMap<EntranceExamStudentResult, EntranceExamStudentResultClientDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course!.Name))
-                                                                                      .ForMember(dest => dest.Student, opt => opt.MapFrom(src => src.Student!.Name))
-                                                                                      .ForMember(dest => dest.EntranceExam, opt => opt.MapFrom(src => src.EntranceExam!.Name));
-            CreateMap<EntranceExamStudentResult, EntranceExamStudentResultDetailClientDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course!.Name))
-                                                                                            .ForMember(dest => dest.Student, opt => opt.MapFrom(src => src.Student!.Name))
-                                                                                            .ForMember(dest => dest.EntranceExam, opt => opt.MapFrom(src => src.EntranceExam!.Name));
-            CreateMap<EntranceExamStudentResult, EntranceExamStudentResultAdminDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course!.Name))
-                                                                                     .ForMember(dest => dest.Student, opt => opt.MapFrom(src => src.Student!.Name))
-                                                                                     .ForMember(dest => dest.EntranceExam, opt => opt.MapFrom(src => src.EntranceExam!.Name));
-            CreateMap<EntranceExamStudentResult, EntranceExamStudentResultDetailAdminDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course!.Name))
-                                                                                           .ForMember(dest => dest.Student, opt => opt.MapFrom(src => src.Student!.Name))
-                                                                                           .ForMember(dest => dest.EntranceExam, opt => opt.MapFrom(src => src.EntranceExam!.Name));
+            CreateMap<EntranceExamStudentResult, EntranceExamStudentResultClientDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course.Name))
+                                                                                      .ForMember(dest => dest.Student, opt => opt.MapFrom(src => src.Student.Name))
+                                                                                      .ForMember(dest => dest.EntranceExam, opt => opt.MapFrom(src => src.EntranceExam.Name));
+            CreateMap<EntranceExamStudentResult, EntranceExamStudentResultDetailClientDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course.Name))
+                                                                                            .ForMember(dest => dest.Student, opt => opt.MapFrom(src => src.Student.Name))
+                                                                                            .ForMember(dest => dest.EntranceExam, opt => opt.MapFrom(src => src.EntranceExam.Name));
+            CreateMap<EntranceExamStudentResult, EntranceExamStudentResultAdminDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course.Name))
+                                                                                     .ForMember(dest => dest.Student, opt => opt.MapFrom(src => src.Student.Name))
+                                                                                     .ForMember(dest => dest.EntranceExam, opt => opt.MapFrom(src => src.EntranceExam.Name));
+            CreateMap<EntranceExamStudentResult, EntranceExamStudentResultDetailAdminDTO>().ForMember(dest => dest.Course, opt => opt.MapFrom(src => src.Course.Name))
+                                                                                           .ForMember(dest => dest.Student, opt => opt.MapFrom(src => src.Student.Name))
+                                                                                           .ForMember(dest => dest.EntranceExam, opt => opt.MapFrom(src => src.EntranceExam.Name));
             #endregion
 
             #region FAQ

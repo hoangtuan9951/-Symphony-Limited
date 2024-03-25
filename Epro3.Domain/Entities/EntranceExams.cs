@@ -11,5 +11,6 @@ namespace Epro3.Domain.Entities
         public int Id { get; set; }
         public int Name { get; set; }
         public DateTime StartTime { get; set; }
+        public ICollection<EntranceExamStudentResult>? EntranceExamStudentResults { get; set; }
     }
 }

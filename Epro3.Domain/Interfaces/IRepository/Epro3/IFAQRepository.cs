@@ -10,5 +10,6 @@ namespace Epro3.Domain.Interfaces.IRepository.Epro3
 {
     public interface IFAQRepository : IGenericRepository<FAQ>
     {
+        Task<IEnumerable<FAQ>> GetAllEnableFAQ();
     }
 }

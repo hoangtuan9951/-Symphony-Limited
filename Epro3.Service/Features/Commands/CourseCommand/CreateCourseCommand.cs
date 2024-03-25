@@ -25,8 +25,11 @@ namespace Epro3.Application.Features.Commands.CourseCommand
         public required string CourseDetail { get; set; }
         public required IFormFile Thumbnail { get; set; }
         public required IFormFile BackGroundImage { get; set; }
+        public decimal Fee { get; set; }
+        public decimal GradePass { get; set; }
         public DateTime StartedDate { get; set; }
         public DateTime EndedDate { get; set; }
+        public DateTime FeeChargeDate { get; set; }
         public bool Active { get; set; }
 
         public class CreateCourseCommandHandler : IRequestHandler<CreateCourseCommand, Unit>
@@ -72,7 +75,10 @@ namespace Epro3.Application.Features.Commands.CourseCommand
                     EndedDate = command.EndedDate,
                     Thumbnail = FileHelper.CourseImageFileUri(thumbnailFileName),
                     BackGroundImage = FileHelper.CourseImageFileUri(bgFileName),
-                    Slug = SlugHelper.CourseSlugGenerate(command.Name)
+                    Slug = SlugHelper.CourseSlugGenerate(command.Name),
+                    Fee = command.Fee,
+                    FeeChargeDate = command.FeeChargeDate,
+                    GradePass = command.GradePass
                 };
                 _unitOfWork.Courses.Create(course);
                 await _unitOfWork.Complete();

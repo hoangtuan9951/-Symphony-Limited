@@ -15,25 +15,11 @@ namespace Epro3.Controllers.ClientController
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllEntranceExam()
+        public async Task<IActionResult> GetLatestEntranceExam()
         {
             try
             {
-                var responseData = await _mediator.Send(new GetAllEntranceExamClientQuery());
-                return Ok(responseData);
-            }
-            catch (Exception e)
-            {
-                return new ObjectResult(new { message = e.Message }) { StatusCode = 500 };
-            }
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetEntranceExamDetail(int id)
-        {
-            try
-            {
-                var responseData = await _mediator.Send(new GetEntranceExamByIdClientQuery { Id = id });
+                var responseData = await _mediator.Send(new GetLatestEntranceExamClientQuery());
                 return Ok(responseData);
             }
             catch (Exception e)

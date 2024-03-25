@@ -25,7 +25,7 @@ namespace Epro3.Application.Features.Queries.ClassQuery
             }
             public async Task<ClassDetailAdminDTO> Handle(GetClassByIdAdminQuery command, CancellationToken cancellationToken)
             {
-                return _mapper.Map<ClassDetailAdminDTO>(await _unitOfWork.Classes.GetById(command.Id));
+                return _mapper.Map<ClassDetailAdminDTO>(await _unitOfWork.Classes.GetDetailWithInclude(command.Id));
             }
         }
     }
@@ -44,7 +44,7 @@ namespace Epro3.Application.Features.Queries.ClassQuery
             }
             public async Task<ClassDetailClientDTO> Handle(GetClassByIdClientQuery command, CancellationToken cancellationToken)
             {
-                return _mapper.Map<ClassDetailClientDTO>(await _unitOfWork.Classes.GetById(command.Id));
+                return _mapper.Map<ClassDetailClientDTO>(await _unitOfWork.Classes.GetDetailWithInclude(command.Id));
             }
         }
     }

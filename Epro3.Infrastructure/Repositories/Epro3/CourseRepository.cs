@@ -16,6 +16,13 @@ namespace Epro3.Infrastructure.Repositories.Epro3
         {
         }
 
+        public async Task<IEnumerable<Course>> GetAllWithCourseModule()
+        {
+            return await _context.Set<Course>()
+                                 .Include(e => e.CourseModules)
+                                 .ToListAsync();
+        }
+
         public async Task<IEnumerable<Course>> GetSixLatestCourse()
         {
             return await _context.Set<Course>()

@@ -12,7 +12,7 @@ namespace Epro3.Application.Features.Commands.StudentCommand
 {
     public class DeleteStudentCommand : IRequest<Unit>
     {
-        public int Id { get; set; }
+        public required string StudentRollNumber { get; set; }
         public class DeleteStudentCommandHandler : IRequestHandler<DeleteStudentCommand, Unit>
         {
             private readonly IUnitOfWork _unitOfWork;
@@ -22,9 +22,7 @@ namespace Epro3.Application.Features.Commands.StudentCommand
             }
             public async Task<Unit> Handle(DeleteStudentCommand command, CancellationToken cancellationToken)
             {
-                Student data = await _unitOfWork.Students.GetById(command.Id);
-                _unitOfWork.Students.Delete(data);
-                await _unitOfWork.Complete();
+                await _unitOfWork.Students.DeleteStudent(command.StudentRollNumber);
                 return Unit.Value;
             }
         }

@@ -10,5 +10,7 @@ namespace Epro3.Domain.Interfaces.IRepository.Epro3
 {
     public interface IClassRepository : IGenericRepository<Class>
     {
+        Task<IEnumerable<Class>> GetAllWithInclude();
+        Task<Class> GetDetailWithInclude(int id);
     }
 }

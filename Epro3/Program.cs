@@ -21,8 +21,10 @@ using Epro3.Application.Features.Queries.FAQQuery;
 using Epro3.Application.Features.Queries.StudentQuery;
 using Epro3.Application.Helpers;
 using Epro3.Domain.Interfaces.IRepository.Architecture;
+using Epro3.Domain.Interfaces.IRepository.Epro3;
 using Epro3.Infrastructure.DBContext;
 using Epro3.Infrastructure.Repositories;
+using Epro3.Infrastructure.Repositories.Epro3;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -170,16 +172,15 @@ builder.Services.AddMediatR(typeof(GetCourseByIdClientQuery).GetTypeInfo().Assem
 builder.Services.AddMediatR(typeof(GetSixLatestCourseClientQuery).GetTypeInfo().Assembly);
 
 builder.Services.AddMediatR(typeof(GetAllEntranceExamAdminQuery).GetTypeInfo().Assembly);
-builder.Services.AddMediatR(typeof(GetAllEntranceExamClientQuery).GetTypeInfo().Assembly);
+builder.Services.AddMediatR(typeof(GetLatestEntranceExamClientQuery).GetTypeInfo().Assembly);
 
 builder.Services.AddMediatR(typeof(GetEntranceExamByIdAdminQuery).GetTypeInfo().Assembly);
-builder.Services.AddMediatR(typeof(GetEntranceExamByIdClientQuery).GetTypeInfo().Assembly);
 
 builder.Services.AddMediatR(typeof(GetAllEntranceExamStudentResultAdminQuery).GetTypeInfo().Assembly);
-builder.Services.AddMediatR(typeof(GetAllEntranceExamStudentResultClientQuery).GetTypeInfo().Assembly);
+
+builder.Services.AddMediatR(typeof(GetLastOverEntranceExamClientQuery).GetTypeInfo().Assembly);
 
 builder.Services.AddMediatR(typeof(GetEntranceExamStudentResultByIdAdminQuery).GetTypeInfo().Assembly);
-builder.Services.AddMediatR(typeof(GetEntranceExamStudentResultByIdClientQuery).GetTypeInfo().Assembly);
 
 builder.Services.AddMediatR(typeof(GetAllFAQAdminQuery).GetTypeInfo().Assembly);
 builder.Services.AddMediatR(typeof(GetAllFAQClientQuery).GetTypeInfo().Assembly);
@@ -195,6 +196,7 @@ builder.Services.AddMediatR(typeof(GetStudentByIdClientQuery).GetTypeInfo().Asse
 
 //UnitOfWork Dependency Injection
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IStudentIdRepository, StudentIdRepository>();
 
 //DbContext Denpendency Injection
 builder.Services.AddScoped<ApplicationDatabaseContext, ApplicationDatabaseContext>();

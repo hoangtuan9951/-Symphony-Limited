@@ -22,6 +22,7 @@ namespace Epro3.Infrastructure.DBContext
         public DbSet<EntranceExamStudentResult> EntranceExamStudentResults { get; set; }
         public DbSet<FAQ> FAQs { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<StudentId> StudentIds { get; set; }
         public ApplicationDatabaseContext(DbContextOptions<ApplicationDatabaseContext> options) : base(options)
         {
         }
@@ -37,6 +38,8 @@ namespace Epro3.Infrastructure.DBContext
             modelBuilder.ApplyConfiguration(new EntranceExamConfiguration());
             modelBuilder.ApplyConfiguration(new EntranceExamStudentResultConfiguration());
             modelBuilder.ApplyConfiguration(new FAQConfiguration());
+            modelBuilder.ApplyConfiguration(new StudentIdConfiguration());
+            modelBuilder.ApplyConfiguration(new StudentConfiguration());
             modelBuilder.SeedData();
         }
     }

@@ -76,12 +76,12 @@ namespace Epro3.Controllers.AdminController
             }
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete]
+        public async Task<IActionResult> Delete(string studentRollNumber)
         {
             try
             {
-                await _mediator.Send(new DeleteStudentCommand { Id = id });
+                await _mediator.Send(new DeleteStudentCommand { StudentRollNumber = studentRollNumber });
                 return new ObjectResult(null) { StatusCode = StatusCodes.Status204NoContent };
             }
             catch (Exception e)

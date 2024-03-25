@@ -13,7 +13,7 @@ namespace Epro3.Application.Features.Commands.EntranceExamStudentResultCommand
 {
     public class CreateEntranceExamStudentResultCommand : IRequest<Unit>
     {
-        public int StudentId { get; set; }
+        public string StudentRollNumber { get; set; } = string.Empty;
         public int EntrenceExamId { get; set; }
         public int CourseId { get; set; }
         public int Grade { get; set; }
@@ -30,10 +30,10 @@ namespace Epro3.Application.Features.Commands.EntranceExamStudentResultCommand
             {
                 EntranceExamStudentResult data = new EntranceExamStudentResult
                 {
-                    StudentId = command.StudentId,
+                    StudentRollNumber = command.StudentRollNumber,
                     CourseId = command.CourseId,
                     Grade = command.Grade,
-                    EntrenceExamId = command.EntrenceExamId
+                    EntranceExamId = command.EntrenceExamId
                 };
                 _unitOfWork.EntranceExamStudentResults.Create(data);
                 await _unitOfWork.Complete();

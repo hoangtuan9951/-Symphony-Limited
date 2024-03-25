@@ -1,6 +1,8 @@
 ﻿using Epro3.Application.Features.Commands.ClassCommand;
 using Epro3.Domain.Entities;
 using Epro3.Domain.Interfaces.IRepository.Architecture;
+using Epro3.Domain.Interfaces.IRepository.Epro3;
+using Epro3.Infrastructure.Repositories.Epro3;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using System;
@@ -13,26 +15,27 @@ namespace Epro3.Application.Features.Commands.StudentCommand
 {
     public class CreateStudentCommand : IRequest<Unit>
     {
-        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string RollNumber { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
 
         public class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand, Unit>
         {
             private readonly IUnitOfWork _unitOfWork;
-            public CreateStudentCommandHandler(IUnitOfWork unitOfWork, IWebHostEnvironment env)
+            private readonly IStudentIdRepository _studentIdRepository;
+            public CreateStudentCommandHandler(IUnitOfWork unitOfWork, IStudentIdRepository studentIdRepository)
             {
                 _unitOfWork = unitOfWork;
+                _studentIdRepository = studentIdRepository;
             }
 
             public async Task<Unit> Handle(CreateStudentCommand command, CancellationToken cancellationToken)
             {
+                StudentId studentId = new StudentId();
                 Student data = new Student
                 {
                     Name = command.Name,
                     Email = command.Email,
-                    RollNumber = command.RollNumber,
+                    RollNumber = "C2009L" + await _studentIdRepository.Create(studentId),
                     CreatedDate = DateTime.Now,
                     LastUpdatedDate = DateTime.Now
                 };

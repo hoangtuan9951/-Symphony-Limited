@@ -18,6 +18,7 @@ namespace Epro3.Application.Features.Commands.ClassCommand
         public string Name { get; set; } = string.Empty;
         public int Amount { get; set; }
         public DateTime StartTime { get; set; }
+        public int CourseId { get; set; }
 
         public class CreateClassCommandHandler : IRequestHandler<CreateClassCommand, Unit>
         {
@@ -29,14 +30,14 @@ namespace Epro3.Application.Features.Commands.ClassCommand
 
             public async Task<Unit> Handle(CreateClassCommand command, CancellationToken cancellationToken)
             {
-                Class clazz = new Class
+                Class data = new Class
                 {
                     Name = command.Name,
                     Amount = command.Amount,
                     StartTime = command.StartTime,
                     LastUpdatedDate = DateTime.Now
                 };
-                _unitOfWork.Classes.Create(clazz);
+                _unitOfWork.Classes.Create(data);
                 await _unitOfWork.Complete();
                 return Unit.Value;
             }
