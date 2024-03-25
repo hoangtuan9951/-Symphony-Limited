@@ -6,6 +6,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogManageAdmin } from './dialog/dialog.component';
+import adminApi from '../../service/admin';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'manage-admin',
@@ -13,39 +15,29 @@ import { DialogManageAdmin } from './dialog/dialog.component';
   styleUrls: ['./manageAdmin.component.scss'],
 })
 
-export class ManageAdminComponent implements AfterViewInit{
-  displayedColumns: string[] = ['No', 'username', 'email', 'role', 'created_at', 'action'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+export class ManageAdminComponent implements AfterViewInit {
+  displayedColumns: string[] = ['No', 'user_name', 'email', 'role', 'created_at', 'action'];
+  dataSource = new MatTableDataSource<infoUser>([]);
+  user_name = '';
 
-  dataSelect: PeriodicElement = {
-    id: null,
-    username: '',
+  dataSelect: infoUser = {
+    id: 0,
+    user_name: '',
     email: '',
     role: '',
-    created_at: null,
-    updated_at: null,
+    created_at: '',
+    updated_at: '',
+    success: false,
   }
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) { }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogManageAdmin, {
-      data: this.dataSelect,
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.dataSelect = {
-        id: null,
-        username: '',
-        email: '',
-        role: '',
-        created_at: null,
-        updated_at: null,
-      };
-    });
+  handleSearchByName = async () => {
+    //@ts-ignore
+    this.dataSource = await adminApi.getListAdmin(this.user_name);
   }
-
-  openEditDialog(data: PeriodicElement): void {
+  
+  openEditDialog(data: infoUser): void {
     this.dataSelect = data;
 
     const dialogRef = this.dialog.open(DialogManageAdmin, {
@@ -54,18 +46,34 @@ export class ManageAdminComponent implements AfterViewInit{
 
     dialogRef.afterClosed().subscribe(result => {
       this.dataSelect = {
-        id: null,
-        username: '',
+        id: 0,
+        user_name: '',
         email: '',
         role: '',
-        created_at: null,
-        updated_at: null,
+        created_at: '',
+        updated_at: '',
+        success: false,
       };
     });
   }
 
-  handleDelete(id: number): void {
-    console.log("delete user by id", id)
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 50000,
+      horizontalPosition: 'end', // Vị trí ngang ('start' | 'center' | 'end')
+      verticalPosition: 'top',
+      panelClass: ['custom-snackbar']
+    });
+  }
+
+  async handleDelete(id: number) {
+    try {
+      const result = await adminApi.deleteAdmin(id);
+      this.openSnackBar('Delete user success!', '');
+
+    } catch (error) {
+      throw new Error((error as Error).message)
+    }
   }
 
   //@ts-ignore
@@ -75,177 +83,12 @@ export class ManageAdminComponent implements AfterViewInit{
     this.dataSource.paginator = this.paginator;
   }
 
-  ngOnDestroy(): void {}
-}
+  handleGetListAdmin = async (user_name: string) => {
+    //@ts-ignore
+    this.dataSource = await adminApi.getListAdmin(user_name);
+  }
 
-export interface PeriodicElement {
-  id: number | null;
-  username: string;
-  email: string;
-  role: string;
-  created_at: string | null;
-  updated_at: string | null;
+  ngOnInit(): void {
+    this.handleGetListAdmin(this.user_name)
+  }
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    id: 1,
-    username: 'Hydrogen',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 2,
-    username: 'Helium',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 3,
-    username: 'Lithium',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 4,
-    username: 'Beryllium',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 5,
-    username: 'Boron',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 6,
-    username: 'Carbon',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 7,
-    username: 'Nitrogen',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 8,
-    username: 'Oxygen',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 9,
-    username: 'Fluorine',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 10,
-    username: 'Neon',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 11,
-    username: 'Sodium',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 12,
-    username: 'Magnesium',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 13,
-    username: 'Aluminum',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 14,
-    username: 'Silicon',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 15,
-    username: 'Phosphorus',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 16,
-    username: 'Sulfur',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 17,
-    username: 'Chlorine',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 18,
-    username: 'Argon',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 19,
-    username: 'Potassium',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-  {
-    id: 20,
-    username: 'Calcium',
-    email: 'admin@gmail.com',
-    role: 'admin',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-];

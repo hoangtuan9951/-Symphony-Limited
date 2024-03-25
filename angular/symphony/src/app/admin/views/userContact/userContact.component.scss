@@ -1,20 +1,11 @@
 .manage__admin {
-    .manage__admin-create {
-      display: flex;
-      justify-content: flex-end;
-      .admin__create-btn {
-        margin-bottom: 30px;
-  
-        button {
-          padding: 10px;
-          border: none;
-          background-color: #1677ff;
-          color: white;
-          border-radius: 10px;
-          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-        }
-      }
+  .manage__admin-create {
+    margin-bottom: 30px;
+ 
+    button {
+     cursor: pointer;
     }
+   }
   
     .manage__admin-list {
       .manage__admin-table {
@@ -49,6 +40,11 @@
               color: #cf1322;
               background: #fff1f0;
               border-color: #ffa39e;
+            }
+
+            .btn__status {
+              background: grey;
+              color: white;
             }
           }
         }

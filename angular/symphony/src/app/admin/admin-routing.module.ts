@@ -16,6 +16,10 @@ const routes: Routes = [
     path: '',
     component: LayoutAdminComponent,
     children: [
+      { path: 'manage-admin', component: ManageAdminComponent},
+      { path: 'manage-class', component: ManageClassComponent},
+      { path: 'contact', component: UserContactComponent},
+      { path: 'about-us', component: AboutUsComponent},
       { path: 'manage-admin', component: ManageAdminComponent },
       { path: 'manage-class', component: ManageClassComponent },
       { path: 'contact', component: UserContactComponent },
@@ -24,9 +28,6 @@ const routes: Routes = [
       { path: 'manage-faq', component: ManagerFaqComponent },
       { path: 'contact-us', component: ContactUsComponent },
       { path: 'student', component: StudentComponent }
-
-
-
     ]
   },
 ];

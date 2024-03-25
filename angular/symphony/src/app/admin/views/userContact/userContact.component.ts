@@ -5,6 +5,9 @@ import { PATH_IMAGES } from '../../constant/images';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
+import contactApi from '../../service/contact';
+import { DialogManageContact } from './dialog/dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'user-contact',
@@ -13,22 +16,68 @@ import { MatDialog } from '@angular/material/dialog';
 })
 
 export class UserContactComponent implements AfterViewInit{
-  displayedColumns: string[] = ['No', 'name', 'email', 'phone_number', 'message', 'status', 'action'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  displayedColumns: string[] = ['No', 'name', 'email', 'phone_number', 'address', 'status', 'action'];
+  dataSource = new MatTableDataSource<contactState>([]);
+  user_name: string = '';
 
-  dataSelect: PeriodicElement = {
-    id: null,
+  dataSelect: contactState = {
+    id: 0,
     name: '',
+    message: '',
+    status: 'unactive',
+    address: '',
     email: '',
     phone_number: '',
-    message: '',
-    status: '',
+    created_at: '',
+    updated_at: ''
   }
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) {}
 
-  handleDelete(id: number): void {
-    console.log("delete user by id", id)
+  openEditDialog(data: contactState): void {
+    this.dataSelect = data;
+
+    const dialogRef = this.dialog.open(DialogManageContact, {
+      data: this.dataSelect,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.dataSelect = {
+        id: 0,
+        name: '',
+        message: '',
+        status: 'unactive',
+        phone_number: '',
+        email: '',
+        address: '',
+        created_at: '',
+        updated_at: '',
+      };
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 50000,
+      horizontalPosition: 'end', // Vị trí ngang ('start' | 'center' | 'end')
+      verticalPosition: 'top',
+      panelClass: ['custom-snackbar']
+    });
+  }
+
+  handleSearchByName = async () => {
+    //@ts-ignore
+    this.dataSource = await contactApi.getListContact(this.user_name);
+  }
+  
+
+  async handleDelete(id: number) {
+   try {
+    const result = await contactApi.deleteContact(id);
+    this.openSnackBar('Delete contact success!', '');
+   } catch(error) {
+    throw new Error((error as Error).message)
+   }
   }
 
   //@ts-ignore
@@ -38,177 +87,12 @@ export class UserContactComponent implements AfterViewInit{
     this.dataSource.paginator = this.paginator;
   }
 
-  ngOnDestroy(): void {}
-}
+  handleGetListContact = async (user_name: string) => {
+    //@ts-ignore
+    this.dataSource = await contactApi.getListContact(user_name);
+  }
 
-export interface PeriodicElement {
-  id: number | null;
-  name: string;
-  email: string;
-  phone_number: string;
-  message: string;
-  status: string;
+  ngOnInit(): void {
+    this.handleGetListContact(this.user_name)
+  }
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    id: 1,
-    name: 'Hydrogen',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 2,
-    name: 'Helium',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 3,
-    name: 'Lithium',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 4,
-    name: 'Beryllium',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 5,
-    name: 'Boron',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 6,
-    name: 'Carbon',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 7,
-    name: 'Nitrogen',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 8,
-    name: 'Oxygen',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 9,
-    name: 'Fluorine',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 10,
-    name: 'Neon',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 11,
-    name: 'Sodium',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 12,
-    name: 'Magnesium',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 13,
-    name: 'Aluminum',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 14,
-    name: 'Silicon',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 15,
-    name: 'Phosphorus',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 16,
-    name: 'Sulfur',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 17,
-    name: 'Chlorine',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 18,
-    name: 'Argon',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 19,
-    name: 'Potassium',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-  {
-    id: 20,
-    name: 'Calcium',
-    email: 'test@gmail.com',
-    phone_number: '0943983993',
-    message: 'HIp hop nao cac bro',
-    status: 'pending',
-  },
-];

@@ -17,6 +17,9 @@ import { UserRoutingModule } from './user-routing.module';
 import { RegisterConsultationComponent } from './views/homepages/register-consultation/register-consultation.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchScore } from './views/searchScore/searchScore.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -26,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     AboutUsComponent,
     ContactUsComponent,
     AdmissionsComponent,
-    BenefitPartnerComponent
+    BenefitPartnerComponent,
+    SearchScore,
   ],
   imports: [
     UserRoutingModule,
@@ -38,6 +42,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterConsultationComponent,
     CommonModule,
     HttpClientModule,
+    MatPaginatorModule,
+    MatTableModule,
   ],
   providers: [
     provideAnimationsAsync()

@@ -3,17 +3,17 @@ import {
     MAT_DIALOG_DATA,
     MatDialogRef,
 } from '@angular/material/dialog';
-import adminApi from '../../../service/admin';
+import contactApi from '../../../service/contact';
 
 @Component({
     selector: 'dialog-admin-component',
     templateUrl: './dialog.component.html',
     styleUrls: ['./dialog.component.scss'],
 })
-export class DialogManageAdmin {
+export class DialogManageContact {
     constructor(
-        public dialogRef: MatDialogRef<DialogManageAdmin>,
-        @Inject(MAT_DIALOG_DATA) public data: infoUser,
+        public dialogRef: MatDialogRef<DialogManageContact>,
+        @Inject(MAT_DIALOG_DATA) public data: contactState,
     ) { }
 
     onNoClick(): void {
@@ -25,18 +25,19 @@ export class DialogManageAdmin {
     }
 
     admin = {
-        user_name: this.data.user_name,
+        phone_number: this.data.phone_number,
         email: this.data.email,
-        role: this.data.role,
+        address: this.data.address,
+        name: this.data.name,
+        status: this.data.status,
+        message: this.data.message,
         id: this.data.id,
-        password: '',
     };
 
     async onSubmit(form: any) {
-        await adminApi.updateAdmin({ id: this.admin.id, password: this.admin.password })
+        //@ts-ignore
+        await contactApi.updateContact({...this.admin})
         this.onNoClick();
     }
 }
-
-
 

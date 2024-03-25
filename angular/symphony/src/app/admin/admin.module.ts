@@ -22,6 +22,8 @@ import { ManageClassComponent } from './views/manageClass/manageClass.component'
 import { DialogManageClass } from './views/manageClass/dialog/dialog.component';
 import { UserContactComponent } from './views/userContact/userContact.component';
 import { AboutUsComponent } from './views/aboutUs/aboutUs.component';
+import { DialogManageContact } from './views/userContact/dialog/dialog.component';
+import { DialogManageAboutUs } from './views/aboutUs/dialog/dialog.component';
 import { CourseModuleComponent } from './views/course-module/course-module.component';
 import { DialogCourseModuleComponent } from './views/course-module/dialog-course-module/dialog-course-module.component';
 import { ManagerFaqComponent } from './views/manager-faq/manager-faq.component';
@@ -40,6 +42,8 @@ import { DialogStudentComponent } from './views/student/dialog-student/dialog-st
     DialogManageClass,
     UserContactComponent,
     AboutUsComponent,
+    DialogManageContact,
+    DialogManageAboutUs,
     CourseModuleComponent,
     DialogCourseModuleComponent,
     ManagerFaqComponent,

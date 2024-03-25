@@ -32,7 +32,7 @@
           #name="ngModel"
         />
         <div
-          *ngIf="name.invalid && name.touched"
+          *ngIf="name.invalid"
           class="alert alert-danger"
         >
           User name is required.
@@ -45,17 +45,17 @@
           type="number"
           class="form-control"
           id="amount"
+          min="1"
           required
           [(ngModel)]="admin.amount"
           name="amount"
           #amount="ngModel"
         />
-        <div *ngIf="amount.invalid && amount.touched" class="alert alert-danger">
+        <div *ngIf="amount.invalid" class="alert alert-danger">
           Amount is required.
         </div>
       </div>
   
-      <!-- Thêm trường input cho 'start_time' -->
       <div class="form-group">
         <label for="start_time">Start Time</label>
         <input
@@ -67,7 +67,7 @@
           name="start_time"
           #start_time="ngModel"
         />
-        <div *ngIf="start_time.invalid && start_time.touched" class="alert alert-danger">
+        <div *ngIf="start_time.invalid" class="alert alert-danger">
           Start Time is required.
         </div>
         </div>

@@ -6,6 +6,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogManageClass } from './dialog/dialog.component';
+import classApi from '../../service/class';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'manage-class',
@@ -15,51 +17,67 @@ import { DialogManageClass } from './dialog/dialog.component';
 
 export class ManageClassComponent implements AfterViewInit{
   displayedColumns: string[] = ['No', 'name', 'start_time', 'amount', 'action'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<classesState>([]);
+  name: string = '';
 
-  dataSelect: PeriodicElement = {
-    id: null,
+  dataSelect: classesState = {
+    id: 0,
     name: '',
-    amount: '',
+    amount: 0,
     start_time: '',
   }
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogManageClass, {
-      data: this.dataSelect,
+      data: {...this.dataSelect, callback: this.handleGetListClass, notify: () => {
+        this.openSnackBar('create class success!', '');
+      }},
     });
 
     dialogRef.afterClosed().subscribe(result => {
       this.dataSelect = {
-        id: null,
+        id: 0,
         name: '',
-        amount: '',
+        amount: 0,
         start_time: '',
       };
     });
   }
 
-  openEditDialog(data: PeriodicElement): void {
+  openEditDialog(data: classesState): void {
     this.dataSelect = data;
 
     const dialogRef = this.dialog.open(DialogManageClass, {
-      data: {...this.dataSelect, title: 'Update class'},
+      data: {...this.dataSelect, title: 'Update class', callback: this.handleGetListClass, notify: () => {
+        this.openSnackBar('Update class success!', '');
+      }},
     });
 
     dialogRef.afterClosed().subscribe(result => {
       this.dataSelect = {
-        id: null,
+        id: 0,
         name: '',
-        amount: '',
+        amount: 0,
         start_time: '',
       };
     });
   }
 
-  handleDelete(id: number): void {
-    console.log("delete user by id", id)
+  async handleDelete(id: number) {
+    const response = await classApi.deleteClass(id);
+    this.handleGetListClass(this.name);
+    this.openSnackBar('delete class success!', '');
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 50000,
+      horizontalPosition: 'end', // Vị trí ngang ('start' | 'center' | 'end')
+      verticalPosition: 'top',
+      panelClass: ['custom-snackbar']
+    });
   }
 
   //@ts-ignore
@@ -69,135 +87,16 @@ export class ManageClassComponent implements AfterViewInit{
     this.dataSource.paginator = this.paginator;
   }
 
-  ngOnDestroy(): void {}
-}
+  ngOnDestroy(): void {
 
-export interface PeriodicElement {
-  id: number | null;
-  name: string;
-  start_time: string;
-  amount: string;
-}
+  }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    id: 1,
-    name: 'Hydrogen',
-    start_time: '26-03-2024',
-    amount: '30',
-  },
-  {
-    id: 2,
-    name: 'Helium',
-    start_time: '26-03-2024',
-    amount: '30',
-  },
-  {
-    id: 3,
-    name: 'Lithium',
-    start_time: 'admin@gmail.com',
-    amount: '20',
-  },
-  {
-    id: 4,
-    name: 'Beryllium',
-    start_time: 'admin@gmail.com',
-    amount: '20',
-  },
-  {
-    id: 5,
-    name: 'Boron',
-    start_time: 'admin@gmail.com',
-    amount: '20',
-  },
-  {
-    id: 6,
-    name: 'Carbon',
-    start_time: 'admin@gmail.com',
-    amount: '20',
-  },
-  {
-    id: 7,
-    name: 'Nitrogen',
-    start_time: 'admin@gmail.com',
-    amount: '20',
-  },
-  {
-    id: 8,
-    name: 'Oxygen',
-    start_time: 'admin@gmail.com',
-    amount: '20',
-  },
-  {
-    id: 9,
-    name: 'Fluorine',
-    start_time: 'admin@gmail.com',
-    amount: '20',
-  },
-  {
-    id: 10,
-    name: 'Neon',
-    start_time: 'admin@gmail.com',
-    amount: '20',
-  },
-  {
-    id: 11,
-    name: 'Sodium',
-    start_time: 'admin@gmail.com',
-    amount: '20',
-  },
-  {
-    id: 12,
-    name: 'Magnesium',
-    start_time: 'admin@gmail.com',
-    amount: '20',
-  },
-  {
-    id: 13,
-    name: 'Aluminum',
-    start_time: 'admin@gmail.com',
-    amount: '20',
-  },
-  {
-    id: 14,
-    name: 'Silicon',
-    start_time: 'admin@gmail.com',
-    amount: '20',
-  },
-  {
-    id: 15,
-    name: 'Phosphorus',
-    start_time: 'admin@gmail.com',
-    amount: '20',
-  },
-  {
-    id: 16,
-    name: 'Sulfur',
-    start_time: 'admin@gmail.com',
-    amount: '20',
-  },
-  {
-    id: 17,
-    name: 'Chlorine',
-    start_time: 'admin@gmail.com',
-    amount: '20',
-  },
-  {
-    id: 18,
-    name: 'Argon',
-    start_time: 'admin@gmail.com',
-    amount: '20',
-  },
-  {
-    id: 19,
-    name: 'Potassium',
-    start_time: 'admin@gmail.com',
-    amount: '20',
-  },
-  {
-    id: 20,
-    name: 'Calcium',
-    start_time: 'admin@gmail.com',
-    amount: '20',
-  },
-];
+  handleGetListClass = async (name: string) => {
+    //@ts-ignore
+    this.dataSource = await classApi.getListClass(name);
+  }
+
+  ngOnInit(): void {
+    this.handleGetListClass(this.name)
+  }
+}
