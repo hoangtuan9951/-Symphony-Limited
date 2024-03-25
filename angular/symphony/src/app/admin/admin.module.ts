@@ -32,6 +32,8 @@ import { ContactUsComponent } from './views/contact-us/contact-us.component';
 import { DialogContatctusComponent } from './views/contact-us/dialog-contatctus/dialog-contatctus.component';
 import { StudentComponent } from './views/student/student.component';
 import { DialogStudentComponent } from './views/student/dialog-student/dialog-student.component';
+import { ManagerCourseComponent } from './views/manager-course/manager-course.component';
+import { DialogCourseComponent } from './views/manager-course/dialog-course/dialog-course.component';
 @NgModule({
   declarations: [
     HomeAdminComponent,
@@ -52,6 +54,8 @@ import { DialogStudentComponent } from './views/student/dialog-student/dialog-st
     DialogContatctusComponent,
     StudentComponent,
     DialogStudentComponent,
+    ManagerCourseComponent,
+    DialogCourseComponent,
   ],
   imports: [
     CommonModule,
