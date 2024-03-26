@@ -1,9 +1,6 @@
 export interface StudentModel {
     id: number | null;
-    username: string;
-    roll_number: string;
+    name: string;
+    rollNumber: string;
     email: string;
-    password: string;
-    created_at: string | null;
-    updated_at: string | null;
   }

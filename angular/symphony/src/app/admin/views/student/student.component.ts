@@ -3,9 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { StudentModel } from '../../models/Student.model';
-import { StudentService } from '../../services/student.service';
+import studentService from '../../services/student.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogStudentComponent } from './dialog-student/dialog-student.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-student',
@@ -13,31 +14,18 @@ import { DialogStudentComponent } from './dialog-student/dialog-student.componen
   styleUrl: './student.component.css'
 })
 export class StudentComponent  implements OnInit {
-  faqModel = new MatTableDataSource<StudentModel>();
-  displayedColumns: string[] = ['No', 'Name', 'Email', 'Roll number','Password' , 'Created at', 'Update at' ,'Action'];
-  dataSource = new MatTableDataSource<StudentModel>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<StudentModel>([]);
+  displayedColumns: string[] = ['No', 'Name', 'Email', 'Roll number' ,'Action'];
 
   dataSelect: StudentModel = {
     id: null,
-    username: '',
-    roll_number: '',
+    name: '',
+    rollNumber: '',
     email: '',
-    password: '',
-    created_at: '',
-    updated_at: '',
   }
 
-  constructor(private studentervice: StudentService, public dialog: MatDialog) { }
+  constructor( public dialog: MatDialog,  private _snackBar: MatSnackBar) { }
 
-  ngOnInit(): void {
-    this.getListFaq();
-  }
-
-  getListFaq(): void {
-    this.studentervice.getAll().subscribe(faq => {
-      this.faqModel = new MatTableDataSource(faq);
-    });
-  }
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogStudentComponent, {
       data: this.dataSelect,
@@ -46,12 +34,9 @@ export class StudentComponent  implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.dataSelect = {
         id: null,
-        username: '',
-        roll_number: '',
+        name: '',
+        rollNumber: '',
         email: '',
-        password: '',
-        created_at: '',
-        updated_at: '',
       };
     });
   }
@@ -60,25 +45,31 @@ export class StudentComponent  implements OnInit {
     this.dataSelect = data;
 
     const dialogRef = this.dialog.open(DialogStudentComponent, {
-      data: this.dataSelect,
+      data: {...this.dataSelect, callback: this.handleGetListAdmin}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       this.dataSelect = {
         id: null,
-        username: '',
-        roll_number: '',
-        email: '',
-        password: '',
-        created_at: '',
-        updated_at: '',
+        name: '',
+        rollNumber: '',
+        email: ''
       };
     });
   }
-
-  handleDelete(id: number): void {
-    console.log("delete user by id", id)
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 50000,
+      horizontalPosition: 'end', // Vị trí ngang ('start' | 'center' | 'end')
+      verticalPosition: 'top',
+      panelClass: ['custom-snackbar']
+    });
   }
+  handleDelete(rollNumber: number): void {
+    studentService.delete(rollNumber);
+    this.openSnackBar('Delete about success!', '');
+    this.handleGetListAdmin
+    }
 
   //@ts-ignore
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -87,16 +78,12 @@ export class StudentComponent  implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  ngOnDestroy(): void { }
+  handleGetListAdmin = async () => {
+    //@ts-ignore
+    this.dataSource = await studentService.getList();
+  }
+  
+  ngOnInit(): void {
+    this.handleGetListAdmin()
+  }
 }
-const ELEMENT_DATA: StudentModel[] = [
-  {
-    id: null,
-    username: 'sdfdsf',
-    roll_number: 'dsfdsfdsf',
-    email: 'sdfdsf',
-    password: 'sdfsdf',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-];

@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { StudentModel } from '../../../models/Student.model';
+import studentService from '../../../services/student.service';
 
 @Component({
   selector: 'app-dialog-student',
@@ -16,20 +17,30 @@ export class DialogStudentComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
-  ngOnInit(): void {
-    console.log("data", this.data);
-  }
+  private is_edit: boolean = false;
 
   student = {
-    username: this.data.username,
+    id: this.data.id,
+    name: this.data.name,
     email: this.data.email,
-    password: this.data.password,
-    roll_number: this.data.roll_number,
   };
 
+  ngOnInit(): void {
+    if (this.data.id != null) {
+      this.is_edit = true
+    }
+  }
+
   onSubmit(form: any) {
-    console.log('Admin Data:', form.value);
+    if (this.is_edit) {
+      studentService.update(this.student)
+    } else {
+      const data = {
+        name: this.student.name,
+        email: this.student.email
+      }
+      studentService.create(data)
+    }
   }
 }
 

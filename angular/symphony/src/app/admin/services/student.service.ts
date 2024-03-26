@@ -1,37 +1,24 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { URI_SERVICE } from '../../user/constant/uriInfo';
-import { FAQModel } from '../models/FAQ.model';
-import { StudentModel } from '../models/Student.model';
+import { axiosService } from "../../service/index";
+import { HEADER } from "../../user/constant";
+import { StudentModel } from "../models/Student.model";
 
-@Injectable({
-  providedIn: 'root'
-})
-export class StudentService {
-
-  constructor(private http: HttpClient) { }
-
-  getAll(): Observable<StudentModel[]> {
-    return this.http.get<StudentModel[]>(URI_SERVICE);
-  }
-
-  get(id: number): Observable<StudentModel> {
-    const url = `${URI_SERVICE + ""}/${id}`;
-    return this.http.get<StudentModel>(url);
-  }
-
-  create(courseModule: FAQModel): Observable<StudentModel> {
-    return this.http.post<StudentModel>(URI_SERVICE + "", courseModule);
-  }
-
-  update(courseModule: FAQModel): Observable<StudentModel> {
-    const url = `${URI_SERVICE + ""}/${courseModule.id}`;
-    return this.http.put<StudentModel>(url, courseModule);
-  }
-
-  delete(id: number): Observable<any> {
-    const url = `${URI_SERVICE + ""}/${id}`;
-    return this.http.delete(url);
-  }
+const studentService = {
+    getList(description: string): Promise<StudentModel[]> {
+        const url = '/api/admin/students';
+        return axiosService.get(url, {params: {description}});
+    },
+     create(body: any) {
+        const url = `/api/admin/students`;
+        return axiosService.post(url, body);
+    },
+    update(body: any) {
+        const url = `/api/admin/students`;
+        return axiosService.put(url, body);
+    },
+    delete(id: number) {
+        const url = `/api/admin/students?studentRollNumber=${id}`;
+        return axiosService.delete(url);
+    },
 }
+
+export default studentService;

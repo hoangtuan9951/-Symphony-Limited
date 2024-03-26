@@ -7,11 +7,11 @@ const courseService = {
         const url = '/api/admin/courses';
         return axiosService.get(url,);
     },
-     create(body: Partial<CourseCreateModel>) {
+     create(body: Partial<any>) {
         const url = `/api/admin/courses`;
         return axiosService.post(url, body,  {headers: {[HEADER.CONTENT_TYPE]: 'multipart/form-data'}});
     },
-    update(body: Partial<CourseCreateModel>) {
+    update(body: Partial<any>) {
         const url = `/api/admin/courses`;
         return axiosService.put(url, body, {headers: {[HEADER.CONTENT_TYPE]: 'multipart/form-data'}});
     },

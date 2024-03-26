@@ -120,10 +120,8 @@ export class DialogCourseComponent {
                     //@ts-ignore
                     body['backGroundImage'] = this._imageSelected;
                 } 
-                //await courseService.create(body);
+                await courseService.create(body);
             }
-
-            await this.data.callback();
             this.onNoClick();
         } catch (error) {
             throw new Error((error as Error).message);
