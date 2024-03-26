@@ -1,38 +1,24 @@
-import { HttpClient } from "@angular/common/http";
 import { axiosService } from "../../service/index";
 import { HEADER } from "../../user/constant";
-import { Observable } from "rxjs";
-import { CoursesModel } from "../../user/models/course.model";
-import { CourseModel } from "../models/Course.model";
-import { URI_SERVICE } from "../../user/constant/uriInfo";
-import { Injectable } from "@angular/core";
-@Injectable({
-  providedIn: 'root'
-})
+import { CourseCreateModel, CourseModel } from "../models/Course.model";
 
-export class CourseService{
-    constructor(private http: HttpClient) { }
-
-  getAll(): Observable<CourseModel[]> {
-    return this.http.get<CourseModel[]>(URI_SERVICE + "/api/admin/course-modules");
-  }
-
-  get(id: number): Observable<CourseModel> {
-    const url = `${URI_SERVICE + ""}/${id}`;
-    return this.http.get<CourseModel>(url);
-  }
-
-  create(data: any): Observable<any> {
-    return this.http.post<any>(URI_SERVICE + "", data , {headers: {[HEADER.CONTENT_TYPE]: 'multipart/form-data'}});
-  }
-
-  update(data: any): Observable<any> {
-    const url = `${URI_SERVICE + ""}/${data.id}`;
-    return this.http.put<any>(url, data , {headers: {[HEADER.CONTENT_TYPE]: 'multipart/form-data'}});
-  }
-
-  delete(id: number): Observable<any> {
-    const url = `${URI_SERVICE + ""}/${id}`;
-    return this.http.delete(url);
-  }
+const courseService = {
+    getList(): Promise<CourseModel[]> {
+        const url = '/api/admin/courses';
+        return axiosService.get(url,);
+    },
+     create(body: Partial<CourseCreateModel>) {
+        const url = `/api/admin/courses`;
+        return axiosService.post(url, body,  {headers: {[HEADER.CONTENT_TYPE]: 'multipart/form-data'}});
+    },
+    update(body: Partial<CourseCreateModel>) {
+        const url = `/api/admin/courses`;
+        return axiosService.put(url, body, {headers: {[HEADER.CONTENT_TYPE]: 'multipart/form-data'}});
+    },
+    delete(id: number) {
+        const url = `/api/admin/courses/${id}`;
+        return axiosService.delete(url);
+    },
 }
+
+export default courseService;

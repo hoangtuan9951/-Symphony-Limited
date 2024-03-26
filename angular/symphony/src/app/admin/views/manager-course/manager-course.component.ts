@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { CourseModel } from '../../models/Course.model';
-import { CourseService } from '../../services/course.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogCourseComponent } from './dialog-course/dialog-course.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { ViewChild } from '@angular/core';
+import courseService from '../../services/course.service';
 @Component({
   selector: 'app-manager-course',
   templateUrl: './manager-course.component.html',
   styleUrl: './manager-course.component.css'
 })
 export class ManagerCourseComponent  implements OnInit {
-  courseModules = new MatTableDataSource<CourseModel>();
-  displayedColumns: string[] = ['No', 'Name', 'Code', 'Amount', 'Discount' , 'Description' ,'BackgoundImage' , 'Active', 'Action'];
-  dataSource = new MatTableDataSource<CourseModel>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<CourseModel>([]);
+  displayedColumns: string[] = ['No', 'Name', 'Code', 'Amount', 'Discount' ,'BackgoundImage' ,'Start date', 'End date', 'Active', 'Action'];
 
   dataSelect: CourseModel = {
     id: null,
@@ -22,25 +21,14 @@ export class ManagerCourseComponent  implements OnInit {
     code: '',
     amount: 0,
     discount: '',
-    description: '',
-    courseDetail: '',
-    backGroundImage: '',
     startedDate: '',
     endedDate: '',
-    active: false
+    active: false,
+    thumbnail: ''
   }
 
-  constructor(private service: CourseService, public dialog: MatDialog) { }
+  constructor( public dialog: MatDialog) { }
 
-  ngOnInit(): void {
-    this.getCourseModules();
-  }
-
-  getCourseModules(): void {
-    this.service.getAll().subscribe(courseModules => {
-      this.courseModules = new MatTableDataSource(courseModules);
-    });
-  }
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogCourseComponent, {
       data: this.dataSelect,
@@ -53,12 +41,10 @@ export class ManagerCourseComponent  implements OnInit {
         code: '',
         amount: 0,
         discount: '',
-        description: '',
-        courseDetail: '',
-        backGroundImage: '',
         startedDate: '',
         endedDate: '',
-        active: false       
+        active: false  ,
+        thumbnail: ''     
       };
     });
   }
@@ -77,12 +63,10 @@ export class ManagerCourseComponent  implements OnInit {
         code: '',
         amount: 0,
         discount: '',
-        description: '',
-        courseDetail: '',
-        backGroundImage: '',
         startedDate: '',
         endedDate: '',
-        active: false
+        active: false,
+        thumbnail: ''
       };
     });
   }
@@ -91,6 +75,7 @@ export class ManagerCourseComponent  implements OnInit {
     console.log("delete user by id", id)
   }
 
+
   //@ts-ignore
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -98,20 +83,12 @@ export class ManagerCourseComponent  implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  ngOnDestroy(): void { }
+  handleGetListAdmin = async () => {
+    //@ts-ignore
+    this.dataSource = await courseService.getList();
+  }
+  
+  ngOnInit(): void {
+    this.handleGetListAdmin()
+  }
 }
-const ELEMENT_DATA: CourseModel[] = [
-  {
-    id: 1,
-    name: '',
-    code: '',
-    amount: 0,
-    discount: '',
-    description: '',
-    courseDetail: '',
-    backGroundImage: '',
-    startedDate: '',
-    endedDate: '',
-    active: false
-  },
-];

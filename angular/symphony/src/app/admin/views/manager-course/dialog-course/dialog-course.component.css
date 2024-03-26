@@ -1,97 +1,90 @@
 .dialog__manage {
-    width: 800px;
-    position: relative;
-    background-color: #ffffff;
-    background-clip: padding-box;
-    border: 0;
-    border-radius: 8px;
-    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-      0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
-    pointer-events: auto;
-    padding: 20px 24px;
-  
-    img {
-      max-width: 100px;
-      max-height: 100px;
-      object-fit: cover;
-    }
-  
-    .dialog__title {
-      display: flex;
-      justify-content: space-between;
-      .dialog__title-name {
-        color: rgba(0, 0, 0, 0.88);
-        background: #ffffff;
-        border-radius: 8px 8px 0 0;
-        margin-bottom: 8px;
-        padding: 0;
-        border-bottom: none;
-      }
-  
-      .dialog__title-close {
-        cursor: pointer;
-      }
-    }
-  
-    .dialog__body {
-      font-size: 14px;
-      line-height: 1.5714285714285714;
-      word-wrap: break-word;
+  width: 800px;
+  position: relative;
+  background-color: #ffffff;
+  background-clip: padding-box;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+    0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  pointer-events: auto;
+  padding: 20px 24px;
+  height: 700px;
+  .dialog__title {
+    display: flex;
+    justify-content: space-between;
+    .dialog__title-name {
+      color: rgba(0, 0, 0, 0.88);
+      background: #ffffff;
+      border-radius: 8px 8px 0 0;
+      margin-bottom: 8px;
       padding: 0;
-  
-      .form-group {
-          margin-top: 20px;
-      }
+      border-bottom: none;
     }
-  
-    .dialog__footer {
-      text-align: end;
-      background: transparent;
+
+    .dialog__title-close {
+      cursor: pointer;
+    }
+  }
+
+  .dialog__body {
+    font-size: 14px;
+    line-height: 1.5714285714285714;
+    word-wrap: break-word;
+    padding: 0;
+
+    .form-group {
       margin-top: 20px;
-      padding: 0;
-      border-top: none;
-      border-radius: 0;
-      .dialog__footer-btn {
-        button {
-          background: #ffffff;
-          border-color: #d9d9d9;
-          color: rgba(0, 0, 0, 0.88);
-          box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
-          font-size: 14px;
-          line-height: 1.5714285714285714;
-          height: 32px;
-          padding: 4px 15px;
-          border-radius: 6px;
-          outline: none;
-          position: relative;
-          display: inline-block;
-          font-weight: 400;
-          white-space: nowrap;
-          text-align: center;
-          border: 1px solid #cec9c9;
-          cursor: pointer;
-          transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-          user-select: none;
-          touch-action: manipulation;
+    }
+  }
+
+  .dialog__footer {
+    text-align: end;
+    background: transparent;
+    margin-top: 20px;
+    padding: 0;
+    border-top: none;
+    border-radius: 0;
+    .dialog__footer-btn {
+      button {
+        background: #ffffff;
+        border-color: #d9d9d9;
+        color: rgba(0, 0, 0, 0.88);
+        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
+        font-size: 14px;
+        line-height: 1.5714285714285714;
+        height: 32px;
+        padding: 4px 15px;
+        border-radius: 6px;
+        outline: none;
+        position: relative;
+        display: inline-block;
+        font-weight: 400;
+        white-space: nowrap;
+        text-align: center;
+        border: 1px solid #cec9c9;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+        user-select: none;
+        touch-action: manipulation;
+      }
+
+      .btn__cancel {
+        &:hover {
+          color: #4096ff;
+          border-color: #4096ff;
         }
-  
-        .btn__cancel {
-          &:hover {
-            color: #4096ff;
-            border-color: #4096ff;
-          }
-        }
-  
-        .btn__submit {
-          margin-left: 10px;
-          background-color: #4096ff;
-          color: white;
-  
-          &:hover {
-              opacity: 0.8;
-          }
+      }
+
+      .btn__submit {
+        margin-left: 10px;
+        background-color: #4096ff;
+        color: white;
+
+        &:hover {
+          opacity: 0.8;
         }
       }
     }
   }
-  
+}

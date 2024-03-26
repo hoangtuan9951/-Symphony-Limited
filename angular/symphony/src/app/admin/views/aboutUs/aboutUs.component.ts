@@ -100,6 +100,8 @@ export class AboutUsComponent implements AfterViewInit {
     handleGetListAdmin = async (user_name: string) => {
       //@ts-ignore
       this.dataSource = await aboutUsApi.getListAboutUs(user_name);
+      console.log(user_name);
+
     }
     
     ngOnInit(): void {

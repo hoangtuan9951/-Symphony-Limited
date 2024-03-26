@@ -3,9 +3,7 @@ import {
     MAT_DIALOG_DATA,
     MatDialogRef,
 } from '@angular/material/dialog';
-import { CourseModules } from '../../../models/CourseModule.model';
-import { CourseModulesService } from '../../../services/courseModule.service';
-
+import courseService from '../../../services/course.service';
 export interface DialogData {
     animal: string;
     name: string;
@@ -21,7 +19,6 @@ export interface DialogData {
 })
 export class DialogCourseModuleComponent {
     constructor(
-        private service: CourseModulesService,
         public dialogRef: MatDialogRef<DialogCourseModuleComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
     ) { }
@@ -32,9 +29,10 @@ export class DialogCourseModuleComponent {
 
     module = {
         id: 0,
-        module_name: '',
-        amount: '',
-        active: true,
+        name: '',
+        amount: 0,
+        description: '',
+        course:'',
     };
     private _imageSelected: File | null = null;
     private is_edit: boolean = false;
@@ -42,9 +40,10 @@ export class DialogCourseModuleComponent {
     ngOnInit(): void {
         if (this.data.id) {
             this.is_edit = true;
-            this.module.module_name = this.data.module_name;
+            this.module.name = this.data.name;
             this.module.amount = this.data.amount;
-            this.module.active = this.data.active;
+            this.module.description = this.data.description;
+            this.module.course = this.data.course;
             this.module.id = this.data.id
 
         }
@@ -57,19 +56,21 @@ export class DialogCourseModuleComponent {
             if (this.is_edit) {
                 const body = {
                     id:this.module.id,
-                    module_name: this.module.module_name,
+                    name: this.module.name,
                     amount: this.module.amount,
-                    active: this.module.active
+                    description: this.module.description,
+                    course: this.module.course
                 };
 
-                await this.service.update(body);
+                await courseService.update(body);
             } else {
                 const body = {
-                    module_name: this.module.module_name,
+                    name: this.module.name,
                     amount: this.module.amount,
-                    active: this.module.active
+                    description: this.module.description,
+                    course: this.module.course
                 };
-                await this.service.create(body);
+                await courseService.create(body);
             }
 
             await this.data.callback();

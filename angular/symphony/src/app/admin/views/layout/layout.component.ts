@@ -55,7 +55,7 @@ export class LayoutAdminComponent {
         const token = getToken();
         
         if(!token) {
-            //this.router.navigate(['/auth/login']);
+            this.router.navigate(['/auth/login']);
         }
 
         this.handleGetUserInfo()

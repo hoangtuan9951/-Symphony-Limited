@@ -1,36 +1,24 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { CourseModules } from '../models/CourseModule.model';
-import { URI_SERVICE } from '../../user/constant/uriInfo';
+import { axiosService } from "../../service/index";
+import { HEADER } from "../../user/constant";
+import { CourseModules } from "../models/CourseModule.model";
 
-@Injectable({
-  providedIn: 'root'
-})
-export class CourseModulesService {
-
-  constructor(private http: HttpClient) { }
-
-  getAll(): Observable<CourseModules[]> {
-    return this.http.get<CourseModules[]>(URI_SERVICE + "/api/admin/course-modules");
-  }
-
-  get(id: number): Observable<CourseModules> {
-    const url = `${URI_SERVICE + ""}/${id}`;
-    return this.http.get<CourseModules>(url);
-  }
-
-  create(courseModule: any): Observable<any> {
-    return this.http.post<any>(URI_SERVICE + "", courseModule);
-  }
-
-  update(courseModule: any): Observable<any> {
-    const url = `${URI_SERVICE + ""}/${courseModule.id}`;
-    return this.http.put<any>(url, courseModule);
-  }
-
-  delete(id: number): Observable<any> {
-    const url = `${URI_SERVICE + ""}/${id}`;
-    return this.http.delete(url);
-  }
+const courseModuleService = {
+    getList(): Promise<CourseModules[]> {
+        const url = '/api/admin/course-modules';
+        return axiosService.get(url,);
+    },
+     create(body: Partial<any>) {
+        const url = `/api/admin/course-modules`;
+        return axiosService.post(url, body,  {headers: {[HEADER.CONTENT_TYPE]: 'multipart/form-data'}});
+    },
+    update(body: Partial<any>) {
+        const url = `/api/admin/course-modules`;
+        return axiosService.put(url, body, {headers: {[HEADER.CONTENT_TYPE]: 'multipart/form-data'}});
+    },
+    delete(id: number) {
+        const url = `/api/admin/course-modules/${id}`;
+        return axiosService.delete(url);
+    },
 }
+
+export default courseModuleService;

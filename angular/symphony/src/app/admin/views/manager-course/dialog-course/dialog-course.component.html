@@ -4,7 +4,6 @@
   </div>
   <form #adminForm="ngForm" (ngSubmit)="onSubmit(adminForm)">
     <div class="dialog__body">
-
       <div class="form-group">
         <label for="name">Name</label>
         <input
@@ -33,7 +32,7 @@
           #code="ngModel"
         />
         <div *ngIf="code.invalid" class="alert alert-danger">
-            code is required.
+          code is required.
         </div>
       </div>
 
@@ -49,7 +48,7 @@
           #amount="ngModel"
         />
         <div *ngIf="amount.invalid" class="alert alert-danger">
-            amount is required.
+          amount is required.
         </div>
       </div>
 
@@ -65,11 +64,11 @@
           #discount="ngModel"
         />
         <div *ngIf="discount.invalid" class="alert alert-danger">
-            discount is required.
+          discount is required.
         </div>
       </div>
 
-      <div class="form-group">
+       <div class="form-group">
         <label for="description">Description</label>
         <input
           class="form-control"
@@ -81,21 +80,44 @@
           #description="ngModel"
         />
         <div *ngIf="description.invalid" class="alert alert-danger">
-            description is required.
+          description is required.
         </div>
       </div>
 
       <div class="form-group">
-        <label for="courseDetail">Course detail</label>
+        <label for="fee">Fee</label>
         <input
           class="form-control"
-          id="courseDetail"
+          id="fee"
+          required
           rows="4"
-          [(ngModel)]="course.courseDetail"
-          name="courseDetail"
-          #courseDetail="ngModel"
+          [(ngModel)]="course.fee"
+          name="fee"
+          #fee="ngModel"
+          type="number"
         />
+        <div *ngIf="fee.invalid" class="alert alert-danger">
+          fee is required.
+        </div>
       </div>
+
+
+    
+       <div class="form-group">
+        <label for="gradePass">gradePass</label>
+        <input
+          class="form-control"
+          id="gradePass"
+          required
+          rows="4"
+          [(ngModel)]="course.gradePass"
+          name="gradePass"
+          #gradePass="ngModel"
+        />
+        <div *ngIf="gradePass.invalid" class="alert alert-danger">
+          gradePass is required.
+        </div>
+      </div> 
 
       <div class="form-group">
         <label for="image_background">Image background</label>
@@ -125,7 +147,7 @@
           [(ngModel)]="course.startedDate"
           name="startedDate"
           #startedDate="ngModel"
-          type="datetime"
+          type="date"
         />
       </div>
 
@@ -138,10 +160,46 @@
           [(ngModel)]="course.endedDate"
           name="endedDate"
           #endedDate="ngModel"
-          type="datetime"
+          type="date"
         />
       </div>
 
+      <div class="form-group">
+        <label for="feeChardeDate">Fee Charde Date</label>
+        <input
+          class="form-control"
+          id="feeChardeDate"
+          rows="4"
+          [(ngModel)]="course.feeChardeDate"
+          name="feeChardeDate"
+          #feeChardeDate="ngModel"
+          type="date"
+        />
+        <div *ngIf="feeChardeDate.invalid" class="alert alert-danger">
+          feeChardeDate is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="active">Active</label>
+        <select
+          class="form-control"
+          id="active"
+          required
+          rows="4"
+          [(ngModel)]="course.active"
+          name="active"
+          #active="ngModel"
+        >
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </select>
+
+        <div *ngIf="active.invalid" class="alert alert-danger">
+          active is required.
+        </div>
+
+      </div>
     </div>
     <div class="dialog__footer">
       <div class="dialog__footer-btn">

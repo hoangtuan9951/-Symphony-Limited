@@ -3,8 +3,8 @@ import {
   MAT_DIALOG_DATA,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { CourseService } from '../../../services/course.service';
 import { getBase64 } from '../../../constant';
+import courseService from '../../../services/course.service';
 @Component({
   selector: 'app-dialog-course',
   templateUrl: './dialog-course.component.html',
@@ -12,9 +12,8 @@ import { getBase64 } from '../../../constant';
 })
 export class DialogCourseComponent {
     constructor(
-        private service: CourseService,
         public dialogRef: MatDialogRef<DialogCourseComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any,
+        @Inject(MAT_DIALOG_DATA) public data: any
     ) { }
 
     onNoClick(): void {
@@ -29,21 +28,29 @@ export class DialogCourseComponent {
         discount: '',
         description: '',
         courseDetail: '',
+        thumbnail: '',
         backGroundImage: '',
         startedDate: '',
         endedDate: '',
-        active: true
+        active: true,
+        fee: 0,
+        gradePass: 0,
+        feeChardeDate:''
+
     };
     private _imageSelected: File | null = null;
     private is_edit: boolean = false;
 
     async onFileSelected(event: any) {
+        
         const file: File = event.target.files[0];
         if (file) {
             this._imageSelected = file;
 
             const image = await getBase64(file);
             this.course.backGroundImage = image;
+            this.course.thumbnail = image;
+
         }
     }
     
@@ -61,6 +68,10 @@ export class DialogCourseComponent {
             this.course.startedDate = this.data.startedDate;
             this.course.endedDate = this.data.endedDate;
             this.course.active = this.data.active;
+            this.course.thumbnail = this.data.thumbnail;
+            this.course.fee = this.data.fee;
+            this.course.gradePass = this.data.gradePass;
+            this.course.feeChardeDate = this.data.feeChardeDate;
 
         }
     }
@@ -78,29 +89,38 @@ export class DialogCourseComponent {
                     amount: this.course.amount,
                     discount: this.course.discount,
                     description: this.course.description,
-                    courseDetail: this.course.courseDetail,
-                    backGroundImage: this.course.backGroundImage,
+                    courseDetail: 'null',
+                    backGroundImage: this._imageSelected,
                     startedDate: this.course.startedDate,
                     endedDate: this.course.endedDate,
-                    active: this.course.active
+                    active: this.course.active,
+                    gradePass: this.course.gradePass,
+                    thumbnail: this._imageSelected
                 };
 
-                await this.service.update(body);
+                //await courseService.update(body);
             } else {
                 const body = {
-                    id:this.course.id,
                     name: this.course.name,
                     code: this.course.code,
                     amount: this.course.amount,
                     discount: this.course.discount,
                     description: this.course.description,
-                    courseDetail: this.course.courseDetail,
-                    backGroundImage: this.course.backGroundImage,
+                    courseDetail: 'null',
                     startedDate: this.course.startedDate,
                     endedDate: this.course.endedDate,
-                    active: this.course.active
+                    active: this.course.active,
+                    gradePass: this.course.gradePass,
                 };
-                await this.service.create(body);
+                if (this._imageSelected) {
+                    //@ts-ignore
+                    body['thumbnail'] = this._imageSelected;
+                } 
+                if (this._imageSelected) {
+                    //@ts-ignore
+                    body['backGroundImage'] = this._imageSelected;
+                } 
+                //await courseService.create(body);
             }
 
             await this.data.callback();

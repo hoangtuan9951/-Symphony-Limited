@@ -1,84 +1,91 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { CourseModules } from '../../models/CourseModule.model';
-import { CourseModulesService } from '../../services/courseModule.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogCourseModuleComponent } from './dialog-course-module/dialog-course-module.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { ViewChild } from '@angular/core';
+import courseModuleService from '../../services/courseModule.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-course-module',
   templateUrl: './course-module.component.html',
-  styleUrl: './course-module.component.css'
+  styleUrl: './course-module.component.css',
 })
-
 export class CourseModuleComponent implements OnInit {
-  courseModules = new MatTableDataSource<CourseModules>();
-  displayedColumns: string[] = ['No', 'Module Name', 'Amount', 'Active', 'Course' , 'Created at', 'Update at' ,'Action'];
-  dataSource = new MatTableDataSource<CourseModules>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<CourseModules>([]);
+  displayedColumns: string[] = [
+    'No',
+    'Module Name',
+    'Amount',
+    'Description',
+    'Course',
+    'Action',
+  ];
 
   dataSelect: CourseModules = {
     id: null,
-    module_name: '',
+    name: '',
     amount: 0,
-    active: true,
-    course_id: '',
-    created_at: null,
-    updated_at: null,
-  }
+    description: '',
+    course: '',
+  };
 
-  constructor(private courseModulesService: CourseModulesService, public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) { }
+  
 
-  ngOnInit(): void {
-    this.getCourseModules();
-  }
-
-  getCourseModules(): void {
-    this.courseModulesService.getAll().subscribe(courseModules => {
-      this.courseModules = new MatTableDataSource(courseModules);
-    });
-  }
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogCourseModuleComponent, {
-      data: this.dataSelect,
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.dataSelect = {
-        id: null,
-        module_name: '',
-        amount: 0,
-        active: true,
-        course_id: '',
-        created_at: null,
-        updated_at: null,
-      };
-    });
-  }
-
+      const dialogRef = this.dialog.open(DialogCourseModuleComponent, {
+        data: {...this.dataSelect},
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        this.dataSelect = {
+          id: null,
+          name: '',
+          amount: 0,
+          description: '',
+          course: '',
+        };
+      });
+    }
+  
   openEditDialog(data: CourseModules): void {
     this.dataSelect = data;
 
     const dialogRef = this.dialog.open(DialogCourseModuleComponent, {
-      data: this.dataSelect,
+      data: {...this.dataSelect},
     });
 
     dialogRef.afterClosed().subscribe(result => {
       this.dataSelect = {
         id: null,
-        module_name: '',
+        name: '',
         amount: 0,
-        active: true,
-        course_id : '',
-        created_at: null,
-        updated_at: null,
+        description: '',
+        course: '',
       };
     });
   }
 
-  handleDelete(id: number): void {
-    console.log("delete user by id", id)
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 50000,
+      horizontalPosition: 'end', // Vị trí ngang ('start' | 'center' | 'end')
+      verticalPosition: 'top',
+      panelClass: ['custom-snackbar']
+    });
+  }
+
+  async handleDelete(id: number) {
+    try {
+      await courseModuleService.delete(id);
+      this.openSnackBar('Delete about success!', '');
+     
+    } catch (error) {
+      throw new Error((error as Error).message)
+    }
   }
 
   //@ts-ignore
@@ -88,16 +95,12 @@ export class CourseModuleComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  ngOnDestroy(): void { }
+  handleGetListAdmin = async () => {
+    //@ts-ignore
+    this.dataSource = await courseModuleService.getList();
+  }
+  
+  ngOnInit(): void {
+    this.handleGetListAdmin()
+  }
 }
-const ELEMENT_DATA: CourseModules[] = [
-  {
-    id: 1,
-    module_name: 'Hydrogen',
-    active: true,
-    amount: 10000,
-    course_id: '12345',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-];
