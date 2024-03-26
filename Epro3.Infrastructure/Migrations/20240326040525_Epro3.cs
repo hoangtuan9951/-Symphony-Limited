@@ -12,32 +12,8 @@ namespace Epro3.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropIndex(
-                name: "IX_course_CreatedDate",
-                table: "course");
-
-            migrationBuilder.DropColumn(
-                name: "CourseDetail",
-                table: "course");
-
-            migrationBuilder.RenameColumn(
-                name: "LastUpdatedDate",
-                table: "course",
-                newName: "FeeChagreDate");
-
-            migrationBuilder.AddColumn<decimal>(
-                name: "Fee",
-                table: "course",
-                type: "decimal(65,30)",
-                nullable: false,
-                defaultValue: 0m);
-
-            migrationBuilder.AddColumn<decimal>(
-                name: "GradePass",
-                table: "course",
-                type: "decimal(65,30)",
-                nullable: false,
-                defaultValue: 0m);
+            migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "about",
@@ -75,31 +51,6 @@ namespace Epro3.Infrastructure.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "class",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Amount = table.Column<int>(type: "int", nullable: false),
-                    StartTime = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
-                    LastUpdatedDate = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
-                    CourseId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_class", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_class_course_CourseId",
-                        column: x => x.CourseId,
-                        principalTable: "course",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "contact",
                 columns: table => new
                 {
@@ -120,26 +71,36 @@ namespace Epro3.Infrastructure.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "courseModule",
+                name: "course",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    Code = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Amount = table.Column<int>(type: "int", nullable: false),
-                    LastUpdatedDate = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
-                    CourseId = table.Column<int>(type: "int", nullable: false)
+                    Discount = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    Slug = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Thumbnail = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Description = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    BackGroundImage = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    GradePass = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    StartedDate = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
+                    EndedDate = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
+                    Fee = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
+                    FeeChargeDate = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
+                    Active = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_courseModule", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_courseModule_course_CourseId",
-                        column: x => x.CourseId,
-                        principalTable: "course",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_course", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -178,23 +139,83 @@ namespace Epro3.Infrastructure.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Students",
+                name: "student",
+                columns: table => new
+                {
+                    RollNumber = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Name = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Email = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CreatedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    LastUpdatedDate = table.Column<DateTime>(type: "TIMESTAMP", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_student", x => x.RollNumber);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "studentId",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_studentId", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "class",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    RollNumber = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Email = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    LastUpdatedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    Amount = table.Column<int>(type: "int", nullable: false),
+                    StartTime = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
+                    LastUpdatedDate = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
+                    CourseId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Students", x => x.Id);
+                    table.PrimaryKey("PK_class", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_class_course_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "course",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "courseModule",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Amount = table.Column<int>(type: "int", nullable: false),
+                    LastUpdatedDate = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
+                    CourseId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_courseModule", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_courseModule_course_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "course",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -204,21 +225,15 @@ namespace Epro3.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    StudentId = table.Column<int>(type: "int", nullable: false),
-                    EntrenceExamId = table.Column<int>(type: "int", nullable: false),
+                    StudentRollNumber = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    EntranceExamId = table.Column<int>(type: "int", nullable: false),
                     CourseId = table.Column<int>(type: "int", nullable: false),
-                    Grade = table.Column<int>(type: "int", nullable: false),
-                    EntranceExamId = table.Column<int>(type: "int", nullable: true)
+                    Grade = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_entranceExamStudentResult", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_entranceExamStudentResult_Students_StudentId",
-                        column: x => x.StudentId,
-                        principalTable: "Students",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_entranceExamStudentResult_course_CourseId",
                         column: x => x.CourseId,
@@ -229,7 +244,14 @@ namespace Epro3.Infrastructure.Migrations
                         name: "FK_entranceExamStudentResult_entranceExam_EntranceExamId",
                         column: x => x.EntranceExamId,
                         principalTable: "entranceExam",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_entranceExamStudentResult_student_StudentRollNumber",
+                        column: x => x.StudentRollNumber,
+                        principalTable: "student",
+                        principalColumn: "RollNumber",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -254,9 +276,10 @@ namespace Epro3.Infrastructure.Migrations
                 column: "EntranceExamId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_entranceExamStudentResult_StudentId",
+                name: "IX_entranceExamStudentResult_StudentRollNumber",
                 table: "entranceExamStudentResult",
-                column: "StudentId");
+                column: "StudentRollNumber",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -284,35 +307,16 @@ namespace Epro3.Infrastructure.Migrations
                 name: "fAQ");
 
             migrationBuilder.DropTable(
-                name: "Students");
+                name: "studentId");
+
+            migrationBuilder.DropTable(
+                name: "course");
 
             migrationBuilder.DropTable(
                 name: "entranceExam");
 
-            migrationBuilder.DropColumn(
-                name: "Fee",
-                table: "course");
-
-            migrationBuilder.DropColumn(
-                name: "GradePass",
-                table: "course");
-
-            migrationBuilder.RenameColumn(
-                name: "FeeChagreDate",
-                table: "course",
-                newName: "LastUpdatedDate");
-
-            migrationBuilder.AddColumn<string>(
-                name: "CourseDetail",
-                table: "course",
-                type: "longtext",
-                nullable: false)
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_course_CreatedDate",
-                table: "course",
-                column: "CreatedDate");
+            migrationBuilder.DropTable(
+                name: "student");
         }
     }
 }
