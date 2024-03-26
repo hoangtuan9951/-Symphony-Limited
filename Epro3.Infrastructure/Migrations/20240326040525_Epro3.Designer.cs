@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Epro3.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDatabaseContext))]
-    [Migration("20240325200830_epro3")]
-    partial class epro3
+    [Migration("20240326040525_Epro3")]
+    partial class Epro3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
