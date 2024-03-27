@@ -1,29 +1,29 @@
 export interface CourseModel {
     id: number | null;
     name: string;
-    code: string;
+    code:string;
     amount: number;
-    discount: string;
+    discount: number;
     thumbnail: string;
     startedDate: string;
-    endedDate: string;
-    active: boolean
+    endedDate: string
   }
 
   export interface CourseCreateModel {
     id? :number;
-    name: "";
-    code: "";
-    amount: 0;
-    discount: 0;
-    description: "";
-    courseDetail: "";
+    name: string;
+    code:string;
+    amount: number;
+    discount: number;
+    description: string;
     backGroundImage: File| null;
-    startedDate: "";
-    endedDate: "";
+    startedDate: string;
+    endedDate: string;
     active: boolean,
-    gradePass: 0;
+    gradePass: number;
     thumbnail: File| null;
+    fee: number,
+    feeChargeDate: string
   }
 
   

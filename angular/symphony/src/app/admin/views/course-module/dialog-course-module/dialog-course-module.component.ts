@@ -4,6 +4,7 @@ import {
     MatDialogRef,
 } from '@angular/material/dialog';
 import courseService from '../../../services/course.service';
+import courseModuleService from '../../../services/courseModule.service';
 export interface DialogData {
     animal: string;
     name: string;
@@ -62,7 +63,7 @@ export class DialogCourseModuleComponent {
                     course: this.module.course
                 };
 
-                await courseService.update(body);
+                await courseModuleService.update(body);
             } else {
                 const body = {
                     name: this.module.name,
@@ -70,7 +71,7 @@ export class DialogCourseModuleComponent {
                     description: this.module.description,
                     course: this.module.course
                 };
-                await courseService.create(body);
+                await courseModuleService.create(body);
             }
 
             await this.data.callback();

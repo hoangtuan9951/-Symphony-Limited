@@ -11,41 +11,31 @@ import courseService from '../../services/course.service';
   templateUrl: './manager-course.component.html',
   styleUrl: './manager-course.component.css'
 })
-export class ManagerCourseComponent  implements OnInit {
+export class ManagerCourseComponent implements OnInit {
   dataSource = new MatTableDataSource<CourseModel>([]);
-  displayedColumns: string[] = ['No', 'Name', 'Code', 'Amount', 'Discount' ,'BackgoundImage' ,'Start date', 'End date', 'Active', 'Action'];
+  displayedColumns: string[] = ['No', 'Name', 'Code', 'Amount', 'Discount', 'BackgoundImage', 'Action'];
 
   dataSelect: CourseModel = {
     id: null,
     name: '',
     code: '',
     amount: 0,
-    discount: '',
+    discount: 0,
     startedDate: '',
     endedDate: '',
-    active: false,
     thumbnail: ''
   }
 
-  constructor( public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) { }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogCourseComponent, {
-      data: this.dataSelect,
+      data: this.dataSelect.id,
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.dataSelect = {
-        id: null,
-        name: '',
-        code: '',
-        amount: 0,
-        discount: '',
-        startedDate: '',
-        endedDate: '',
-        active: false  ,
-        thumbnail: ''     
-      };
+      this.handleGetListAdmin();
+      this.dataSelect.id = null
     });
   }
 
@@ -53,21 +43,12 @@ export class ManagerCourseComponent  implements OnInit {
     this.dataSelect = data;
 
     const dialogRef = this.dialog.open(DialogCourseComponent, {
-      data: this.dataSelect,
+      data: this.dataSelect.id,
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.dataSelect = {
-        id: null,
-        name: '',
-        code: '',
-        amount: 0,
-        discount: '',
-        startedDate: '',
-        endedDate: '',
-        active: false,
-        thumbnail: ''
-      };
+      this.handleGetListAdmin();
+      this.dataSelect.id = null
     });
   }
 
@@ -87,7 +68,7 @@ export class ManagerCourseComponent  implements OnInit {
     //@ts-ignore
     this.dataSource = await courseService.getList();
   }
-  
+
   ngOnInit(): void {
     this.handleGetListAdmin()
   }

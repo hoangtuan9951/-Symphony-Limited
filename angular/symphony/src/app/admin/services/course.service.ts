@@ -7,17 +7,21 @@ const courseService = {
         const url = '/api/admin/courses';
         return axiosService.get(url,);
     },
-     create(body: any) {
+     create(body: Partial<CourseCreateModel>) {
         const url = `/api/admin/courses`;
-        return axiosService.post(url, body);
+        return axiosService.post(url, body, {headers: {[HEADER.CONTENT_TYPE]: 'multipart/form-data'}});
     },
-    update(body: any) {
+    update(body: Partial<CourseCreateModel>) {
         const url = `/api/admin/courses`;
-        return axiosService.put(url, body);
+        return axiosService.put(url, body, {headers: {[HEADER.CONTENT_TYPE]: 'multipart/form-data'}});
     },
     delete(id: number) {
         const url = `/api/admin/courses/${id}`;
         return axiosService.delete(url);
+    },
+    getDetail(id: number): Promise<CourseCreateModel> {
+        const url = `/api/admin/courses/${id}`;
+        return axiosService.get(url);
     },
 }
 
