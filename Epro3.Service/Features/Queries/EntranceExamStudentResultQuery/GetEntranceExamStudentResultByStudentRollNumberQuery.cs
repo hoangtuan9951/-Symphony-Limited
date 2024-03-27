@@ -11,7 +11,25 @@ using System.Threading.Tasks;
 
 namespace Epro3.Application.Features.Queries.EntranceExamStudentResultQuery
 {
- 
+    public class GetEntranceExamStudentResultDetailAdminQuery : IRequest<EntranceExamStudentResultDetailAdminDTO>
+    {
+        public required string StudentRollNumber { get; set; }
+        public class GetEntranceExamStudentResultDetailAdminQueryHandler : IRequestHandler<GetEntranceExamStudentResultDetailAdminQuery, EntranceExamStudentResultDetailAdminDTO>
+        {
+            private readonly IUnitOfWork _unitOfWork;
+            private readonly IMapper _mapper;
+            public GetEntranceExamStudentResultDetailAdminQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+            {
+                _unitOfWork = unitOfWork;
+                _mapper = mapper;
+            }
+            public async Task<EntranceExamStudentResultDetailAdminDTO> Handle(GetEntranceExamStudentResultDetailAdminQuery command, CancellationToken cancellationToken)
+            {
+                return _mapper.Map<EntranceExamStudentResultDetailAdminDTO>(await _unitOfWork.EntranceExamStudentResults.GetDetailWithInclude(command.StudentRollNumber));
+            }
+        }
+    }
+
     public class GetEntranceExamStudentResultByStudentRollNumberClientQuery : IRequest<EntranceExamStudentResultDetailClientDTO>
     {
         public required string StudentRollNumber { get; set; }

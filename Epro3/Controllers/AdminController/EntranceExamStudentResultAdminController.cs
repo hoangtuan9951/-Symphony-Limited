@@ -34,12 +34,12 @@ namespace Epro3.Controllers.AdminController
             }
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetEntranceExamStudentResultDetail(int id)
+        [HttpGet("entrance-exam-detail")]
+        public async Task<IActionResult> GetEntranceExamStudentResultDetail(string studentRollNumber)
         {
             try
             {
-                var responseData = await _mediator.Send(new GetEntranceExamStudentResultByIdAdminQuery { Id = id });
+                var responseData = await _mediator.Send(new GetEntranceExamStudentResultDetailAdminQuery { StudentRollNumber = studentRollNumber });
                 return Ok(responseData);
             }
             catch (Exception e)

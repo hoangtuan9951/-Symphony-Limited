@@ -17,7 +17,6 @@ namespace Epro3.Application.DTOs.AdminDTOs.Course
         public string Thumbnail { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string BackGroundImage { get; set; } = string.Empty;
-        public string CourseDetail { get; set; } = string.Empty;
         public DateTime StartedDate { get; set; }
         public DateTime EndedDate { get; set; }
         public bool Active { get; set; }

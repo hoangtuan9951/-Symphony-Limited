@@ -180,7 +180,7 @@ builder.Services.AddMediatR(typeof(GetAllEntranceExamStudentResultAdminQuery).Ge
 
 builder.Services.AddMediatR(typeof(GetLastOverEntranceExamClientQuery).GetTypeInfo().Assembly);
 
-builder.Services.AddMediatR(typeof(GetEntranceExamStudentResultByIdAdminQuery).GetTypeInfo().Assembly);
+builder.Services.AddMediatR(typeof(GetEntranceExamStudentResultDetailAdminQuery).GetTypeInfo().Assembly);
 
 builder.Services.AddMediatR(typeof(GetAllFAQAdminQuery).GetTypeInfo().Assembly);
 builder.Services.AddMediatR(typeof(GetAllFAQClientQuery).GetTypeInfo().Assembly);
@@ -208,6 +208,9 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(option => option.SwaggerEndpoint("/swagger/v1/swagger.json", "Epro3"));
 
+app.UseRouting();
+app.UseCors("CorsPolicy");
+
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider("/app/volume/Resource/Image/Course"),
@@ -220,9 +223,6 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/resource/image/other"
 });
 
-app.UseRouting();
-app.UseStaticFiles();
-app.UseCors("CorsPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

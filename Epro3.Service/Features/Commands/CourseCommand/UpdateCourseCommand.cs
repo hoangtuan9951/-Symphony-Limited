@@ -20,7 +20,6 @@ namespace Epro3.Application.Features.Commands.CourseCommand
         public int Amount { get; set; }
         public decimal Discount { get; set; }
         public required string Description { get; set; }
-        public required string CourseDetail { get; set; }
         public IFormFile? Thumbnail { get; set; }
         public IFormFile? BackGroundImage { get; set; }
         public DateTime StartedDate { get; set; }

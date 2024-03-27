@@ -14,6 +14,7 @@ namespace Epro3.Application.Features.Commands.CourseModuleCommand
     public class CreateCourseModuleCommand : IRequest<Unit>
     {
         public string Name { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
         public int Amount { get; set; }
         public int CourseId { get; set; }
 
