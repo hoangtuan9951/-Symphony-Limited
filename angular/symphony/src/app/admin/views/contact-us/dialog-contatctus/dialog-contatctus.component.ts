@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ContactUsModel } from '../../../models/ContactUs.model';
+import contactService from '../../../services/contactUs.service';
 
 @Component({
   selector: 'app-dialog-contatctus',
@@ -9,9 +10,11 @@ import { ContactUsModel } from '../../../models/ContactUs.model';
 })
 
 export class DialogContatctusComponent {
+    public is_edit: boolean = false;
+
     constructor(
         public dialogRef: MatDialogRef<DialogContatctusComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: ContactUsModel,
+        @Inject(MAT_DIALOG_DATA) public data: any,
     ) { }
 
     onNoClick(): void {
@@ -19,7 +22,9 @@ export class DialogContatctusComponent {
     }
 
     ngOnInit(): void {
-        console.log("data", this.data);
+        if (this.data.id != "") {
+            this.is_edit = true
+          }
     }
 
     contact = {
@@ -28,8 +33,14 @@ export class DialogContatctusComponent {
         hotline: this.data.hotline
     };
 
-    onSubmit(form: any) {
-        console.log('Admin Data:', form.value);
-    }
+    async onSubmit(form: any) {
+        if (this.is_edit) {
+            contactService.update(this.contact)
+          } else {
+            contactService.create(this.contact)
+          }
+          await this.data.callback();
+          this.dialogRef.close();
+          }
 }
 

@@ -4,20 +4,17 @@ export interface CourseChildModel {
   }
   
   export interface CourseModuleMenuModel {
-    Id: number;
-    Name: string;
-    Child: CourseModuleMenuModel[];
-  }
-  export interface Child {
-    Id: number;
-    Name: string;
+    id: number;
+    name: string;
   }
   
   export interface CoursesModel{
     id : number,
     name: string,
     description: string,
-    start_time: string,
+    startedDate: string,
     discount: string,
-    image: string
+    thumbnail: string,
+    endedDate: string,
+    numberOfDay: number
   }

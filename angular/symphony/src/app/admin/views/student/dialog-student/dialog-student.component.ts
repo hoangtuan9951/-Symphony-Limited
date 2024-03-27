@@ -9,38 +9,44 @@ import studentService from '../../../services/student.service';
   styleUrl: './dialog-student.component.css'
 })
 export class DialogStudentComponent {
+  public is_edit: boolean = false;
+
   constructor(
     public dialogRef: MatDialogRef<DialogStudentComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: StudentModel,
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
-  private is_edit: boolean = false;
 
   student = {
     id: this.data.id,
     name: this.data.name,
     email: this.data.email,
+    rollNumber: this.data.rollNumber
   };
 
   ngOnInit(): void {
-    if (this.data.id != null) {
+    if (this.data.rollNumber != "") {
       this.is_edit = true
     }
   }
 
-  onSubmit(form: any) {
+  async onSubmit(form: any) {
     if (this.is_edit) {
       studentService.update(this.student)
     } else {
       const data = {
         name: this.student.name,
-        email: this.student.email
+        email: this.student.email,
+        rollNumber: this.student.rollNumber
       }
       studentService.create(data)
     }
+    await this.data.callback();
+    this.dialogRef.close();
+
   }
 }
 

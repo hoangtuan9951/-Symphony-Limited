@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ContactUsModel } from '../../models/ContactUs.model';
-import { ContactUsService } from '../../services/contactUs.service';
+import contactService from '../../services/contactUs.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogContatctusComponent } from './dialog-contatctus/dialog-contatctus.component';
 import { ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-contact-us',
@@ -14,26 +15,23 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class ContactUsComponent implements OnInit {
   courseModules = new MatTableDataSource<ContactUsModel>();
-  displayedColumns: string[] = ['No', 'Email', 'Address', 'Hotline', 'Created at', 'Update at', 'Action'];
-  dataSource = new MatTableDataSource<ContactUsModel>(ELEMENT_DATA);
+  displayedColumns: string[] = ['No', 'Email', 'Address', 'Hotline', 'Action'];
 
   dataSelect: ContactUsModel = {
     id: null,
     email: '',
     address: '',
-    hotline: '',
-    created_at: null,
-    updated_at: null,
+    hotline: ''
   }
 
-  constructor(private contactUsService: ContactUsService, public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog ,  private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getContact();
   }
 
   getContact(): void {
-    this.contactUsService.getAll().subscribe(contact => {
+    contactService.getList().then(contact => {
       this.courseModules = new MatTableDataSource(contact);
     });
   }
@@ -47,9 +45,7 @@ export class ContactUsComponent implements OnInit {
         id: null,
         email: '',
         address: '',
-        hotline: '',
-        created_at: null,
-        updated_at: null,
+        hotline: ''
       };
     });
   }
@@ -66,33 +62,32 @@ export class ContactUsComponent implements OnInit {
         id: null,
         email: '',
         address: '',
-        hotline: '',
-        created_at: null,
-        updated_at: null,
+        hotline: ''
       };
     });
   }
-
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 50000,
+      horizontalPosition: 'end', // Vị trí ngang ('start' | 'center' | 'end')
+      verticalPosition: 'top',
+      panelClass: ['custom-snackbar']
+    });
+  }
   handleDelete(id: number): void {
-    console.log("delete user by id", id)
+    contactService.delete(id).then(() => {
+      this.getContact();
+      this.openSnackBar('Delete about success!', '');
+
+    })
   }
 
   //@ts-ignore
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    this.courseModules.paginator = this.paginator;
   }
 
   ngOnDestroy(): void { }
 }
-const ELEMENT_DATA: ContactUsModel[] = [
-  {
-    id: null,
-    email: 'dsadsad',
-    address: 'ádasd',
-    hotline: 'ádasdasdasdasd',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
-  },
-];

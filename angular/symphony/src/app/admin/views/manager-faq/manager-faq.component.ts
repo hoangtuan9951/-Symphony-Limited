@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { FAQModel } from '../../models/FAQ.model';
 import { MatDialog } from '@angular/material/dialog';
-import { FAQService } from '../../services/faq.service';
+import faqService from '../../services/faq.service';
 import { DialogFaqComponent } from './dialog-faq/dialog-faq.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-manager-faq',
   templateUrl: './manager-faq.component.html',
@@ -21,24 +22,22 @@ export class ManagerFaqComponent  implements OnInit {
     question: '',
     answer: '',
     active: true,
-    created_at: null,
-    updated_at: null,
   }
 
-  constructor(private faqService: FAQService, public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getListFaq();
   }
 
   getListFaq(): void {
-    this.faqService.getAll().subscribe(faq => {
+    faqService.getList().then(faq => {
       this.faqModel = new MatTableDataSource(faq);
     });
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogFaqComponent, {
-      data: this.dataSelect,
+      data:  {...this.dataSelect, callback: this.getListFaq()}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -46,9 +45,7 @@ export class ManagerFaqComponent  implements OnInit {
         id: null,
         question: '',
         answer: '',
-        active: true,
-        created_at: null,
-        updated_at: null,
+        active: true
       };
     });
   }
@@ -57,7 +54,7 @@ export class ManagerFaqComponent  implements OnInit {
     this.dataSelect = data;
 
     const dialogRef = this.dialog.open(DialogFaqComponent, {
-      data: this.dataSelect,
+      data:  {...this.dataSelect, callback: this.getListFaq()}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -65,17 +62,25 @@ export class ManagerFaqComponent  implements OnInit {
         id: null,
         question: '',
         answer: '',
-        active: true,
-        created_at: null,
-        updated_at: null,
+        active: true
       };
     });
   }
-
-  handleDelete(id: number): void {
-    console.log("delete user by id", id)
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 50000,
+      horizontalPosition: 'end', // Vị trí ngang ('start' | 'center' | 'end')
+      verticalPosition: 'top',
+      panelClass: ['custom-snackbar']
+    });
   }
+  handleDelete(id: number): void {
+    faqService.delete(id).then(() =>{
+      this.getListFaq();
+      this.openSnackBar('Delete about success!', '');
 
+    })
+  }
   //@ts-ignore
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -90,8 +95,6 @@ const ELEMENT_DATA: FAQModel[] = [
     id: 1,
     question: 'aaaaaaaaaaaaaaaaa',
     active: true,
-    answer: 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
-    created_at: '2023-03-10',
-    updated_at: '2024-03-16',
+    answer: 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
   },
 ];

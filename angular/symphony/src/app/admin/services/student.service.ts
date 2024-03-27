@@ -3,9 +3,9 @@ import { HEADER } from "../../user/constant";
 import { StudentModel } from "../models/Student.model";
 
 const studentService = {
-    getList(description: string): Promise<StudentModel[]> {
+    getList(): Promise<StudentModel[]> {
         const url = '/api/admin/students';
-        return axiosService.get(url, {params: {description}});
+        return axiosService.get(url);
     },
      create(body: any) {
         const url = `/api/admin/students`;

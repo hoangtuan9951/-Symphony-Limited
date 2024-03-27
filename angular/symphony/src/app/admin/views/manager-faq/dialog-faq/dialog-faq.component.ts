@@ -1,11 +1,8 @@
 import { Component, Inject } from '@angular/core';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CourseModules } from '../../../models/CourseModule.model';
-import { FAQCreateModel, FAQModel } from '../../../models/FAQ.model';
-import { FAQService } from '../../../services/faq.service';
+import { FAQModel } from '../../../models/FAQ.model';
+import faqService from '../../../services/faq.service';
 
 export interface DialogData {
   animal: string;
@@ -18,36 +15,40 @@ export interface DialogData {
 @Component({
   selector: 'app-dialog-faq',
   templateUrl: './dialog-faq.component.html',
-  styleUrl: './dialog-faq.component.css'
+  styleUrl: './dialog-faq.component.css',
 })
 export class DialogFaqComponent {
-  faq: FAQCreateModel = {
+  public is_edit: boolean = false;
+
+  faq: FAQModel = {
     question: this.data.question,
     answer: this.data.answer,
-    active: this.data.active
+    active: this.data.active,
+    id: this.data.id,
   };
-  
+
   constructor(
-    private apiService: FAQService,
     public dialogRef: MatDialogRef<DialogFaqComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: FAQModel,
-    
-  ) { }
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   ngOnInit(): void {
-    console.log("data", this.data);
+    if (this.data.id) {
+      this.is_edit = true;
+    }
   }
 
-
-  onSubmit(form: any) {
-    this.apiService.create(this.faq).subscribe(response => {
-    }, error => {
-      console.error('Error:', error);
-    });
+  async onSubmit(form: any) {
+    if (this.is_edit) {
+      faqService.update(this.faq);
+    } else {
+      faqService.create(this.faq);
+    }
+    await this.data.callback();
+    this.dialogRef.close();
   }
 }
-

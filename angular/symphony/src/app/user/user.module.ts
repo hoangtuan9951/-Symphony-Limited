@@ -15,7 +15,7 @@ import { AdmissionsComponent } from './views/admissions/admissions.component';
 import { BenefitPartnerComponent } from './views/benefit-partner/benefit-partner.component';
 import { UserRoutingModule } from './user-routing.module';
 import { RegisterConsultationComponent } from './views/homepages/register-consultation/register-consultation.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchScore } from './views/searchScore/searchScore.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -46,7 +46,8 @@ import { MatTableModule } from '@angular/material/table';
     MatTableModule,
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    DatePipe 
   ],
   exports: [HeaderComponent, FooterComponent],
 

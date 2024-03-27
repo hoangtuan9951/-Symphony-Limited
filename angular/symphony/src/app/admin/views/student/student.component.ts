@@ -28,7 +28,7 @@ export class StudentComponent  implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogStudentComponent, {
-      data: this.dataSelect,
+      data: {...this.dataSelect, callback: this.handleGetListAdmin()}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -45,7 +45,7 @@ export class StudentComponent  implements OnInit {
     this.dataSelect = data;
 
     const dialogRef = this.dialog.open(DialogStudentComponent, {
-      data: {...this.dataSelect, callback: this.handleGetListAdmin}
+      data: {...this.dataSelect, callback: this.handleGetListAdmin()}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -66,9 +66,10 @@ export class StudentComponent  implements OnInit {
     });
   }
   handleDelete(rollNumber: number): void {
-    studentService.delete(rollNumber);
-    this.openSnackBar('Delete about success!', '');
-    this.handleGetListAdmin
+    studentService.delete(rollNumber).then(async () =>{
+      this.handleGetListAdmin();
+      this.openSnackBar('Delete about success!', '');
+    })
     }
 
   //@ts-ignore

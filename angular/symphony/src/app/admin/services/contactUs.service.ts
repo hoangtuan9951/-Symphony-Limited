@@ -1,36 +1,25 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { URI_SERVICE } from '../../user/constant/uriInfo';
-import { ContactUsModel } from '../models/ContactUs.model';
+import { axiosService } from "../../service/index";
+import { HEADER } from "../../user/constant";
+import { ContactUsModel } from "../models/ContactUs.model";
+import { StudentModel } from "../models/Student.model";
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ContactUsService {
-
-  constructor(private http: HttpClient) { }
-
-  getAll(): Observable<ContactUsModel[]> {
-    return this.http.get<ContactUsModel[]>(URI_SERVICE);
-  }
-
-  get(id: number): Observable<ContactUsModel> {
-    const url = `${URI_SERVICE + ""}/${id}`;
-    return this.http.get<ContactUsModel>(url);
-  }
-
-  create(courseModule: ContactUsModel): Observable<ContactUsModel> {
-    return this.http.post<ContactUsModel>(URI_SERVICE + "", courseModule);
-  }
-
-  update(courseModule: ContactUsModel): Observable<ContactUsModel> {
-    const url = `${URI_SERVICE + ""}/${courseModule.id}`;
-    return this.http.put<ContactUsModel>(url, courseModule);
-  }
-
-  delete(id: number): Observable<any> {
-    const url = `${URI_SERVICE + ""}/${id}`;
-    return this.http.delete(url);
-  }
+const contactService = {
+    getList(): Promise<ContactUsModel[]> {
+        const url = '/api/admin/contacts';
+        return axiosService.get(url);
+    },
+     create(body: any) {
+        const url = `/api/admin/contacts`;
+        return axiosService.post(url, body);
+    },
+    update(body: any) {
+        const url = `/api/admin/contacts`;
+        return axiosService.put(url, body);
+    },
+    delete(id: number) {
+        const url = `/api/admin/contacts/${id}`;
+        return axiosService.delete(url);
+    },
 }
+
+export default contactService;

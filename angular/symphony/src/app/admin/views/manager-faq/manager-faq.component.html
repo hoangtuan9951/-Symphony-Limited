@@ -27,17 +27,7 @@
               <th mat-header-cell *matHeaderCellDef>Active</th>
               <td mat-cell *matCellDef="let element">{{ element.active }}</td>
             </ng-container>
-
-            <ng-container matColumnDef="Created at">
-              <th mat-header-cell *matHeaderCellDef>Create at</th>
-              <td mat-cell *matCellDef="let element">{{ element.create_at }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="Update at">
-              <th mat-header-cell *matHeaderCellDef>Update at</th>
-              <td mat-cell *matCellDef="let element">{{ element.update_at }}</td>
-            </ng-container>
-
+          
             <ng-container matColumnDef="Action">
               <th mat-header-cell *matHeaderCellDef>Action</th>
               <td mat-cell *matCellDef="let element">
