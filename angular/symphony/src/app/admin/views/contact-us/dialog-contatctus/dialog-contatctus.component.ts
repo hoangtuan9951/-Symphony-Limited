@@ -10,37 +10,37 @@ import contactService from '../../../services/contactUs.service';
 })
 
 export class DialogContatctusComponent {
-    public is_edit: boolean = false;
+  public is_edit: boolean = false;
 
-    constructor(
-        public dialogRef: MatDialogRef<DialogContatctusComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any,
-    ) { }
+  constructor(
+    public dialogRef: MatDialogRef<DialogContatctusComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+  ) { }
 
-    onNoClick(): void {
-        this.dialogRef.close();
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  ngOnInit(): void {
+    if (this.data.id != null) {
+      this.is_edit = true
     }
+  }
 
-    ngOnInit(): void {
-        if (this.data.id != "") {
-            this.is_edit = true
-          }
+  contact = {
+    id: this.data.id,
+    email: this.data.email,
+    address: this.data.address,
+    hotline: this.data.hotline
+  };
+
+  async onSubmit(form: any) {
+    if (this.is_edit) {
+      contactService.update(this.contact)
+    } else {
+      contactService.create(this.contact)
     }
-
-    contact = {
-        email: this.data.email,
-        address: this.data.address,
-        hotline: this.data.hotline
-    };
-
-    async onSubmit(form: any) {
-        if (this.is_edit) {
-            contactService.update(this.contact)
-          } else {
-            contactService.create(this.contact)
-          }
-          await this.data.callback();
-          this.dialogRef.close();
-          }
+    this.dialogRef.close();
+  }
 }
 

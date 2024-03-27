@@ -41,6 +41,8 @@ export class ContactUsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.getContact();
+
       this.dataSelect = {
         id: null,
         email: '',
@@ -58,6 +60,7 @@ export class ContactUsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.getContact();
       this.dataSelect = {
         id: null,
         email: '',

@@ -44,7 +44,6 @@ export class DialogStudentComponent {
       }
       studentService.create(data)
     }
-    await this.data.callback();
     this.dialogRef.close();
 
   }

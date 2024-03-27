@@ -111,15 +111,9 @@ export class DialogCourseComponent {
                     endedDate: this.course.endedDate,
                     active: this.course.active,
                     gradePass: this.course.gradePass,
+                    backGroundImage: this._imageSelected,
+                    thumbnail: this._imageSelected
                 };
-                if (this._imageSelected) {
-                    //@ts-ignore
-                    body['thumbnail'] = this._imageSelected;
-                } 
-                if (this._imageSelected) {
-                    //@ts-ignore
-                    body['backGroundImage'] = this._imageSelected;
-                } 
                 await courseService.create(body);
             }
             this.onNoClick();

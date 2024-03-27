@@ -13,9 +13,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './manager-faq.component.css'
 })
 export class ManagerFaqComponent  implements OnInit {
-  faqModel = new MatTableDataSource<FAQModel>();
-  displayedColumns: string[] = ['No', 'Question', 'Answer', 'Active',  'Created at', 'Update at' ,'Action'];
-  dataSource = new MatTableDataSource<FAQModel>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<FAQModel>();
+  displayedColumns: string[] = ['No', 'Question', 'Answer', 'Active' ,'Action'];
 
   dataSelect: FAQModel = {
     id: null,
@@ -32,7 +31,7 @@ export class ManagerFaqComponent  implements OnInit {
 
   getListFaq(): void {
     faqService.getList().then(faq => {
-      this.faqModel = new MatTableDataSource(faq);
+      this.dataSource = new MatTableDataSource(faq);
     });
   }
   openDialog(): void {
@@ -41,6 +40,7 @@ export class ManagerFaqComponent  implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.getListFaq();
       this.dataSelect = {
         id: null,
         question: '',
@@ -58,6 +58,7 @@ export class ManagerFaqComponent  implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.getListFaq();
       this.dataSelect = {
         id: null,
         question: '',
@@ -90,11 +91,3 @@ export class ManagerFaqComponent  implements OnInit {
 
   ngOnDestroy(): void { }
 }
-const ELEMENT_DATA: FAQModel[] = [
-  {
-    id: 1,
-    question: 'aaaaaaaaaaaaaaaaa',
-    active: true,
-    answer: 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
-  },
-];

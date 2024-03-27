@@ -85,10 +85,10 @@ export class LoginComponent {
 
     ngOnInit(): void {
         // Thực hiện các hành động sau khi component được khởi tạo
-        const token = getToken();
-        if(token) {
-            this.router.navigate(['/admin/manage-admin']);
-        }
+        // const token = getToken();
+        // if(token) {
+        //     this.router.navigate(['/admin/manage-admin']);
+        // }
     }
 }
 

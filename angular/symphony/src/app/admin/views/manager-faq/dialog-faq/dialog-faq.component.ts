@@ -37,7 +37,7 @@ export class DialogFaqComponent {
   }
 
   ngOnInit(): void {
-    if (this.data.id) {
+    if (this.data.id != null) {
       this.is_edit = true;
     }
   }
@@ -48,7 +48,6 @@ export class DialogFaqComponent {
     } else {
       faqService.create(this.faq);
     }
-    await this.data.callback();
     this.dialogRef.close();
   }
 }

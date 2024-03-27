@@ -7,13 +7,13 @@ const courseService = {
         const url = '/api/admin/courses';
         return axiosService.get(url,);
     },
-     create(body: Partial<any>) {
+     create(body: any) {
         const url = `/api/admin/courses`;
-        return axiosService.post(url, body,  {headers: {[HEADER.CONTENT_TYPE]: 'multipart/form-data'}});
+        return axiosService.post(url, body);
     },
-    update(body: Partial<any>) {
+    update(body: any) {
         const url = `/api/admin/courses`;
-        return axiosService.put(url, body, {headers: {[HEADER.CONTENT_TYPE]: 'multipart/form-data'}});
+        return axiosService.put(url, body);
     },
     delete(id: number) {
         const url = `/api/admin/courses/${id}`;

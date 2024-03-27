@@ -32,6 +32,8 @@ export class StudentComponent  implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.handleGetListAdmin();
+
       this.dataSelect = {
         id: null,
         name: '',
@@ -49,6 +51,7 @@ export class StudentComponent  implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.handleGetListAdmin();
       this.dataSelect = {
         id: null,
         name: '',
@@ -57,6 +60,7 @@ export class StudentComponent  implements OnInit {
       };
     });
   }
+ 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 50000,
