@@ -11,5 +11,6 @@ namespace Epro3.Domain.Interfaces.IRepository.Epro3
     public interface IStudentRepository : IGenericRepository<Student>
     {
         Task DeleteStudent(string studentRollNumber);
+        Task<Student> GetStudentByRollNumber(string studentRollNumber);
     }
 }

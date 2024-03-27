@@ -8,7 +8,6 @@ namespace Epro3.Application.DTOs.ClientDTOs.Student
 {
     public class StudentClientDTO
     {
-        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string RollNumber { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;

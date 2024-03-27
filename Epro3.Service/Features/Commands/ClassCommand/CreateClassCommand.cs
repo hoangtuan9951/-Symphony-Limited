@@ -35,7 +35,8 @@ namespace Epro3.Application.Features.Commands.ClassCommand
                     Name = command.Name,
                     Amount = command.Amount,
                     StartTime = command.StartTime,
-                    LastUpdatedDate = DateTime.Now
+                    LastUpdatedDate = DateTime.Now,
+                    CourseId = command.CourseId,
                 };
                 _unitOfWork.Classes.Create(data);
                 await _unitOfWork.Complete();

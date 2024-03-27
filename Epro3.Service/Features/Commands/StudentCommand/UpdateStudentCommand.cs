@@ -12,7 +12,6 @@ namespace Epro3.Application.Features.Commands.StudentCommand
 {
     public class UpdateStudentCommand : IRequest<Unit>
     {
-        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string RollNumber { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
@@ -26,10 +25,9 @@ namespace Epro3.Application.Features.Commands.StudentCommand
             public async Task<Unit> Handle(UpdateStudentCommand command, CancellationToken cancellationToken)
             {
 
-                Student data = await _unitOfWork.Students.GetById(command.Id);
+                Student data = await _unitOfWork.Students.GetStudentByRollNumber(command.RollNumber);
 
                 data.Name = command.Name;
-                data.RollNumber = command.RollNumber;
                 data.Email = command.Email;
                 data.LastUpdatedDate = DateTime.Now;
 

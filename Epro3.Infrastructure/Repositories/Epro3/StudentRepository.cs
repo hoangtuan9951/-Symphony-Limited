@@ -26,5 +26,15 @@ namespace Epro3.Infrastructure.Repositories.Epro3
             _context.Remove(data);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<Student> GetStudentByRollNumber(string studentRollNumber)
+        {
+            var data = await _context.Set<Student>().Where(e => e.RollNumber == studentRollNumber).FirstOrDefaultAsync();
+            if (data == null)
+            {
+                throw new Exception("student not found");
+            }
+            return data;
+        }
     }
 }

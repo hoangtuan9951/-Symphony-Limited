@@ -15,7 +15,6 @@ namespace Epro3.Application.DTOs.ClientDTOs.Course
         public int Amount { get; set; }
         public decimal Discount { get; set; }
         public string BackGroundImage { get; set; } = string.Empty;
-        public string CourseDetail { get; set; } = string.Empty;
         public DateTime StartedDate { get; set; }
         public DateTime EndedDate { get; set; }
     }
